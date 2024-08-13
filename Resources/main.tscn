@@ -33,6 +33,7 @@ expand_mode = 5
 stretch_mode = 6
 
 [node name="ImageManager" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 offset_right = 1800.0
 offset_bottom = 1080.0
@@ -221,7 +222,6 @@ text = "[url=https://github.com/SleeeepyZhou]SleeeepyZhou[/url]"
 fit_content = true
 
 [node name="Captioner" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 offset_right = 1800.0
 offset_bottom = 1080.0
@@ -255,6 +255,7 @@ text = "GPT Image Caption"
 horizontal_alignment = 1
 
 [node name="Go" type="Button" parent="Captioner/Main/Demo/Buttun"]
+visible = false
 layout_mode = 2
 text = "Go image manager ->"
 
@@ -328,13 +329,16 @@ layout_mode = 2
 text = "Prompt / 打标需求"
 
 [node name="Preset" type="OptionButton" parent="Captioner/Main/Demo/SchemaBox"]
+visible = false
 layout_mode = 2
 
 [node name="Save" type="Button" parent="Captioner/Main/Demo/SchemaBox"]
+visible = false
 layout_mode = 2
 text = "Save"
 
 [node name="Read" type="Button" parent="Captioner/Main/Demo/SchemaBox"]
+visible = false
 layout_mode = 2
 text = "Read preset"
 
@@ -984,6 +988,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Save"
 
+[node name="Share" type="Button" parent="Editbox/SchemaEdit/Box/Namebox"]
+layout_mode = 2
+text = "Share"
+
 [node name="Label" type="Label" parent="Editbox/SchemaEdit/Box/Namebox"]
 layout_mode = 2
 text = "Json schema name: "
@@ -1060,5 +1068,6 @@ text = "Back to main ->"
 [connection signal="pressed" from="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Button/Setting" to="Captioner/Main/Demo" method="_on_setting_pressed"]
 [connection signal="meta_clicked" from="Captioner/Main/Demo/Thank" to="Captioner/Main/Demo" method="_on_thank_meta_clicked"]
 [connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Save" to="Editbox" method="_on_save_pressed"]
+[connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Share" to="Editbox" method="share_json"]
 [connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Add" to="Editbox" method="_on_add_pressed"]
 [connection signal="pressed" from="Editbox/VBoxContainer/HBoxContainer/Esc" to="Editbox" method="_on_esc_pressed"]

@@ -25,6 +25,7 @@ func _on_schema_list_item_selected(index):
 	formatname = $SchemaList.get_item_text(index)
 
 func _on_edit_pressed():
+	formatname = $SchemaList.text
 	%Editbox.visible = true
 	%Editbox.readformat(formatname)
 
@@ -42,7 +43,6 @@ func _on_delete_button_up():
 	save_file.store_string(JSON.stringify(dir))
 	save_file.close()
 	updata_list()
-
 
 func buttun_visible(lock : bool):
 	$SchemaList.visible = lock

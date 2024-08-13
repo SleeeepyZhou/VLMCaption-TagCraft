@@ -2,6 +2,29 @@ extends MarginContainer
 
 const unit_path = "res://Lib/Extra/JsonSchema/schema_unit.tscn"
 
+func _ready():
+	#if OS.is_debug_build():
+		#Global.reset()
+	get_viewport().files_dropped.connect(on_files_dropped) # 文件拖拽信号
+
+func on_files_dropped(files): # 外部JSON分享
+	var path : String = files[0]
+	if ("share" in path.get_extension()) and visible:
+		var json_string = FileAccess.open(path, FileAccess.READ).get_as_text()
+		var json = JSON.new()
+		var parse_result = json.parse(json_string)
+		creat_nodeunit(parse_result)
+
+func share_json():
+	var schema_name = $SchemaEdit/Box/Namebox/Name.text
+	if await _on_save_pressed():
+		var schema_dir = Global.readjson()["format"][schema_name]
+		var json_string = JSON.stringify(schema_dir)
+		var json_path = (OS.get_executable_path().get_base_dir() + "/" + schema_name + ".share").simplify_path()
+		var save_data = FileAccess.open(json_path, FileAccess.WRITE)
+		save_data.store_string(json_string)
+		save_data.close()
+
 func newformat():
 	$SchemaEdit/Box/Namebox/Name.text = ""
 	$SchemaEdit/Box/Namebox/Note.text = ""
@@ -18,7 +41,8 @@ example_data = {
 					}],
 		"max_tokens": 300,
 		"temperature": 0.2,
-		"response_format": {"type": "json_schema",
+		"response_format": 
+			# 以下为存储数据	{"type": "json_schema",
 							"json_schema": {"name": "image_analysis_response",
 											"strict": true,
 											"schema": {"type": "object",
@@ -99,22 +123,31 @@ func analysis(box : Control, properties : Dictionary, notedir : Dictionary):
 		var temp = load(unit_path)
 		var newunit = temp.instantiate()
 		box.add_child(newunit)
-		var combin : bool = properties[key]["type"] in "object"
-		newunit.update_text(key, combin, notedir[key])
+		var combin : bool = properties[key].get("type","string") in "object"
+		newunit.update_text(key, combin, notedir.get(key,""))
 		if combin:
 			var newbox = newunit.get_node("Unitbox")
-			analysis(newbox, properties[key]["properties"], notedir)
-	
-func readformat(format_name : String):
-	if format_name.is_empty():
-		newformat()
-		return
-	var formatdir = Global.readjson()["format"][format_name]
-	var schema = formatdir["json_schema"]["schema"]
-	var notedir = formatdir["Note"]
+			analysis(newbox, properties[key].get("properties",{}), notedir)
+
+func creat_nodeunit(formatdir : Dictionary):
+	var format_name = formatdir.get("json_schema", {"name":"error"}).get("name","error")
 	$SchemaEdit/Box/Namebox/Name.text = format_name
+	if format_name in "errorJSON":
+		return
+	var notedir = formatdir.get("Note", {format_name.to_upper():"noteError"})
 	$SchemaEdit/Box/Namebox/Note.text = notedir[format_name.to_upper()]
+	if notedir[format_name.to_upper()] in "noteError":
+		return
+	var schema = formatdir["json_schema"].get("schema",{"properties":{}})
 	analysis($SchemaEdit/Box/Box/Unitbox, schema["properties"], notedir)
+
+func readformat(format_name : String):
+	for child in $SchemaEdit/Box/Box/Unitbox.get_children():
+		child.queue_free()
+	if format_name.is_empty():
+		return
+	var formatdir = Global.readjson()["format"].get(format_name, {})
+	creat_nodeunit(formatdir)
 
 func _on_esc_pressed():
 	visible = false
@@ -139,7 +172,7 @@ func _on_save_pressed():
 		$SchemaEdit/Warning.visible = true
 		await get_tree().create_timer(3).timeout
 		$SchemaEdit/Warning.visible = false
-		return
+		return false
 	format["json_schema"]["name"] = schema_name
 	
 	# 初始盒子
@@ -159,7 +192,7 @@ func _on_save_pressed():
 		$SchemaEdit/Warning.visible = true
 		await get_tree().create_timer(3).timeout
 		$SchemaEdit/Warning.visible = false
-		return
+		return false
 	
 	schema["properties"] = object
 	schema["required"] = box
@@ -174,3 +207,4 @@ func _on_save_pressed():
 	save_data.close()
 	
 	%SchemaBox.updata_list()
+	return true
