@@ -174,16 +174,14 @@ func openai_api(inputprompt : String, base64image : String):
 				{
 				"role": "user",
 				"content":
-					[
-						{"type": "image_url", 
+						[{"type": "image_url", 
 						"image_url":
 							{"url": "data:image/jpeg;base64," + base64image,
 							"detail": _quality}
 						},
-						{"type": "text", "text": inputprompt}
-					]
+						{"type": "text", "text": inputprompt}]
 				}
-			],
+					],
 		"max_tokens": 300
 		}
 	var headers : PackedStringArray = ["Content-Type: application/json", 
@@ -193,42 +191,53 @@ func openai_api(inputprompt : String, base64image : String):
 		if !format.is_empty():
 			temp_data["response_format"] = %SchemaBox.send()
 	var data = JSON.stringify(temp_data)
+	Global.is_run = true
 	
 	var result = await get_result(headers, data)
 	if result[0]:
 		var answer : String = ""
 		var json_result = result[1]
-		if format.is_empty():
-			if json_result != null:
-				# 安全地尝试
-				if json_result.has("choices") and\
-					json_result["choices"].size() > 0 and\
+		if json_result != null:
+			# 安全地尝试
+			if json_result.has("choices") and json_result["choices"].size() > 0 and\
 					json_result["choices"][0].has("message") and\
 					json_result["choices"][0]["message"].has("content"):
+				var format_respon = JSON.parse_string(json_result["choices"][0]["message"]["content"])
+				if format.is_empty() and !format_respon:
 					answer = json_result["choices"][0]["message"]["content"]
 				else:
-					answer = str(json_result)
-		else:
-			answer = get_format_answer(json_result)
+					answer = get_format_answer(format_respon)
+			else:
+				answer = str(json_result)
 		return answer
 	elif !result[0]:
 		return result[1]
+var batchmod = false
 func get_format_answer(json : Dictionary, tab : int = 0) -> String:
 	var answer : String = ""
-	for key in json:
-		var unit_answer : String
-		if json[key] is Dictionary:
-			unit_answer = "\n" + get_format_answer(json[key], tab + 1)
-		else:
-			unit_answer = str(json[key])
-		var _tab : String
-		var tabar : Array = []
-		tabar.resize(tab)
-		tabar.fill("\t")
-		_tab = "".join(tabar)
-		answer = answer + _tab + key + ": " + unit_answer + ", \n"
-	while answer.ends_with(", \n"):
-		answer = answer.substr(0, len(answer) - 3)
+	if batchmod:
+		for key in json:
+			var unit_answer : String
+			if json[key] is Dictionary:
+				unit_answer = get_format_answer(json[key])
+			else:
+				unit_answer = str(json[key]) + ", "
+			answer = unit_answer + answer
+	else:
+		for key in json:
+			var unit_answer : String
+			if json[key] is Dictionary:
+				unit_answer = "\n" + get_format_answer(json[key], tab + 1)
+			else:
+				unit_answer = str(json[key])
+			var _tab : String
+			var tabar : Array = []
+			tabar.resize(tab)
+			tabar.fill("\t")
+			_tab = "".join(tabar)
+			answer = answer + _tab + key + ": " + unit_answer + ", \n"
+		while answer.ends_with(", \n"):
+			answer = answer.substr(0, len(answer) - 3)
 	return answer
 
 

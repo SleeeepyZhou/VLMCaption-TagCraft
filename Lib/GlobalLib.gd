@@ -18,7 +18,7 @@ func zerojson():
 				"setting" : {},
 				"preset" : {}, 
 				"api" : {
-					"gpt-4o" : [true, "https://api.openai.com/v1/chat/completions", ""],
+					"gpt-4o-2024-08-06" : [true, "https://api.openai.com/v1/chat/completions", ""],
 					"local" : [false, "http://127.0.0.1:8000/v1/chat/completions", ""]
 						},
 				"prompt" : [prompt1, "Describe this image in a very detailed manner."],

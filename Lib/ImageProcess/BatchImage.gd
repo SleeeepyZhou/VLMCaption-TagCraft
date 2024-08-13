@@ -4,17 +4,18 @@ var started := false
 
 func _on_run_button_up():
 	started = true
-	Global.is_run = true
 	var image_path : String = $"Batch Image/InputPath/Path".text
 	var mode : int = $"Batch Image/HandlingMode/Mode".selected
 	var dir = DirAccess.open(image_path)
 	if dir:
+		%ApiUtils.batchmod = true
 		var templist = dir.get_files()
 		$"Batch Image/Output".text = "Processing..."
+		%ApiUtils.lock_input(true)
 		for file in templist:
-			%ApiUtils.lock_input(true)
 			if !started:
 				Global.is_run = false
+				%ApiUtils.batchmod = false
 				return
 			if Global.IMAGE_TYPE.has(file.get_extension()):
 				var image_file : String = (image_path + "/" + file).simplify_path()
@@ -35,6 +36,7 @@ func _on_run_button_up():
 					save_file.close()
 		$"Batch Image/Output".text = "Batch processing complete. Captions \
 								saved or updated as '.txt' files next to images."
+		%ApiUtils.batchmod = false
 		%ApiUtils.lock_input(false)
 	else:
 		$"Batch Image/Output".text = "Error accessing path."

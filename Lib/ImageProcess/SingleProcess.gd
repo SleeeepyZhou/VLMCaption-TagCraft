@@ -15,7 +15,6 @@ func on_files_dropped(files):
 		single_path = path
 
 func _on_caption_button_up():
-	Global.is_run = true
 	$SingleImage/UpOut/Output.text = "Processing..."
 	$SingleImage/UpOut/Output.text = await %ApiUtils.run_api(single_path)
 	Global.is_run = false

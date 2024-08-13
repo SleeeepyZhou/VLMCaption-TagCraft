@@ -4,7 +4,6 @@ var started := false
 
 func _on_run_button_up():
 	started = true
-	Global.is_run = true
 	var image_path : String = ($"Watermark Detection/PathInput/ImagePath".text).simplify_path()
 	var taget_path : String = ($"Watermark Detection/PathOutput/OutPath".text).simplify_path()
 	var mode : int = $"Watermark Detection/PathOutput/HandlingMode".selected

@@ -4,6 +4,7 @@ var formatname : String = ""
 
 func send() -> Dictionary:
 	var formatdir = Global.readjson()["format"]
+	formatname = $SchemaList.text
 	if formatname.is_empty() or !formatdir.has(formatname):
 		return {}
 	var format : Dictionary = formatdir[formatname]

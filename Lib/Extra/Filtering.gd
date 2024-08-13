@@ -15,7 +15,6 @@ var started := false
 func _on_run_button_up():
 	# 锁定状态
 	started = true
-	Global.is_run = true
 	$"Image filtering/Button/Addrule".set_disabled(true)
 	
 	# 取规则表
