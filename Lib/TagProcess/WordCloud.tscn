@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://xfdbm2x43mva"]
+
+[ext_resource type="Script" path="res://Lib/TagProcess/WordCloud.gd" id="1_s2f84"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_m286h"]
+b = Vector2(0, 3000)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_how1n"]
+b = Vector2(0, 3000)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_cim4o"]
+b = Vector2(3000, 0)
+
+[node name="WordCloud" type="Control"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_s2f84")
+
+[node name="TagBoxs" type="Node2D" parent="."]
+position = Vector2(250, 100)
+
+[node name="WallLeft" type="AnimatableBody2D" parent="."]
+position = Vector2(30, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+shape = SubResource("SegmentShape2D_m286h")
+
+[node name="WallRight" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+shape = SubResource("SegmentShape2D_how1n")
+
+[node name="WallUp" type="AnimatableBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallUp"]
+shape = SubResource("SegmentShape2D_cim4o")
+
+[node name="WallDown" type="AnimatableBody2D" parent="."]
+position = Vector2(0, 900)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDown"]
+shape = SubResource("SegmentShape2D_cim4o")
+
+[node name="Right" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../WallRight")
+use_global_coordinates = false
+update_rotation = false
+update_scale = false
+
+[node name="Down" type="RemoteTransform2D" parent="."]
+remote_path = NodePath(".")
+
+[connection signal="resized" from="." to="." method="_on_resized"]

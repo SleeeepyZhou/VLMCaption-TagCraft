@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b58msvepf360i"]
+
+[ext_resource type="Script" path="res://Lib/TagProcess/tagbody.gd" id="1_2ek03"]
+
+[node name="Tagbody" type="RigidBody2D"]
+script = ExtResource("1_2ek03")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="TagTexture" type="SubViewport" parent="."]
+
+[node name="Box" type="CenterContainer" parent="TagTexture"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Text" type="Label" parent="TagTexture/Box"]
+layout_mode = 2

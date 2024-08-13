@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://bifpjanr3m4xp"]
+
+[ext_resource type="Script" path="res://Lib/Extra/JsonSchema/schema_unit.gd" id="1_v5a87"]
+
+[node name="SchemaUnit" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+script = ExtResource("1_v5a87")
+
+[node name="Delete" type="Button" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "-"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Keyword"
+
+[node name="Keyword" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+placeholder_text = "Your keyword"
+
+[node name="Note" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+placeholder_text = "Notes"
+
+[node name="Combination" type="CheckBox" parent="."]
+layout_mode = 2
+text = "Combination"
+
+[node name="Add" type="Button" parent="."]
+visible = false
+layout_mode = 2
+text = "Add"
+
+[node name="Unitbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[connection signal="button_up" from="Delete" to="." method="_on_delete_button_up"]
+[connection signal="text_changed" from="Keyword" to="." method="_on_keyword_text_changed"]
+[connection signal="text_changed" from="Note" to="." method="_on_note_text_changed"]
+[connection signal="toggled" from="Combination" to="." method="_on_combination_toggled"]
+[connection signal="pressed" from="Add" to="." method="_on_add_pressed"]

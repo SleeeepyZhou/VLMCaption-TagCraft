@@ -1,0 +1,12 @@
+[gd_resource type="Theme" format=3 uid="uid://cichl1ubkv6ux"]
+
+[resource]
+default_font_size = 20
+BoxContainer/constants/separation = 10
+HSplitContainer/constants/autohide = 0
+HSplitContainer/constants/minimum_grab_thickness = 20
+HSplitContainer/constants/separation = 15
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 20
