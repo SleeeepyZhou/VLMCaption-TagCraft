@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b3xxp3mm3bm1i"]
+
+[node name="Image#Unit" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2

@@ -15,6 +15,7 @@ config/tags=PackedStringArray("godot2024")
 run/main_scene="res://Resources/main.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/bg_color=Color(0.721569, 0.945098, 0.8, 1)
+boot_splash/show_image=false
 config/icon="res://Resources/hex.png"
 
 [autoload]

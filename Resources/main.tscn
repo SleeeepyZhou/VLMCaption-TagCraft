@@ -33,7 +33,6 @@ expand_mode = 5
 stretch_mode = 6
 
 [node name="ImageManager" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 offset_right = 1800.0
 offset_bottom = 1080.0
@@ -42,45 +41,187 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
-script = ExtResource("3_ny3sl")
 
-[node name="Box" type="VBoxContainer" parent="ImageManager"]
+[node name="Main" type="VBoxContainer" parent="ImageManager"]
 layout_mode = 2
 
-[node name="Buttun" type="HBoxContainer" parent="ImageManager/Box"]
+[node name="Buttun" type="HBoxContainer" parent="ImageManager/Main"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="ImageManager/Box/Buttun"]
+[node name="Label" type="Label" parent="ImageManager/Main/Buttun"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Image Manager"
 
-[node name="Go" type="Button" parent="ImageManager/Box/Buttun"]
+[node name="Go" type="Button" parent="ImageManager/Main/Buttun"]
 layout_mode = 2
 text = "Go caption ->"
 
-[node name="Main" type="HSplitContainer" parent="ImageManager/Box"]
+[node name="PathBox" type="HBoxContainer" parent="ImageManager/Main"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ImageManager/Main/PathBox"]
+layout_mode = 2
+text = "Path"
+
+[node name="Path" type="LineEdit" parent="ImageManager/Main/PathBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter path"
+
+[node name="ShowMod" type="OptionButton" parent="ImageManager/Main/PathBox"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Grid"
+popup/item_0/id = 0
+popup/item_1/text = "List"
+popup/item_1/id = 1
+
+[node name="Enter" type="Button" parent="ImageManager/Main/PathBox"]
+layout_mode = 2
+text = "Enter"
+
+[node name="Main" type="HSplitContainer" parent="ImageManager/Main"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("3_ny3sl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ImageManager/Box/Main"]
-custom_minimum_size = Vector2(200, 0)
+[node name="FileShow" type="MarginContainer" parent="ImageManager/Main/Main"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_top = 5
+
+[node name="Backpic" type="TextureRect" parent="ImageManager/Main/Main/FileShow"]
+layout_mode = 2
+expand_mode = 2
+stretch_mode = 6
+
+[node name="Background" type="ColorRect" parent="ImageManager/Main/Main/FileShow"]
+layout_mode = 2
+color = Color(0.780392, 1, 0.835294, 0.196078)
+
+[node name="TabContainer" type="TabContainer" parent="ImageManager/Main/Main/FileShow"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="ImageManager/Box/Main"]
+[node name="UsePath" type="MarginContainer" parent="ImageManager/Main/Main/FileShow/TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="UsePath" type="ScrollContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/UsePath"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="UsePathBox" type="VBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/UsePath/UsePath"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Image" type="MarginContainer" parent="ImageManager/Main/Main/FileShow/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_top = 10
+
+[node name="Image#Box" type="ScrollContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Image#Box" type="GridContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image/Image#Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ImageVBox" type="ScrollContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image"]
+visible = false
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ImageVBox" type="VBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image/ImageVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Setting" type="MarginContainer" parent="ImageManager/Main/Main/FileShow/TabContainer"]
+visible = false
 layout_mode = 2
 
-[node name="Thank" type="RichTextLabel" parent="ImageManager/Box"]
-custom_minimum_size = Vector2(120, 0)
+[node name="Settingbox" type="VBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting"]
+layout_mode = 2
+
+[node name="Buttunbox" type="HBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox"]
+layout_mode = 2
+text = "Background Path: "
+
+[node name="Backpath" type="LineEdit" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SetColor" type="ColorPickerButton" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox"]
+layout_mode = 2
+text = "Back"
+color = Color(0.780392, 1, 0.835294, 0.196078)
+
+[node name="SetBack" type="Button" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox"]
+layout_mode = 2
+tooltip_text = "Enter image path in the pathbox to set background."
+text = "Set"
+
+[node name="InfoBox" type="ScrollContainer" parent="ImageManager/Main/Main"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Box" type="MarginContainer" parent="ImageManager/Main/Main/InfoBox"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="Box" type="VBoxContainer" parent="ImageManager/Main/Main/InfoBox/Box"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Image" type="TextureRect" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+layout_mode = 2
+expand_mode = 5
+
+[node name="ColorBox" type="HBoxContainer" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+layout_mode = 2
+alignment = 1
+
+[node name="Filename" type="LineEdit" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+layout_mode = 2
+
+[node name="Caption" type="TextEdit" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+wrap_mode = 1
+autowrap_mode = 2
+scroll_smooth = true
+scroll_past_end_of_file = true
+
+[node name="Thank" type="RichTextLabel" parent="ImageManager/Main"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/normal_font_size = 15
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 text = "[url=https://github.com/SleeeepyZhou]SleeeepyZhou[/url]"
 fit_content = true
 
 [node name="Captioner" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 offset_right = 1800.0
 offset_bottom = 1080.0
@@ -110,7 +251,7 @@ alignment = 1
 [node name="Title" type="Label" parent="Captioner/Main/Demo/Buttun"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Trainer Image Manager"
+text = "GPT Image Caption"
 horizontal_alignment = 1
 
 [node name="Go" type="Button" parent="Captioner/Main/Demo/Buttun"]
@@ -790,10 +931,11 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
 [node name="Thank" type="RichTextLabel" parent="Captioner/Main/Demo"]
-custom_minimum_size = Vector2(120, 0)
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/normal_font_size = 15
+size_flags_vertical = 8
+theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true
 text = "[url=https://github.com/SleeeepyZhou]SleeeepyZhou[/url]"
 fit_content = true
@@ -882,8 +1024,15 @@ alignment = 2
 layout_mode = 2
 text = "Back to main ->"
 
-[connection signal="pressed" from="ImageManager/Box/Buttun/Go" to="." method="_on_gocaption_pressed"]
-[connection signal="meta_clicked" from="ImageManager/Box/Thank" to="ImageManager" method="_on_thank_meta_clicked"]
+[connection signal="pressed" from="ImageManager/Main/Buttun/Go" to="." method="_on_gocaption_pressed"]
+[connection signal="text_changed" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Main" method="_on_path_text_changed"]
+[connection signal="text_submitted" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Main" method="_on_enter_pressed"]
+[connection signal="item_selected" from="ImageManager/Main/PathBox/ShowMod" to="ImageManager/Main/Main" method="_on_show_mod_item_selected"]
+[connection signal="pressed" from="ImageManager/Main/PathBox/Enter" to="ImageManager/Main/Main" method="_on_enter_pressed"]
+[connection signal="text_changed" from="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox/Backpath" to="ImageManager/Main/Main" method="_on_backpath_text_changed"]
+[connection signal="color_changed" from="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox/SetColor" to="ImageManager/Main/Main" method="_on_set_color_color_changed"]
+[connection signal="button_up" from="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Main" method="_on_set_back_button_up"]
+[connection signal="meta_clicked" from="ImageManager/Main/Thank" to="ImageManager/Main/Main" method="_on_thank_meta_clicked"]
 [connection signal="pressed" from="Captioner/Main/Demo/Buttun/Go" to="." method="_on_gomanager_pressed"]
 [connection signal="text_changed" from="Captioner/Main/Demo/ApiInput/ApiURL" to="Captioner/Main/Demo/ApiUtils" method="_on_api_url_text_changed"]
 [connection signal="toggled" from="Captioner/Main/Demo/SchemaBox/Schema" to="Captioner/Main/Demo/SchemaBox" method="_on_schema_toggled"]
