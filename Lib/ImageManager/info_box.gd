@@ -9,6 +9,8 @@ var path : String = "":
 		full_path = image_file.get_basename() + ".txt"
 		if FileAccess.file_exists(full_path):
 			caption = FileAccess.get_file_as_string(full_path)
+		else:
+			caption = ""
 		$Box/Box/ColorBox.visible = true
 		$Box/Box/Filename.visible = true
 		$Box/Box/Label.visible = true
