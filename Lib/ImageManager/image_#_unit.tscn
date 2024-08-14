@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3xxp3mm3bm1i"]
+[gd_scene load_steps=2 format=3 uid="uid://b3xxp3mm3bm1i"]
 
 [ext_resource type="Script" path="res://Lib/ImageManager/image_#_unit.gd" id="1_rk2e4"]
-[ext_resource type="Texture2D" uid="uid://ctq8bceygwopq" path="res://Resources/Einstein.jpg" id="2_r5irq"]
 
 [node name="Image#Unit" type="MarginContainer"]
 offset_right = 1800.0
@@ -17,7 +16,6 @@ layout_mode = 2
 [node name="Texture" type="TextureRect" parent="Box"]
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
-texture = ExtResource("2_r5irq")
 expand_mode = 2
 stretch_mode = 5
 
