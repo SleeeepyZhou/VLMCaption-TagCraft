@@ -49,7 +49,7 @@ func _on_set_back_button_up():
 	var dir = Global.readjson()
 	$FileShow/Background.color = new_color
 	dir["setting"]["managercolor"] = new_color
-	if !Global.IMAGE_TYPE.has(new_pic.get_extension()):
+	if !Global.IMAGE_TYPE.has(new_pic.get_extension().to_upper()):
 		show_warning("Unsupported file format.")
 	else:
 		var image = Image.load_from_file(new_pic)
@@ -89,7 +89,7 @@ func open_path(path : String):
 		IMAGE_MOD[$"../PathBox/ShowMod".selected].visible = true
 		IMAGE_MOD[int(!bool($"../PathBox/ShowMod".selected))].visible = false
 		for file in templist:
-			if Global.IMAGE_TYPE.has(file.get_extension()):
+			if Global.IMAGE_TYPE.has(file.get_extension().to_upper()):
 				var image_file : String = (path + "/" + file).simplify_path()
 				var temp = load(unitbox)
 				var newunit = temp.instantiate()

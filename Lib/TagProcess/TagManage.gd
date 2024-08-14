@@ -28,7 +28,7 @@ func _on_run_button_up():
 		var _tags : Dictionary = {}
 		var error_count : int = 0
 		for file in templist:
-			if Global.IMAGE_TYPE.has(file.get_extension()):
+			if Global.IMAGE_TYPE.has(file.get_extension().to_upper()):
 				var image_file : String = (txt_path+"/"+file).simplify_path()
 				var full_path : String = image_file.get_basename() + ".txt"
 				if FileAccess.file_exists(full_path):

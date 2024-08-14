@@ -3,6 +3,7 @@ extends ScrollContainer
 var path : String = "":
 	set(image_file):
 		path = image_file
+		print(path)
 		$Box/Box/Filename.text = image_file.get_file()
 		var image = Image.load_from_file(image_file)
 		$Box/Box/Image.texture = ImageTexture.create_from_image(image)

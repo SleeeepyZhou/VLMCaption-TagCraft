@@ -44,7 +44,7 @@ func readjson():
 		return save_data
 
 # 图片、提示词
-const IMAGE_TYPE = ["jpg", "png", "bmp", "gif", "tif", "tiff", "jpeg", "webp"]
+const IMAGE_TYPE = ["JPG", "PNG", "BMP", "GIF", "TIF", "TIFF", "JPEG", "WEBP"]
 
 func zip_image(path : String, quality : String) -> Image:
 	var image = Image.load_from_file(path)

@@ -7,7 +7,7 @@ func _on_run_zip_button_up():
 		$Box/OutPut/ProcessOutput.text = "Processing..."
 		var templist = dir.get_files()
 		for file in templist:
-			if Global.IMAGE_TYPE.has(file.get_extension()):
+			if Global.IMAGE_TYPE.has(file.get_extension().to_upper()):
 				var image_file : String = (image_path+"/"+file).simplify_path()
 				var new_image : Image = Global.zip_image(image_file,"auto")
 				new_image.save_jpg(image_file, 0.9)

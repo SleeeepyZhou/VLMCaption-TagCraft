@@ -57,7 +57,7 @@ func _on_run_button_up():
 				Global.is_run = false
 				return
 			# 发现图片
-			if Global.IMAGE_TYPE.has(file.get_extension()):
+			if Global.IMAGE_TYPE.has(file.get_extension().to_upper()):
 				count += 1
 				var image_file : String = (image_path + "/" + file).simplify_path()
 				var caption : String = await %ApiUtils.run_api(image_file)

@@ -37,7 +37,7 @@ func _on_setting_pressed():
 	# 背景设置
 	var background : String = ($"Tab/Config/API Config/Setting/Setting/Background/Backpath".text).simplify_path()
 	var _extension = background.get_extension()
-	if !Global.IMAGE_TYPE.has(_extension):
+	if !Global.IMAGE_TYPE.has(_extension.to_upper()):
 		return
 	var image = Image.load_from_file(background)
 	image.save_jpg("user://" + "background" + _extension, 0.9)
