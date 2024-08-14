@@ -10,9 +10,9 @@ func _ready():
 func on_files_dropped(files): # 外部JSON分享
 	var path : String = files[0]
 	if ("share" in path.get_extension()) and visible:
+		print(123)
 		var json_string = FileAccess.open(path, FileAccess.READ).get_as_text()
-		var json = JSON.new()
-		var parse_result = json.parse(json_string)
+		var parse_result = JSON.parse_string(json_string)
 		creat_nodeunit(parse_result)
 
 func share_json():
