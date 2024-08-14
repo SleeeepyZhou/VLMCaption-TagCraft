@@ -21,6 +21,8 @@ stretch_mode = 5
 
 [node name="ImageName" type="Button" parent="Box"]
 layout_mode = 2
+text_overrun_behavior = 4
+clip_text = true
 
 [node name="Path" type="LineEdit" parent="Box"]
 layout_mode = 2

@@ -207,9 +207,19 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Image" type="TextureRect" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+[node name="Box" type="MarginContainer" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Image" type="TextureRect" parent="ImageManager/Main/Main/InfoBox/Box/Box/Box"]
+layout_mode = 2
+size_flags_vertical = 3
 expand_mode = 5
+stretch_mode = 5
 
 [node name="ColorBox" type="HBoxContainer" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
 visible = false
@@ -234,7 +244,6 @@ size_flags_vertical = 3
 wrap_mode = 1
 autowrap_mode = 2
 scroll_smooth = true
-scroll_past_end_of_file = true
 
 [node name="Edit" type="Button" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
 visible = false
