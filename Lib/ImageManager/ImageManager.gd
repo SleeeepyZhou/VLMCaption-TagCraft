@@ -9,6 +9,8 @@ var path_text : String = "":
 		return path_text
 
 func update_list():
+	for child in $FileShow/TabContainer/UsePath/UsePath/UsePathBox.get_children():
+		child.queue_free()
 	var fi : Array = Global.readjson()["userpath"]
 	for path in fi:
 		var temp = load("res://Lib/ImageManager/user_path_unit.tscn")
