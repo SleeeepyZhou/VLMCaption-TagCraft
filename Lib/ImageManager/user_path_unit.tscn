@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5d4jw2s6md4b"]
+
+[ext_resource type="Script" path="res://Lib/ImageManager/user_path_unit.gd" id="1_46al8"]
+[ext_resource type="Texture2D" uid="uid://fugnnccacrl5" path="res://Resources/pathuni.png" id="1_xg031"]
+
+[node name="UserPathUnit" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource("1_46al8")
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_xg031")
+expand_mode = 3
+
+[node name="Box" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Box"]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+
+[node name="Box" type="HBoxContainer" parent="Box"]
+layout_mode = 2
+
+[node name="Path" type="LineEdit" parent="Box/Box"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="Open" type="Button" parent="Box/Box"]
+custom_minimum_size = Vector2(75, 35)
+layout_mode = 2
+text = "Open"
+
+[node name="Remove" type="Button" parent="Box/Box"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Remove"
+
+[connection signal="pressed" from="Box/Box/Open" to="." method="_on_open_pressed"]
+[connection signal="button_up" from="Box/Box/Remove" to="." method="_on_remove_button_up"]

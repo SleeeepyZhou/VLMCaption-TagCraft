@@ -3,24 +3,102 @@ extends HSplitContainer
 func _on_thank_meta_clicked(meta):
 	OS.shell_open(meta)
 
-func _on_path_text_changed(new_text):
-	pass # Replace with function body.
+var path_text : String = "":
+	get:
+		path_text = $"../PathBox/Path".text
+		return path_text
+
+func update_list():
+	var fi : Array = Global.readjson()["userpath"]
+	for path in fi:
+		var temp = load("res://Lib/ImageManager/user_path_unit.tscn")
+		var newunit = temp.instantiate()
+		$FileShow/TabContainer/UsePath/UsePath/UsePathBox.add_child(newunit)
+		newunit.path = path
+		newunit.connect("send", open_path)
+
+func _ready():
+	update_list()
+	var setting = Global.readjson()["setting"]
+	if setting.has("managerbackground"):
+		var image = Image.load_from_file(setting["managerbackground"])
+		$FileShow/Backpic.texture = ImageTexture.create_from_image(image)
+	if setting.has("managercolor"):
+		$FileShow/Background.color = setting["managercolor"]
 
 func _on_enter_pressed():
-	pass # Replace with function body.
+	if path_text.is_empty():
+		return
+	if path_text.get_extension().is_empty() \
+			and !path_text.get_base_dir().is_empty():
+		open_path(path_text)
+	else:
+		open_path(path_text.get_base_dir())
 
-func _on_show_mod_item_selected(index):
-	pass # Replace with function body.
-
-func _on_backpath_text_changed(new_text):
-	pass # Replace with function body.
-
-func _on_set_color_color_changed(color):
-	pass # Replace with function body.
+func show_warning(text : String):
+	%ManagerWarning.text = text
+	%ManagerWarning.visible = true
+	await get_tree().create_timer(1).timeout
+	%ManagerWarning.visible = false
 
 func _on_set_back_button_up():
-	$FileShow/Backpic
-	$FileShow/Background
+	var new_pic : String = $FileShow/TabContainer/Setting/Settingbox/Buttunbox/Backpath.text
+	var new_color = $FileShow/TabContainer/Setting/Settingbox/Buttunbox/SetColor.color
+	var dir = Global.readjson()
+	$FileShow/Background.color = new_color
+	dir["setting"]["managercolor"] = new_color
+	if !Global.IMAGE_TYPE.has(new_pic.get_extension()):
+		show_warning("Unsupported file format.")
+	else:
+		var image = Image.load_from_file(new_pic)
+		var imagepath : String = "user://" + "managerbackground" + new_pic.get_extension()
+		if dir["setting"].has("managerbackground"):
+			var access = DirAccess.open(Global.SAVEPATH.get_base_dir())
+			access.remove(dir["setting"]["managerbackground"])
+		image.save_jpg(imagepath, 0.9)
+		dir["setting"]["managerbackground"] = imagepath
+		$FileShow/Backpic.texture = ImageTexture.create_from_image(image)
+	var save_data = FileAccess.open(Global.SAVEPATH, FileAccess.WRITE)
+	save_data.store_string(JSON.stringify(dir))
+	save_data.close()
 
-const v_unit = "res://Lib/ImageManager/image_v_unit.tscn"
-const h_unit = "res://Lib/ImageManager/image_#_unit.tscn"
+const UNIT_MOD = ["res://Lib/ImageManager/image_#_unit.tscn", 
+					"res://Lib/ImageManager/image_v_unit.tscn"]
+@onready var IMAGE_MOD = [$"FileShow/TabContainer/Image/Image#Box",
+						$FileShow/TabContainer/Image/ImageVBox]
+func open_path(path : String):
+	var dir = DirAccess.open(path)
+	if dir:
+		$"../PathBox/Path".editable = false
+		$"../PathBox/Enter".disabled = true
+		var fi = Global.readjson()
+		if !fi["userpath"].has(path):
+			fi["userpath"].insert(0, path)
+			fi["userpath"].resize(clampi(fi["userpath"].size(), 1, 20))
+			var save_file = FileAccess.open(Global.SAVEPATH, FileAccess.WRITE)
+			save_file.store_string(JSON.stringify(fi))
+			save_file.close()
+			update_list()
+		var templist = dir.get_files()
+		var unitbox = UNIT_MOD[$"../PathBox/ShowMod".selected]
+		var imagebox : Node = IMAGE_MOD[$"../PathBox/ShowMod".selected].get_node("Box")
+		for child in imagebox.get_children():
+			child.queue_free()
+		IMAGE_MOD[$"../PathBox/ShowMod".selected].visible = true
+		IMAGE_MOD[int(!bool($"../PathBox/ShowMod".selected))].visible = false
+		for file in templist:
+			if Global.IMAGE_TYPE.has(file.get_extension()):
+				var image_file : String = (path + "/" + file).simplify_path()
+				var temp = load(unitbox)
+				var newunit = temp.instantiate()
+				imagebox.add_child(newunit)
+				newunit.connect("check", read_info)
+				newunit.path = image_file
+		$"../PathBox/Path".editable = true
+		$"../PathBox/Enter".disabled = false
+		$FileShow/TabContainer.current_tab = 1
+	else:
+		show_warning("Error accessing path.")
+
+func read_info(image : String):
+	$InfoBox.path = image

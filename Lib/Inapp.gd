@@ -6,6 +6,9 @@ func _ready():
 	if setting.has("background"):
 		var image = Image.load_from_file(setting["background"])
 		$Background.texture = ImageTexture.create_from_image(image)
+	if setting.has("backcolor"):
+		$ColorRect.color = setting["backcolor"]
+	
 
 func resize():
 	size = get_viewport_rect().size

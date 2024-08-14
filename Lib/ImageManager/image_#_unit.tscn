@@ -1,14 +1,31 @@
-[gd_scene format=3 uid="uid://b3xxp3mm3bm1i"]
+[gd_scene load_steps=3 format=3 uid="uid://b3xxp3mm3bm1i"]
 
-[node name="Image#Unit" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[ext_resource type="Script" path="res://Lib/ImageManager/image_#_unit.gd" id="1_rk2e4"]
+[ext_resource type="Texture2D" uid="uid://ctq8bceygwopq" path="res://Resources/Einstein.jpg" id="2_r5irq"]
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Image#Unit" type="MarginContainer"]
+offset_right = 1800.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_rk2e4")
+
+[node name="Box" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Texture" type="TextureRect" parent="Box"]
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
+texture = ExtResource("2_r5irq")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ImageName" type="Button" parent="Box"]
+layout_mode = 2
+
+[node name="Path" type="LineEdit" parent="Box"]
+layout_mode = 2
+editable = false
+
+[connection signal="pressed" from="Box/ImageName" to="." method="_on_read_pressed"]

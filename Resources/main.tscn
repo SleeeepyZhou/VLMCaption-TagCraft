@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvcr6osoyl86q"]
+[gd_scene load_steps=17 format=3 uid="uid://cvcr6osoyl86q"]
 
 [ext_resource type="Script" path="res://Lib/Inapp.gd" id="1_niuwl"]
 [ext_resource type="Theme" uid="uid://cichl1ubkv6ux" path="res://Resources/main_theme.tres" id="2_gsnq3"]
 [ext_resource type="Script" path="res://Lib/ImageManager/ImageManager.gd" id="3_ny3sl"]
 [ext_resource type="Script" path="res://Lib/Main.gd" id="3_pvo4y"]
+[ext_resource type="Script" path="res://Lib/ImageManager/info_box.gd" id="4_7uibc"]
 [ext_resource type="Script" path="res://Lib/ApiUtils.gd" id="4_ovvew"]
 [ext_resource type="Script" path="res://Lib/Extra/JsonSchema/SchemaBox.gd" id="5_ktcjw"]
 [ext_resource type="Script" path="res://Lib/ImageProcess/ImageZip.gd" id="6_dxd34"]
@@ -28,15 +29,27 @@ script = ExtResource("1_niuwl")
 
 [node name="Background" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(1800, 1080)
-layout_mode = 1
+layout_mode = 2
+offset_right = 1800.0
+offset_bottom = 1080.0
 expand_mode = 5
 stretch_mode = 6
 
-[node name="ImageManager" type="MarginContainer" parent="."]
-visible = false
-layout_mode = 1
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
 offset_right = 1800.0
 offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ImageManager" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("2_gsnq3")
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 40
@@ -57,7 +70,7 @@ text = "Image Manager"
 
 [node name="Go" type="Button" parent="ImageManager/Main/Buttun"]
 layout_mode = 2
-text = "Go caption ->"
+text = "Go captioner ->"
 
 [node name="PathBox" type="HBoxContainer" parent="ImageManager/Main"]
 layout_mode = 2
@@ -90,7 +103,7 @@ size_flags_vertical = 3
 script = ExtResource("3_ny3sl")
 
 [node name="FileShow" type="MarginContainer" parent="ImageManager/Main/Main"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -127,20 +140,20 @@ layout_mode = 2
 theme_override_constants/margin_top = 10
 
 [node name="Image#Box" type="ScrollContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image"]
+visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="Image#Box" type="GridContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image/Image#Box"]
+[node name="Box" type="HFlowContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image/Image#Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="ImageVBox" type="ScrollContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image"]
-visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="ImageVBox" type="VBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image/ImageVBox"]
+[node name="Box" type="VBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image/ImageVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -177,10 +190,13 @@ text = "Set"
 [node name="InfoBox" type="ScrollContainer" parent="ImageManager/Main/Main"]
 layout_mode = 2
 horizontal_scroll_mode = 0
+script = ExtResource("4_7uibc")
 
 [node name="Box" type="MarginContainer" parent="ImageManager/Main/Main/InfoBox"]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 0
@@ -196,13 +212,22 @@ layout_mode = 2
 expand_mode = 5
 
 [node name="ColorBox" type="HBoxContainer" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+visible = false
 layout_mode = 2
 alignment = 1
 
 [node name="Filename" type="LineEdit" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+visible = false
 layout_mode = 2
+editable = false
+
+[node name="Label" type="Label" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+visible = false
+layout_mode = 2
+text = "Caption"
 
 [node name="Caption" type="TextEdit" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+visible = false
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
@@ -210,6 +235,11 @@ wrap_mode = 1
 autowrap_mode = 2
 scroll_smooth = true
 scroll_past_end_of_file = true
+
+[node name="Edit" type="Button" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+visible = false
+layout_mode = 2
+text = "Edit Caption"
 
 [node name="Thank" type="RichTextLabel" parent="ImageManager/Main"]
 custom_minimum_size = Vector2(80, 0)
@@ -221,7 +251,20 @@ bbcode_enabled = true
 text = "[url=https://github.com/SleeeepyZhou]SleeeepyZhou[/url]"
 fit_content = true
 
+[node name="ManagerWarning" type="Label" parent="ImageManager"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "No image."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Captioner" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 offset_right = 1800.0
 offset_bottom = 1080.0
@@ -255,7 +298,6 @@ text = "GPT Image Caption"
 horizontal_alignment = 1
 
 [node name="Go" type="Button" parent="Captioner/Main/Demo/Buttun"]
-visible = false
 layout_mode = 2
 text = "Go image manager ->"
 
@@ -370,7 +412,7 @@ text = "Delete"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 145)
 layout_mode = 2
-text = "As an AI image tagging expert, please provide precise tags for these images to enhance CLIP model's understanding of the content. Employ succinct keywords or phrases, steering clear of elaborate sentences and extraneous conjunctions. Prioritize the tags by relevance. Your tags should capture key elements such as the main subject, setting, artistic style, composition, image quality, color tone, filter, and camera specifications, and any other tags crucial for the image. When tagging photos of people, include specific details like gender, nationality, attire, actions, pose, expressions, accessories, makeup, composition type, age, etc. For other image categories, apply appropriate and common descriptive tags as well. Recognize and tag any celebrities, well-known landmark or IPs if clearly featured in the image. Your tags should be accurate, non-duplicative, and within a 20-75 word count range. These tags will use for image re-creation, so the closer the resemblance to the original image, the better the tag quality. Tags should be comma-separated. Exceptional tagging will be rewarded with $10 per image."
+text = "Describe this image in a very detailed manner."
 placeholder_text = "Enter a descriptive prompt"
 wrap_mode = 1
 autowrap_mode = 2
@@ -918,10 +960,9 @@ layout_mode = 2
 [node name="Button" type="HBoxContainer" parent="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting"]
 layout_mode = 2
 
-[node name="Setting" type="Button" parent="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Button"]
-custom_minimum_size = Vector2(50, 0)
+[node name="Color" type="ColorPickerButton" parent="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Button"]
 layout_mode = 2
-text = "Set"
+text = "Color"
 
 [node name="Background" type="HBoxContainer" parent="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting"]
 layout_mode = 2
@@ -934,14 +975,18 @@ text = "Background Path"
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
-[node name="Thank" type="RichTextLabel" parent="Captioner/Main/Demo"]
-custom_minimum_size = Vector2(80, 0)
+[node name="Setting" type="Button" parent="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Background"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-theme_override_font_sizes/normal_font_size = 10
+text = "Set"
+
+[node name="Thank" type="RichTextLabel" parent="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "[url=https://github.com/SleeeepyZhou]SleeeepyZhou[/url]"
+text = "Developed using [url=https://godotengine.org/]Godot[/url] by [url=https://github.com/SleeeepyZhou]SleeeepyZhou[/url]"
 fit_content = true
 
 [node name="Editbox" type="MarginContainer" parent="."]
@@ -1033,13 +1078,10 @@ layout_mode = 2
 text = "Back to main ->"
 
 [connection signal="pressed" from="ImageManager/Main/Buttun/Go" to="." method="_on_gocaption_pressed"]
-[connection signal="text_changed" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Main" method="_on_path_text_changed"]
 [connection signal="text_submitted" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Main" method="_on_enter_pressed"]
-[connection signal="item_selected" from="ImageManager/Main/PathBox/ShowMod" to="ImageManager/Main/Main" method="_on_show_mod_item_selected"]
 [connection signal="pressed" from="ImageManager/Main/PathBox/Enter" to="ImageManager/Main/Main" method="_on_enter_pressed"]
-[connection signal="text_changed" from="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox/Backpath" to="ImageManager/Main/Main" method="_on_backpath_text_changed"]
-[connection signal="color_changed" from="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox/SetColor" to="ImageManager/Main/Main" method="_on_set_color_color_changed"]
 [connection signal="button_up" from="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Main" method="_on_set_back_button_up"]
+[connection signal="button_up" from="ImageManager/Main/Main/InfoBox/Box/Box/Edit" to="ImageManager/Main/Main/InfoBox" method="_on_edit_button_up"]
 [connection signal="meta_clicked" from="ImageManager/Main/Thank" to="ImageManager/Main/Main" method="_on_thank_meta_clicked"]
 [connection signal="pressed" from="Captioner/Main/Demo/Buttun/Go" to="." method="_on_gomanager_pressed"]
 [connection signal="text_changed" from="Captioner/Main/Demo/ApiInput/ApiURL" to="Captioner/Main/Demo/ApiUtils" method="_on_api_url_text_changed"]
@@ -1065,8 +1107,9 @@ text = "Back to main ->"
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Newbox/Add" to="Captioner/Main/Demo/Tab/Tag Manage" method="_on_add_button_up"]
 [connection signal="pressed" from="Captioner/Main/Demo/Tab/Config/API Config/API/Box/Switch" to="Captioner/Main/Demo/ApiUtils" method="_api_switch_pressed"]
 [connection signal="pressed" from="Captioner/Main/Demo/Tab/Config/API Config/API/Box/Default" to="Captioner/Main/Demo/ApiUtils" method="_set_api_default_pressed"]
-[connection signal="pressed" from="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Button/Setting" to="Captioner/Main/Demo" method="_on_setting_pressed"]
-[connection signal="meta_clicked" from="Captioner/Main/Demo/Thank" to="Captioner/Main/Demo" method="_on_thank_meta_clicked"]
+[connection signal="color_changed" from="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Button/Color" to="Captioner/Main/Demo" method="_on_color_color_changed"]
+[connection signal="pressed" from="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Background/Setting" to="Captioner/Main/Demo" method="_on_setting_pressed"]
+[connection signal="meta_clicked" from="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Thank" to="Captioner/Main/Demo" method="_on_thank_meta_clicked"]
 [connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Save" to="Editbox" method="_on_save_pressed"]
 [connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Share" to="Editbox" method="share_json"]
 [connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Add" to="Editbox" method="_on_add_pressed"]

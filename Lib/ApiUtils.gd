@@ -69,17 +69,6 @@ func lock_input(lock : bool):
 	%Prompt.set_editable(!lock)
 	$"../PromptSave/Load".set_disabled(lock)
 
-func is_api_id(url : String) -> int:
-	if url.ends_with("/v1/services/aigc/multimodal-generation/generation"):
-		return 1
-	elif url.ends_with("v1/messages") or (API_TYPE[api_mod] == "claude"):
-		return 3
-	elif url.begins_with("http://127.0.0.1/v1/chat/completions"):
-		return 4
-	elif url.ends_with("/v1/chat/completions"):
-		return 0
-	else:
-		return 5
 func api_save():
 	_update()
 	var mod : String = API_TYPE[is_api_id(api_url)]
@@ -99,9 +88,21 @@ func api_save():
 	save_data.store_string(JSON.stringify(dir))
 	save_data.close()
 
+func is_api_id(url : String) -> int:
+	if url.ends_with("/v1/services/aigc/multimodal-generation/generation"):
+		return 2
+	elif url.ends_with("v1/messages") or (API_TYPE[api_mod] == "claude"):
+		return 4
+	elif url.begins_with("http://127.0.0.1/v1/chat/completions"):
+		return 5
+	elif url.ends_with("/v1/chat/completions"):
+		return 0
+	else:
+		return 6
 
 # API运行
-const API_TYPE = ["gpt-4o-2024-08-06", "gpt-4o-mini", "qwen-vl-plus", "qwen-vl-max", "claude", "local", "???"]
+const API_TYPE = ["gpt-4o-2024-08-06", "gpt-4o-mini", "qwen-vl-plus", \
+					"qwen-vl-max", "claude", "local", "???"]
 var API_FUNC : Array[Callable] = [Callable(self,"openai_api"), 
 								Callable(self,"openai_api"),
 								Callable(self,"qwen_api"), 

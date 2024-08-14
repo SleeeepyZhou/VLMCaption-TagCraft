@@ -37,7 +37,7 @@ func _on_setting_pressed():
 	# 背景设置
 	var background : String = ($"Tab/Config/API Config/Setting/Setting/Background/Backpath".text).simplify_path()
 	var _extension = background.get_extension()
-	if _extension.is_empty() and Global.IMAGE_TYPE.has(_extension):
+	if !Global.IMAGE_TYPE.has(_extension):
 		return
 	var image = Image.load_from_file(background)
 	image.save_jpg("user://" + "background" + _extension, 0.9)
@@ -52,6 +52,14 @@ func _on_setting_pressed():
 	else:
 		dir["setting"]["background"] = "user://" + "background" + _extension
 	
+	var save_data = FileAccess.open(Global.SAVEPATH, FileAccess.WRITE)
+	save_data.store_string(JSON.stringify(dir))
+	save_data.close()
+
+func _on_color_color_changed(color):
+	$"../../../ColorRect".color = color
+	var dir = Global.readjson()
+	dir["setting"]["backcolor"] = color
 	var save_data = FileAccess.open(Global.SAVEPATH, FileAccess.WRITE)
 	save_data.store_string(JSON.stringify(dir))
 	save_data.close()
