@@ -203,15 +203,37 @@ visible = false
 layout_mode = 2
 editable = false
 
-[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
+[node name="ButtonBox" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Edit" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Edit Caption"
+
+[node name="Captioner" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Captioner"
+
+[node name="TipBox" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/TipBox"]
 layout_mode = 2
 text = "Caption"
 
-[node name="Edit" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
-visible = false
+[node name="Tip" type="Label" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/TipBox"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-text = "Edit Caption"
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 15
+text = "Remember set API in captioner"
+autowrap_mode = 1
 
 [node name="Caption" type="TextEdit" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 visible = false
@@ -1097,7 +1119,8 @@ text = "Back to main ->"
 [connection signal="pressed" from="ImageManager/Main/Buttun/Go" to="." method="_on_gocaption_pressed"]
 [connection signal="text_submitted" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]
 [connection signal="pressed" from="ImageManager/Main/PathBox/Enter" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]
-[connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/Edit" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_edit_button_up"]
+[connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Edit" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_edit_button_up"]
+[connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Captioner" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_captioner_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2/Run" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_run_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox/Add" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_add_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Tabbox/Manager" method="_on_set_back_button_up"]

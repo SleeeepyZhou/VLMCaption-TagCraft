@@ -13,9 +13,9 @@ var path : String = "":
 			caption = ""
 		$Box/Box/ColorBox.visible = true
 		$Box/Box/Filename.visible = true
-		$Box/Box/Label.visible = true
+		$Box/Box/TipBox.visible = true
 		$Box/Box/Caption.visible = true
-		$Box/Box/Edit.visible = true
+		$Box/Box/ButtonBox.visible = true
 
 var caption : String = "":
 	set(text):
@@ -29,3 +29,25 @@ func _on_edit_button_up():
 	var save_file = FileAccess.open(full_path, FileAccess.WRITE)
 	save_file.store_string(newcaption)
 	save_file.close()
+	$Box/Box/TipBox/Tip.text = "Edit complete."
+
+func _on_captioner_button_up():
+	%ApiUtils.batchmod = true
+	$Box/Box/TipBox/Tip.text = "Processing..."
+	%ApiUtils.lock_input(true)
+	
+	var new_caption : String = await %ApiUtils.run_api(path)
+	var original : String = ""
+	if FileAccess.file_exists(full_path):
+		original = FileAccess.get_file_as_string(full_path)
+	caption = new_caption + ", " + original
+	var save_file = FileAccess.open(full_path, FileAccess.WRITE)
+	save_file.store_string(caption)
+	save_file.close()
+	
+	%ApiUtils.batchmod = false
+	%ApiUtils.lock_input(false)
+	Global.is_run = false
+	$Box/Box/TipBox/Tip.text = "Processing complete."
+	await get_tree().create_timer(1).timeout
+	$Box/Box/TipBox/Tip.text = "Remember set API in captioner"
