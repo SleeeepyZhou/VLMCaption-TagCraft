@@ -18,7 +18,7 @@ var times : String = "":
 var path : String
 var image_file : PackedStringArray
 
-const Translator = "res://Lib/TagProcess/Translator.tscn"
+const Translator = "res://Lib/TagManager/Translator.tscn"
 func translate(translator : int):
 	if tag.is_empty():
 		return

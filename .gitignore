@@ -2,7 +2,7 @@
 
 /.godot
 /.vs
-/Release
+/.Release
 
 /Resources/*.import
 *.cfg

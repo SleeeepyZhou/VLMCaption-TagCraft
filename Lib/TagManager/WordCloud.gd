@@ -12,7 +12,7 @@ func _ready():
 
 var maxsize : int = 70
 var minsize : int = 10
-const tagbody = "res://Lib/TagProcess/tagbody.tscn"
+const tagbody = "res://Lib/TagManager/tagbody.tscn"
 func create_cloud(cloud_table : Dictionary, most_times : int):
 	for child in $TagBoxs.get_children():
 		child.queue_free()

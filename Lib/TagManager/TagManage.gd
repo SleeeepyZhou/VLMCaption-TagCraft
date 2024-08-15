@@ -77,7 +77,7 @@ func _on_run_button_up():
 		# 生成列表，放入box
 		var translater : int = $"Tag Manage/Input2/Translate".selected
 		for key in top_tags:
-			var loadtemp = load("res://Lib/TagProcess/tag.tscn")
+			var loadtemp = load("res://Lib/TagManager/tag.tscn")
 			var onetag = loadtemp.instantiate()
 			tagbox.add_child(onetag)
 			onetag.tag = key
@@ -121,7 +121,7 @@ func _on_add_button_up():
 		
 		# 加入box
 		var translator : int = $"Tag Manage/Input2/Translate".selected
-		var loadtemp = load("res://Lib/TagProcess/tag.tscn")
+		var loadtemp = load("res://Lib/TagManager/tag.tscn")
 		var onetag = loadtemp.instantiate()
 		tagbox.add_child(onetag)
 		onetag.tag = new_tag
