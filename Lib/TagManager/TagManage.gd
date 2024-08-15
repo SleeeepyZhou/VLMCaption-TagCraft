@@ -1,6 +1,6 @@
 extends MarginContainer
 
-@onready var output = $"Tag Manage/Input/Output"
+@onready var output = $"Tag Manage/Input2/Output"
 @onready var tagbox = $"Tag Manage/Taginformation/TagsBox/Box/Tags"
 
 func sort_by_times(a, b):
@@ -75,13 +75,13 @@ func _on_run_button_up():
 		word_cloud()
 		
 		# 生成列表，放入box
-		var translater : int = $"Tag Manage/Input/Translate".selected
+		var translater : int = $"Tag Manage/Input2/Translate".selected
 		for key in top_tags:
 			var loadtemp = load("res://Lib/TagProcess/tag.tscn")
 			var onetag = loadtemp.instantiate()
 			tagbox.add_child(onetag)
-			onetag.tag.text = key
-			onetag.times.text = str(top_tags[key][0])
+			onetag.tag = key
+			onetag.times = str(top_tags[key][0])
 			onetag.image_file = top_tags[key][1]
 			onetag.path = txt_path
 			if translater != 2:
@@ -106,8 +106,7 @@ func _on_add_button_up():
 			if insert_mod == 0:
 				pos = 0
 			elif insert_mod == 1:
-				@warning_ignore("integer_division")
-				pos = temp.size() / 2
+				pos = int(temp.size() / 2.0)
 			else:
 				pos = temp.size()
 			temp.insert(pos, new_tag)
@@ -121,12 +120,12 @@ func _on_add_button_up():
 		word_cloud()
 		
 		# 加入box
-		var translator : int = $"Tag Manage/Input/Translate".selected
-		var loadtemp = load("res://Lib/tag.tscn")
+		var translator : int = $"Tag Manage/Input2/Translate".selected
+		var loadtemp = load("res://Lib/TagProcess/tag.tscn")
 		var onetag = loadtemp.instantiate()
 		tagbox.add_child(onetag)
-		onetag.tag.text = new_tag
-		onetag.times.text = str(file_list.size())
+		onetag.tag = new_tag
+		onetag.times = str(file_list.size())
 		onetag.image_file = file_list
 		onetag.path = txt_path
 		tagbox.move_child(onetag, 0)

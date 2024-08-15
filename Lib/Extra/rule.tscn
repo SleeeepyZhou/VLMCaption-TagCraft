@@ -36,5 +36,3 @@ placeholder_text = "Enter the words you need to filter"
 expand_to_text_length = true
 
 [connection signal="button_up" from="Delete" to="." method="_on_delete_button_up"]
-[connection signal="item_selected" from="Rule" to="." method="_on_rule_item_selected"]
-[connection signal="text_changed" from="Keyword" to="." method="_on_keyword_text_changed"]

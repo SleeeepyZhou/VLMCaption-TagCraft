@@ -1,13 +1,13 @@
 extends HBoxContainer
 
-var rule_mode : int = 0
-var key : String = ""
-
-func _on_rule_item_selected(index):
-	rule_mode = index
-
-func _on_keyword_text_changed(new_text):
-	key = new_text
+var rule_mode : int = 0:
+	get:
+		rule_mode = $Rule.selected
+		return rule_mode
+var key : String = "":
+	get:
+		key = $Keyword.text
+		return key
 
 func _on_delete_button_up():
 	queue_free()

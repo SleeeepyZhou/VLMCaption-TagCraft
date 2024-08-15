@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dy8na0mj42ytl"]
 
-[ext_resource type="Script" path="res://Lib/TagProcess/Translator.gd" id="1_gj5ci"]
+[ext_resource type="Script" path="res://Lib/TagManager/Translator.gd" id="1_gj5ci"]
 
 [node name="Translator" type="Node"]
 script = ExtResource("1_gj5ci")

@@ -19,7 +19,7 @@ var path : String = "":
 
 var caption : String = "":
 	set(text):
-		$Box/Box/Caption.text = text
+		$Box/Box/Caption.text = text # 请不要乱动Caption节点的minimum size，会发生不可预知的bug
 		caption = text
 
 var full_path : String

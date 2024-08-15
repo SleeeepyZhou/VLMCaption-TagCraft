@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgna6ltng3quh"]
 
-[ext_resource type="Script" path="res://Lib/TagProcess/tag.gd" id="1_qub58"]
+[ext_resource type="Script" path="res://Lib/TagManager/tag.gd" id="1_qub58"]
 
 [node name="Tag" type="HBoxContainer"]
 offset_right = 40.0

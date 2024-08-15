@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://xfdbm2x43mva"]
 
-[ext_resource type="Script" path="res://Lib/TagProcess/WordCloud.gd" id="1_s2f84"]
+[ext_resource type="Script" path="res://Lib/TagManager/WordCloud.gd" id="1_s2f84"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_m286h"]
 b = Vector2(0, 3000)

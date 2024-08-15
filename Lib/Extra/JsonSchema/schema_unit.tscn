@@ -43,7 +43,5 @@ text = "Add"
 layout_mode = 2
 
 [connection signal="button_up" from="Delete" to="." method="_on_delete_button_up"]
-[connection signal="text_changed" from="Keyword" to="." method="_on_keyword_text_changed"]
-[connection signal="text_changed" from="Note" to="." method="_on_note_text_changed"]
 [connection signal="toggled" from="Combination" to="." method="_on_combination_toggled"]
 [connection signal="pressed" from="Add" to="." method="_on_add_pressed"]

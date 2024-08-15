@@ -17,7 +17,8 @@ func create_cloud(cloud_table : Dictionary, most_times : int):
 	for child in $TagBoxs.get_children():
 		child.queue_free()
 	for key in cloud_table:
-		var fontsize : int = clampi(int((cloud_table[key] / float(most_times)) * maxsize), minsize, maxsize)
+		var fontsize : int = clampi(int((cloud_table[key] / float(most_times))\
+									 * maxsize), minsize, maxsize)
 		var temp = load(tagbody)
 		var newcloud = temp.instantiate()
 		$TagBoxs.add_child(newcloud)

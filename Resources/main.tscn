@@ -13,8 +13,8 @@
 [ext_resource type="Script" path="res://Lib/ImageProcess/FailedScreening.gd" id="9_pcsf8"]
 [ext_resource type="Script" path="res://Lib/Extra/Watermark.gd" id="10_4288l"]
 [ext_resource type="Script" path="res://Lib/Extra/Filtering.gd" id="11_3ejic"]
-[ext_resource type="Script" path="res://Lib/TagProcess/TagManage.gd" id="12_gfwdk"]
-[ext_resource type="PackedScene" uid="uid://xfdbm2x43mva" path="res://Lib/TagProcess/WordCloud.tscn" id="13_7lw0r"]
+[ext_resource type="Script" path="res://Lib/TagManager/TagManage.gd" id="12_gfwdk"]
+[ext_resource type="PackedScene" uid="uid://xfdbm2x43mva" path="res://Lib/TagManager/WordCloud.tscn" id="13_7lw0r"]
 [ext_resource type="Script" path="res://Lib/Extra/JsonSchema/Editbox.gd" id="14_1v20b"]
 
 [node name="Control" type="Control"]
@@ -97,102 +97,74 @@ popup/item_1/id = 1
 layout_mode = 2
 text = "Enter"
 
-[node name="Main" type="HSplitContainer" parent="ImageManager/Main"]
+[node name="Tabbox" type="MarginContainer" parent="ImageManager/Main"]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("3_ny3sl")
+theme_override_constants/margin_top = 10
 
-[node name="FileShow" type="MarginContainer" parent="ImageManager/Main/Main"]
-custom_minimum_size = Vector2(300, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 2
-theme_override_constants/margin_top = 5
-
-[node name="Backpic" type="TextureRect" parent="ImageManager/Main/Main/FileShow"]
+[node name="Backpic" type="TextureRect" parent="ImageManager/Main/Tabbox"]
 layout_mode = 2
 expand_mode = 2
 stretch_mode = 6
 
-[node name="Background" type="ColorRect" parent="ImageManager/Main/Main/FileShow"]
+[node name="Background" type="ColorRect" parent="ImageManager/Main/Tabbox"]
 layout_mode = 2
-color = Color(0.780392, 1, 0.835294, 0.196078)
+color = Color(0.658824, 0.972549, 1, 0.192157)
 
-[node name="TabContainer" type="TabContainer" parent="ImageManager/Main/Main/FileShow"]
+[node name="Manager" type="TabContainer" parent="ImageManager/Main/Tabbox"]
 layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("3_ny3sl")
 
-[node name="UsePath" type="MarginContainer" parent="ImageManager/Main/Main/FileShow/TabContainer"]
+[node name="UsePath" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
 layout_mode = 2
 theme_override_constants/margin_top = 10
 
-[node name="UsePath" type="ScrollContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/UsePath"]
+[node name="UsePath" type="ScrollContainer" parent="ImageManager/Main/Tabbox/Manager/UsePath"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="UsePathBox" type="VBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/UsePath/UsePath"]
+[node name="UsePathBox" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/UsePath/UsePath"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Image" type="MarginContainer" parent="ImageManager/Main/Main/FileShow/TabContainer"]
+[node name="FileShow" type="HSplitContainer" parent="ImageManager/Main/Tabbox/Manager"]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Image" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_top = 10
 
-[node name="Image#Box" type="ScrollContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image"]
-visible = false
+[node name="Image#Box" type="ScrollContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/Image"]
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="Box" type="HFlowContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image/Image#Box"]
+[node name="Box" type="HFlowContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/Image/Image#Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ImageVBox" type="ScrollContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image"]
+[node name="ImageVBox" type="ScrollContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/Image"]
+visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="Box" type="VBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Image/ImageVBox"]
+[node name="Box" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/Image/ImageVBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Setting" type="MarginContainer" parent="ImageManager/Main/Main/FileShow/TabContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Settingbox" type="VBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting"]
-layout_mode = 2
-
-[node name="Buttunbox" type="HBoxContainer" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox"]
-layout_mode = 2
-text = "Background Path: "
-
-[node name="Backpath" type="LineEdit" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="SetColor" type="ColorPickerButton" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox"]
-layout_mode = 2
-text = "Back"
-color = Color(0.780392, 1, 0.835294, 0.196078)
-
-[node name="SetBack" type="Button" parent="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox"]
-layout_mode = 2
-tooltip_text = "Enter image path in the pathbox to set background."
-text = "Set"
-
-[node name="InfoBox" type="ScrollContainer" parent="ImageManager/Main/Main"]
+[node name="InfoBox" type="ScrollContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 horizontal_scroll_mode = 0
 script = ExtResource("4_7uibc")
 
-[node name="Box" type="MarginContainer" parent="ImageManager/Main/Main/InfoBox"]
+[node name="Box" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -201,13 +173,13 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 0
 
-[node name="Box" type="VBoxContainer" parent="ImageManager/Main/Main/InfoBox/Box"]
+[node name="Box" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 
-[node name="Box" type="MarginContainer" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+[node name="Box" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 theme_override_constants/margin_left = 3
@@ -215,40 +187,188 @@ theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 3
 
-[node name="Image" type="TextureRect" parent="ImageManager/Main/Main/InfoBox/Box/Box/Box"]
+[node name="Image" type="TextureRect" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/Box"]
 layout_mode = 2
 size_flags_vertical = 3
 expand_mode = 5
 stretch_mode = 5
 
-[node name="ColorBox" type="HBoxContainer" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+[node name="ColorBox" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="Filename" type="LineEdit" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+[node name="Filename" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 visible = false
 layout_mode = 2
 editable = false
 
-[node name="Label" type="Label" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 visible = false
 layout_mode = 2
 text = "Caption"
 
-[node name="Caption" type="TextEdit" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
-visible = false
-custom_minimum_size = Vector2(0, 400)
-layout_mode = 2
-size_flags_vertical = 3
-wrap_mode = 1
-autowrap_mode = 2
-scroll_smooth = true
-
-[node name="Edit" type="Button" parent="ImageManager/Main/Main/InfoBox/Box/Box"]
+[node name="Edit" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 visible = false
 layout_mode = 2
 text = "Edit Caption"
+
+[node name="Caption" type="TextEdit" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
+visible = false
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+wrap_mode = 1
+autowrap_mode = 1
+scroll_smooth = true
+
+[node name="Tag Manage" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
+visible = false
+layout_mode = 2
+script = ExtResource("12_gfwdk")
+
+[node name="Tag Manage" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage"]
+layout_mode = 2
+
+[node name="Input" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input"]
+layout_mode = 2
+text = "Folder Path"
+
+[node name="Path" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+placeholder_text = "Enter folder path"
+
+[node name="Label2" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input"]
+layout_mode = 2
+text = "Top N Tags"
+
+[node name="TopN" type="SpinBox" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input"]
+layout_mode = 2
+min_value = 10.0
+max_value = 200.0
+value = 30.0
+allow_greater = true
+
+[node name="Input2" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2"]
+layout_mode = 2
+text = "Output: "
+
+[node name="Output" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Output Message"
+editable = false
+expand_to_text_length = true
+
+[node name="Run" type="Button" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2"]
+layout_mode = 2
+text = "Read Tags"
+
+[node name="Label2" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2"]
+layout_mode = 2
+text = "Translate to Chinese:"
+
+[node name="Translate" type="OptionButton" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2"]
+layout_mode = 2
+item_count = 3
+selected = 2
+popup/item_0/text = "GPT-3.5"
+popup/item_0/id = 0
+popup/item_1/text = "Free"
+popup/item_1/id = 1
+popup/item_2/text = "No"
+popup/item_2/id = 2
+
+[node name="Newbox" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 2
+
+[node name="NewTag" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="AddMode" type="OptionButton" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Prepend"
+popup/item_0/id = 0
+popup/item_1/text = "Append"
+popup/item_1/id = 1
+popup/item_2/text = "Insert"
+popup/item_2/id = 2
+
+[node name="Add" type="Button" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox"]
+layout_mode = 2
+text = "Add New Tag"
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox"]
+layout_mode = 2
+text = "Number of occurrences"
+
+[node name="Taginformation" type="HSplitContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/autohide = 0
+
+[node name="Word Cloud" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud"]
+layout_mode = 2
+text = "Word Cloud"
+
+[node name="WordCloud" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud" instance=ExtResource("13_7lw0r")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TagsBox" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation"]
+layout_mode = 2
+
+[node name="Box" type="ScrollContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/TagsBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tags" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/TagsBox/Box"]
+layout_mode = 2
+
+[node name="Setting" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
+visible = false
+layout_mode = 2
+
+[node name="Settingbox" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Setting"]
+layout_mode = 2
+
+[node name="Buttunbox" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Setting/Settingbox"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox"]
+layout_mode = 2
+text = "Background Path: "
+
+[node name="Backpath" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SetColor" type="ColorPickerButton" parent="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox"]
+layout_mode = 2
+text = "Back"
+color = Color(0.780392, 1, 0.835294, 0.196078)
+
+[node name="SetBack" type="Button" parent="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox"]
+layout_mode = 2
+tooltip_text = "Enter image path in the pathbox to set background."
+text = "Set"
 
 [node name="Thank" type="RichTextLabel" parent="ImageManager/Main"]
 custom_minimum_size = Vector2(80, 0)
@@ -803,118 +923,6 @@ size_flags_vertical = 3
 [node name="Rules" type="VBoxContainer" parent="Captioner/Main/Demo/Tab/Extra Function/Extra Function/Tab/Image filtering/Image filtering/Box/Rollbox"]
 layout_mode = 2
 
-[node name="Tag Manage" type="MarginContainer" parent="Captioner/Main/Demo/Tab"]
-visible = false
-layout_mode = 2
-script = ExtResource("12_gfwdk")
-
-[node name="Tag Manage" type="VBoxContainer" parent="Captioner/Main/Demo/Tab/Tag Manage"]
-layout_mode = 2
-
-[node name="Input" type="HBoxContainer" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage"]
-layout_mode = 2
-theme_override_constants/separation = 15
-
-[node name="Label" type="Label" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input"]
-layout_mode = 2
-text = "Folder Path"
-
-[node name="Path" type="LineEdit" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input"]
-custom_minimum_size = Vector2(350, 0)
-layout_mode = 2
-placeholder_text = "Enter folder path"
-
-[node name="Label2" type="Label" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input"]
-layout_mode = 2
-text = "Top N Tags"
-
-[node name="TopN" type="SpinBox" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input"]
-layout_mode = 2
-min_value = 10.0
-max_value = 200.0
-value = 30.0
-allow_greater = true
-
-[node name="Run" type="Button" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input"]
-layout_mode = 2
-text = "Read Tags"
-
-[node name="Output" type="LineEdit" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-placeholder_text = "Output Message"
-editable = false
-expand_to_text_length = true
-
-[node name="Label3" type="Label" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input"]
-layout_mode = 2
-text = "Translate to Chinese:"
-
-[node name="Translate" type="OptionButton" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input"]
-layout_mode = 2
-item_count = 3
-selected = 2
-popup/item_0/text = "GPT-3.5"
-popup/item_0/id = 0
-popup/item_1/text = "Free"
-popup/item_1/id = 1
-popup/item_2/text = "No"
-popup/item_2/id = 2
-
-[node name="Newbox" type="HBoxContainer" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage"]
-layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 2
-
-[node name="NewTag" type="LineEdit" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Newbox"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-
-[node name="AddMode" type="OptionButton" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Newbox"]
-layout_mode = 2
-item_count = 3
-selected = 0
-popup/item_0/text = "Prepend"
-popup/item_0/id = 0
-popup/item_1/text = "Append"
-popup/item_1/id = 1
-popup/item_2/text = "Insert"
-popup/item_2/id = 2
-
-[node name="Add" type="Button" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Newbox"]
-layout_mode = 2
-text = "Add New Tag"
-
-[node name="Label" type="Label" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Newbox"]
-layout_mode = 2
-text = "Number of occurrences"
-
-[node name="Taginformation" type="HSplitContainer" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/autohide = 0
-
-[node name="Word Cloud" type="VBoxContainer" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Taginformation"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Taginformation/Word Cloud"]
-layout_mode = 2
-text = "Word Cloud"
-
-[node name="WordCloud" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Taginformation/Word Cloud" instance=ExtResource("13_7lw0r")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TagsBox" type="MarginContainer" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Taginformation"]
-layout_mode = 2
-
-[node name="Box" type="ScrollContainer" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Taginformation/TagsBox"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Tags" type="VBoxContainer" parent="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Taginformation/TagsBox/Box"]
-layout_mode = 2
-
 [node name="Config" type="MarginContainer" parent="Captioner/Main/Demo/Tab"]
 visible = false
 layout_mode = 2
@@ -995,7 +1003,7 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "Developed using [url=https://godotengine.org/]Godot[/url] by [url=https://github.com/SleeeepyZhou]SleeeepyZhou[/url]"
+text = "Developed using [url=https://godotengine.org/]Godot[/url] by [url=https://github.com/SleeeepyZhou]SleeeepyZhou[/url][center][b]Thanks[/b] [url=https://github.com/jiayev/GPT4V-Image-Captioner]GPT4V-Image-Captioner[/url][/center]"
 fit_content = true
 
 [node name="Editbox" type="MarginContainer" parent="."]
@@ -1087,11 +1095,13 @@ layout_mode = 2
 text = "Back to main ->"
 
 [connection signal="pressed" from="ImageManager/Main/Buttun/Go" to="." method="_on_gocaption_pressed"]
-[connection signal="text_submitted" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Main" method="_on_enter_pressed"]
-[connection signal="pressed" from="ImageManager/Main/PathBox/Enter" to="ImageManager/Main/Main" method="_on_enter_pressed"]
-[connection signal="button_up" from="ImageManager/Main/Main/FileShow/TabContainer/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Main" method="_on_set_back_button_up"]
-[connection signal="button_up" from="ImageManager/Main/Main/InfoBox/Box/Box/Edit" to="ImageManager/Main/Main/InfoBox" method="_on_edit_button_up"]
-[connection signal="meta_clicked" from="ImageManager/Main/Thank" to="ImageManager/Main/Main" method="_on_thank_meta_clicked"]
+[connection signal="text_submitted" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]
+[connection signal="pressed" from="ImageManager/Main/PathBox/Enter" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]
+[connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/Edit" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_edit_button_up"]
+[connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2/Run" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_run_button_up"]
+[connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox/Add" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_add_button_up"]
+[connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Tabbox/Manager" method="_on_set_back_button_up"]
+[connection signal="meta_clicked" from="ImageManager/Main/Thank" to="ImageManager/Main/Tabbox/Manager" method="_on_thank_meta_clicked"]
 [connection signal="pressed" from="Captioner/Main/Demo/Buttun/Go" to="." method="_on_gomanager_pressed"]
 [connection signal="text_changed" from="Captioner/Main/Demo/ApiInput/ApiURL" to="Captioner/Main/Demo/ApiUtils" method="_on_api_url_text_changed"]
 [connection signal="toggled" from="Captioner/Main/Demo/SchemaBox/Schema" to="Captioner/Main/Demo/SchemaBox" method="_on_schema_toggled"]
@@ -1112,8 +1122,6 @@ text = "Back to main ->"
 [connection signal="pressed" from="Captioner/Main/Demo/Tab/Extra Function/Extra Function/Tab/Image filtering/Image filtering/Button/Addrule" to="Captioner/Main/Demo/Tab/Extra Function/Extra Function/Tab/Image filtering" method="_on_addrule_pressed"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Extra Function/Extra Function/Tab/Image filtering/Image filtering/Button/Run" to="Captioner/Main/Demo/Tab/Extra Function/Extra Function/Tab/Image filtering" method="_on_run_button_up"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Extra Function/Extra Function/Tab/Image filtering/Image filtering/Button/Stop" to="Captioner/Main/Demo/Tab/Extra Function/Extra Function/Tab/Image filtering" method="_on_stop_button_up"]
-[connection signal="button_up" from="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Input/Run" to="Captioner/Main/Demo/Tab/Tag Manage" method="_on_run_button_up"]
-[connection signal="button_up" from="Captioner/Main/Demo/Tab/Tag Manage/Tag Manage/Newbox/Add" to="Captioner/Main/Demo/Tab/Tag Manage" method="_on_add_button_up"]
 [connection signal="pressed" from="Captioner/Main/Demo/Tab/Config/API Config/API/Box/Switch" to="Captioner/Main/Demo/ApiUtils" method="_api_switch_pressed"]
 [connection signal="pressed" from="Captioner/Main/Demo/Tab/Config/API Config/API/Box/Default" to="Captioner/Main/Demo/ApiUtils" method="_set_api_default_pressed"]
 [connection signal="color_changed" from="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Button/Color" to="Captioner/Main/Demo" method="_on_color_color_changed"]

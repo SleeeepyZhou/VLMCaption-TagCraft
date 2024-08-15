@@ -1,8 +1,14 @@
 extends HBoxContainer
 
-var key : String = ""
+var key : String = "":
+	get:
+		key = $Keyword.text
+		return key
 var is_object : bool = false
-var note : String = ""
+var note : String = "":
+	get:
+		note = $Note.text
+		return note
 
 func update_text(keyword : String, combin : bool, notaword : String):
 	key = keyword
@@ -35,12 +41,6 @@ func send_properties(notedir : Dictionary = {}):
 	else:
 		properties["type"] = "string"
 	return [key, properties, notedir]
-
-func _on_keyword_text_changed(new_text):
-	key = new_text
-
-func _on_note_text_changed(new_text):
-	note = new_text
 
 func _on_combination_toggled(toggled_on):
 	if toggled_on:

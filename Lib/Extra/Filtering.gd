@@ -64,7 +64,7 @@ func _on_run_button_up():
 				if "Error:" in caption:
 					error_count += 1
 					continue
-				var conform : String
+				var conform : String = ""
 				# 遍历规则
 				for key in rule:
 					var involve = bool(rule[key])
@@ -72,8 +72,8 @@ func _on_run_button_up():
 						(!involve and (key not in caption)):
 						if conform.is_empty():
 							conform = key
-							continue
-						conform += ", "  + key
+						else:
+							conform += ", "  + key
 				getted[image_file] = conform
 		# 移动图片
 		for file in getted:
