@@ -2,17 +2,15 @@
 
 **Developed by [Godot](https://godotengine.org/).**  
 
-A tool for image GPTcaption and manage.  
-
-![image](https://github.com/user-attachments/assets/11305dfa-bcc9-49c0-b5ac-f61fad6d94c4)
-
-![image](https://github.com/user-attachments/assets/b588faf7-1184-4ac4-a309-ca0b2e4a8d69)
-
-![image](https://github.com/user-attachments/assets/10be0464-1eca-4470-83de-921123d22be8)
-
-~~(Rehabilitation training)~~  
-
 更新支持GPT4o的json_schema功能  
+
+A tool for image GPTcaption and manage.  ~~(Rehabilitation training)~~  
+
+![01](https://github.com/user-attachments/assets/2426167d-9b22-47ea-b2e4-2b3756ad61d7)
+![02](https://github.com/user-attachments/assets/53c3f873-47f8-4d1a-98c8-f3bf2dcb7c33)
+![03](https://github.com/user-attachments/assets/b79798ce-102c-4418-9dd2-2b319d5ed763)
+![05](https://github.com/user-attachments/assets/5df62905-382a-4a1a-8ba7-f9891a6ac879)
+![06](https://github.com/user-attachments/assets/a24ddda5-486c-4430-9c4d-0e9f98fc7d60)
 
 ~~（康复训练）~~  
 
