@@ -68,6 +68,7 @@ const UNIT_MOD = ["res://Lib/ImageManager/image_#_unit.tscn",
 					"res://Lib/ImageManager/image_v_unit.tscn"]
 @onready var IMAGE_MOD = [$"FileShow/Image/Image#Box",
 						$FileShow/Image/ImageVBox]
+var image_count : int = 0
 func open_path(path : String):
 	var dir = DirAccess.open(path)
 	if dir:
@@ -97,6 +98,7 @@ func open_path(path : String):
 				imagebox.add_child(newunit)
 				newunit.connect("check", read_info)
 				newunit.path = image_file
+		image_count = imagebox.get_child_count()
 		$"../../PathBox/Path".editable = true
 		$"../../PathBox/Enter".disabled = false
 		current_tab = 1
@@ -110,5 +112,6 @@ func open_path(path : String):
 			update_list()
 		show_warning("Error accessing path.")
 
-func read_info(image : String):
+func read_info(image : String, idx : int):
 	$FileShow/InfoBox.path = image
+	$FileShow/InfoBox.image_index = idx

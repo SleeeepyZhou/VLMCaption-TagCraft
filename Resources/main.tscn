@@ -432,6 +432,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 20
 script = ExtResource("3_pvo4y")
 
 [node name="ApiUtils" type="Node" parent="Captioner/Main/Demo"]
@@ -622,14 +623,45 @@ text = "Image Folder Path"
 [node name="ImagePath" type="LineEdit" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/Run"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 placeholder_text = "Enter the folder path containing images / 输入包含图像的文件夹路径"
-
-[node name="RunZip" type="Button" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/Run"]
-layout_mode = 2
-text = "Process Images"
 
 [node name="OutPut" type="HBoxContainer" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box"]
 layout_mode = 2
+
+[node name="Label2" type="Label" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut"]
+layout_mode = 2
+text = "Image Quality"
+
+[node name="Qu" type="OptionButton" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut"]
+layout_mode = 2
+item_count = 4
+selected = 0
+popup/item_0/text = "auto"
+popup/item_0/id = 0
+popup/item_1/text = "high"
+popup/item_1/id = 1
+popup/item_2/text = "low"
+popup/item_2/id = 2
+popup/item_3/text = "custom"
+popup/item_3/id = 3
+
+[node name="Label3" type="Label" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut"]
+visible = false
+layout_mode = 2
+text = "Custom Shortest"
+
+[node name="Min" type="SpinBox" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut"]
+visible = false
+layout_mode = 2
+min_value = 512.0
+max_value = 1024.0
+step = 32.0
+value = 512.0
+
+[node name="RunZip" type="Button" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut"]
+layout_mode = 2
+text = "Process Images"
 
 [node name="Label" type="Label" parent="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut"]
 layout_mode = 2
@@ -1126,7 +1158,6 @@ text = "Back to main ->"
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Tabbox/Manager" method="_on_set_back_button_up"]
 [connection signal="meta_clicked" from="ImageManager/Main/Thank" to="ImageManager/Main/Tabbox/Manager" method="_on_thank_meta_clicked"]
 [connection signal="pressed" from="Captioner/Main/Demo/Buttun/Go" to="." method="_on_gomanager_pressed"]
-[connection signal="text_changed" from="Captioner/Main/Demo/ApiInput/ApiURL" to="Captioner/Main/Demo/ApiUtils" method="_on_api_url_text_changed"]
 [connection signal="toggled" from="Captioner/Main/Demo/SchemaBox/Schema" to="Captioner/Main/Demo/SchemaBox" method="_on_schema_toggled"]
 [connection signal="item_selected" from="Captioner/Main/Demo/SchemaBox/SchemaList" to="Captioner/Main/Demo/SchemaBox" method="_on_schema_list_item_selected"]
 [connection signal="pressed" from="Captioner/Main/Demo/SchemaBox/Edit" to="Captioner/Main/Demo/SchemaBox" method="_on_edit_pressed"]
@@ -1135,7 +1166,8 @@ text = "Back to main ->"
 [connection signal="pressed" from="Captioner/Main/Demo/PromptSave/Save" to="Captioner/Main/Demo" method="_prompt_save_pressed"]
 [connection signal="pressed" from="Captioner/Main/Demo/PromptSave/Delete" to="Captioner/Main/Demo" method="_prompt_delete_pressed"]
 [connection signal="pressed" from="Captioner/Main/Demo/PromptSave/Load" to="Captioner/Main/Demo" method="_prompt_load_pressed"]
-[connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/Run/RunZip" to="Captioner/Main/Demo/Tab/Image Process/Image Zip" method="_on_run_zip_button_up"]
+[connection signal="item_selected" from="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut/Qu" to="Captioner/Main/Demo/Tab/Image Process/Image Zip" method="_on_qu_item_selected"]
+[connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut/RunZip" to="Captioner/Main/Demo/Tab/Image Process/Image Zip" method="_on_run_zip_button_up"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Single Image/SingleImage/Caption" to="Captioner/Main/Demo/Tab/Image Process/Single Image" method="_on_caption_button_up"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Batch Image/Batch Image/Button/Run" to="Captioner/Main/Demo/Tab/Image Process/Batch Image" method="_on_run_button_up"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Batch Image/Batch Image/Button/Stop" to="Captioner/Main/Demo/Tab/Image Process/Batch Image" method="_on_stop_button_up"]

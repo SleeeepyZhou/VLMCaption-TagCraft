@@ -51,3 +51,19 @@ func _on_captioner_button_up():
 	$Box/Box/TipBox/Tip.text = "Processing complete."
 	await get_tree().create_timer(1).timeout
 	$Box/Box/TipBox/Tip.text = "Remember set API in captioner"
+
+var image_index : int
+func _input(event):
+	if $"..".visible:
+		if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_right"):
+			image_index = clampi(image_index + 1, 0, $"../..".image_count - 1)
+			if $"../Image/Image#Box".visible:
+				path = $"../Image/Image#Box/Box".get_child(image_index).path
+			elif $"../Image/ImageVBox".visible:
+				path = $"../Image/ImageVBox/Box".get_child(image_index).path
+		elif event.is_action_pressed("ui_up") or event.is_action_pressed("ui_left"):
+			image_index = clampi(image_index - 1, 0, $"../..".image_count - 1)
+			if $"../Image/Image#Box".visible:
+				path = $"../Image/Image#Box/Box".get_child(image_index).path
+			elif $"../Image/ImageVBox".visible:
+				path = $"../Image/ImageVBox/Box".get_child(image_index).path
