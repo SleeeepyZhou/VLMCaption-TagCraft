@@ -699,6 +699,14 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Plz drop image"
 
+[node name="LineEdit" type="LineEdit" parent="Captioner/Main/Demo/Tab/Image Process/Single Image/SingleImage/UpOut/ImageUp"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_top = 50.0
+offset_right = 300.0
+offset_bottom = 81.0
+placeholder_text = "Enter image path"
+
 [node name="Output" type="TextEdit" parent="Captioner/Main/Demo/Tab/Image Process/Single Image/SingleImage/UpOut"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -1168,6 +1176,7 @@ text = "Back to main ->"
 [connection signal="pressed" from="Captioner/Main/Demo/PromptSave/Load" to="Captioner/Main/Demo" method="_prompt_load_pressed"]
 [connection signal="item_selected" from="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut/Qu" to="Captioner/Main/Demo/Tab/Image Process/Image Zip" method="_on_qu_item_selected"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Image Zip/Box/OutPut/RunZip" to="Captioner/Main/Demo/Tab/Image Process/Image Zip" method="_on_run_zip_button_up"]
+[connection signal="text_submitted" from="Captioner/Main/Demo/Tab/Image Process/Single Image/SingleImage/UpOut/ImageUp/LineEdit" to="Captioner/Main/Demo/Tab/Image Process/Single Image" method="_on_line_edit_text_submitted"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Single Image/SingleImage/Caption" to="Captioner/Main/Demo/Tab/Image Process/Single Image" method="_on_caption_button_up"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Batch Image/Batch Image/Button/Run" to="Captioner/Main/Demo/Tab/Image Process/Batch Image" method="_on_run_button_up"]
 [connection signal="button_up" from="Captioner/Main/Demo/Tab/Image Process/Batch Image/Batch Image/Button/Stop" to="Captioner/Main/Demo/Tab/Image Process/Batch Image" method="_on_stop_button_up"]
