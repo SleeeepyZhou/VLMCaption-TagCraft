@@ -86,7 +86,7 @@ func image_to_base64(path : String, quality : String) -> String:
 	return Marshalls.raw_to_base64(image.save_jpg_to_buffer(0.90))
 
 func addition_prompt(text : String, image_path : String) -> String: # 提示词，图片路径
-	if '{' not in text and '}' not in text:
+	if '{' not in text or '}' not in text:
 		return text
 	var file_name = image_path.get_file().rstrip("." + image_path.get_extension()) + ".txt"
 	var dir_path = text.substr(text.find("{")+1, text.find("}")-text.find("{")-1)
@@ -96,6 +96,4 @@ func addition_prompt(text : String, image_path : String) -> String: # 提示词�
 	if file:
 		file_content = file.get_as_text()
 		file.close()
-	else:
-		return "Error reading file: Could not open file."
 	return text.replace("{" + dir_path + "}", file_content)
