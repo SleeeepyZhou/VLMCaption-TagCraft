@@ -158,7 +158,7 @@ func request_retry(head : PackedStringArray, data : String, url : String) -> Str
 		else:
 			return result
 	else:
-		return "Error: Unknown error"
+		return "Error: Unknown error. Status:" + str(received[1]) + received[3].get_string_from_utf8()
 
 
 ## 各家API模块

@@ -1,37 +1,5 @@
 extends MarginContainer
 
-const unit_path = "res://Lib/Extra/JsonSchema/schema_unit.tscn"
-
-func _ready():
-	#if OS.is_debug_build():
-		#Global.reset()
-	get_viewport().files_dropped.connect(on_files_dropped) # 文件拖拽信号
-
-func on_files_dropped(files): # 外部JSON分享
-	var path : String = files[0]
-	if ("share" in path.get_extension()) and visible:
-		print(123)
-		var json_string = FileAccess.open(path, FileAccess.READ).get_as_text()
-		var parse_result = JSON.parse_string(json_string)
-		creat_nodeunit(parse_result)
-
-func share_json():
-	var schema_name = $SchemaEdit/Box/Namebox/Name.text
-	if await _on_save_pressed():
-		var schema_dir = Global.readjson()["format"][schema_name]
-		var json_string = JSON.stringify(schema_dir)
-		var json_path = (OS.get_executable_path().get_base_dir() + "/" + schema_name + ".share").simplify_path()
-		var save_data = FileAccess.open(json_path, FileAccess.WRITE)
-		save_data.store_string(json_string)
-		save_data.close()
-
-func newformat():
-	$SchemaEdit/Box/Namebox/Name.text = ""
-	$SchemaEdit/Box/Namebox/Note.text = ""
-	for child in $SchemaEdit/Box/Box/Unitbox.get_children():
-		child.queue_free()
-	_on_add_pressed()
-
 '''
 example_data = {
 		"model": "gpt-4o-2024-08-06",
@@ -92,7 +60,8 @@ example_answer = {
 						}
 example_schema = {
 		"type": "object",
-		"properties": {"category": { "type": "string" },
+		"properties": {"category": {"type": "string", 
+									"description": ""},
 						"subject": { "type": "string" },
 						"appearance": {"type": "object",
 										"properties": {"costume": { "type": "string" },
@@ -118,18 +87,28 @@ example_schema = {
 				}
 '''
 
-func analysis(box : Control, properties : Dictionary, notedir : Dictionary):
-	for key in properties:
-		var temp = load(unit_path)
-		var newunit = temp.instantiate()
-		box.add_child(newunit)
-		var combin : bool = properties[key].get("type","string") in "object"
-		newunit.update_text(key, combin, notedir.get(key,""))
-		if combin:
-			var newbox = newunit.get_node("Unitbox")
-			analysis(newbox, properties[key].get("properties",{}), notedir)
+# 外部JSON分享
+func _ready():
+	get_viewport().files_dropped.connect(on_files_dropped) # 文件拖拽信号
+func on_files_dropped(files):
+	var path : String = files[0]
+	if ("share" in path.get_extension()) and visible:
+		var json_string = FileAccess.open(path, FileAccess.READ).get_as_text()
+		var parse_result = JSON.parse_string(json_string)
+		creat_nodeunit(parse_result)
+func share_json():
+	var schema_name = $SchemaEdit/Box/Namebox/Name.text
+	if await _on_save_pressed():
+		var schema_dir = Global.readjson()["format"][schema_name]
+		var json_string = JSON.stringify(schema_dir)
+		var json_path = (OS.get_executable_path().get_base_dir() + "/" + schema_name + ".share").simplify_path()
+		var save_data = FileAccess.open(json_path, FileAccess.WRITE)
+		save_data.store_string(json_string)
+		save_data.close()
 
-func creat_nodeunit(formatdir : Dictionary):
+const unit_path = "res://Lib/Extra/JsonSchema/schema_unit.tscn"
+
+func creat_nodeunit(formatdir : Dictionary): # 从数据构建子节点
 	var format_name = formatdir.get("json_schema", {"name":"error"}).get("name","error")
 	$SchemaEdit/Box/Namebox/Name.text = format_name
 	if format_name in "errorJSON":
@@ -140,24 +119,18 @@ func creat_nodeunit(formatdir : Dictionary):
 		return
 	var schema = formatdir["json_schema"].get("schema",{"properties":{}})
 	analysis($SchemaEdit/Box/Box/Unitbox, schema["properties"], notedir)
+func analysis(box : Control, properties : Dictionary, notedir : Dictionary):
+	for key in properties:
+		var temp = load(unit_path)
+		var newunit = temp.instantiate()
+		box.add_child(newunit)
+		var combin : bool = properties[key].get("type","string") in "object"
+		newunit.update_text(key, combin, notedir.get(key,""), properties[key].get("description",""))
+		if combin:
+			var newbox = newunit.get_node("Unitbox")
+			analysis(newbox, properties[key].get("properties",{}), notedir)
 
-func readformat(format_name : String):
-	for child in $SchemaEdit/Box/Box/Unitbox.get_children():
-		child.queue_free()
-	if format_name.is_empty():
-		return
-	var formatdir = Global.readjson()["format"].get(format_name, {})
-	creat_nodeunit(formatdir)
-
-func _on_esc_pressed():
-	visible = false
-
-func _on_add_pressed():
-	var temp = load(unit_path)
-	var newunit = temp.instantiate()
-	$SchemaEdit/Box/Box/Unitbox.add_child(newunit)
-
-func _on_save_pressed():
+func _on_save_pressed(): # 从子节点获取结构
 	var format : Dictionary = {
 								"type": "json_schema",
 								"json_schema": {"name": "",
@@ -208,3 +181,39 @@ func _on_save_pressed():
 	
 	%SchemaBox.updata_list()
 	return true
+
+func newformat():
+	$SchemaEdit/Box/Namebox/Name.text = ""
+	$SchemaEdit/Box/Namebox/Note.text = ""
+	for child in $SchemaEdit/Box/Box/Unitbox.get_children():
+		child.queue_free()
+	_on_add_pressed()
+
+func readformat(format_name : String):
+	for child in $SchemaEdit/Box/Box/Unitbox.get_children():
+		child.queue_free()
+	if format_name.is_empty():
+		return
+	var formatdir = Global.readjson()["format"].get(format_name, {})
+	creat_nodeunit(formatdir)
+
+func _on_esc_pressed():
+	visible = false
+
+func _on_add_pressed():
+	var temp = load(unit_path)
+	var newunit = temp.instantiate()
+	$SchemaEdit/Box/Box/Unitbox.add_child(newunit)
+
+func _on_name_text_changed(new_text):
+	var regex = RegEx.create_from_string("[a-zA-Z0-9_-]+")
+	var result = regex.search($SchemaEdit/Box/Namebox/Name.text)
+	var temp : String = ""
+	if result:
+		temp = result.get_string()
+	if temp != new_text:
+		$SchemaEdit/Box/Namebox/Name.clear()
+		$SchemaEdit/Box/Namebox/Name.insert_text_at_caret(temp)
+		$SchemaEdit/Box/Namebox/Name/Label.visible = true
+		await get_tree().create_timer(3).timeout
+		$SchemaEdit/Box/Namebox/Name/Label.visible = false

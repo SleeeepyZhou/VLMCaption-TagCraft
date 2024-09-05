@@ -1128,6 +1128,14 @@ custom_minimum_size = Vector2(300, 35)
 layout_mode = 2
 placeholder_text = "Tap your schema name"
 
+[node name="Label" type="Label" parent="Editbox/SchemaEdit/Box/Namebox/Name"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "Only a-z,A-Z,0-9,-,_"
+
 [node name="Add" type="Button" parent="Editbox/SchemaEdit/Box/Namebox"]
 layout_mode = 2
 text = "Add Unit"
@@ -1196,5 +1204,6 @@ text = "Back to main ->"
 [connection signal="meta_clicked" from="Captioner/Main/Demo/Tab/Config/API Config/Setting/Setting/Thank" to="Captioner/Main/Demo" method="_on_thank_meta_clicked"]
 [connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Save" to="Editbox" method="_on_save_pressed"]
 [connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Share" to="Editbox" method="share_json"]
+[connection signal="text_changed" from="Editbox/SchemaEdit/Box/Namebox/Name" to="Editbox" method="_on_name_text_changed"]
 [connection signal="pressed" from="Editbox/SchemaEdit/Box/Namebox/Add" to="Editbox" method="_on_add_pressed"]
 [connection signal="pressed" from="Editbox/VBoxContainer/HBoxContainer/Esc" to="Editbox" method="_on_esc_pressed"]

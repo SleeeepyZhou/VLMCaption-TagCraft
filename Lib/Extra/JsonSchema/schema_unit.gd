@@ -4,23 +4,39 @@ var key : String = "":
 	get:
 		key = $Keyword.text
 		return key
-var is_object : bool = false
+	set(t):
+		$Keyword.text = t
+		key = t
+var description : String = "":
+	get:
+		description = $Description.text
+		return description
+	set(t):
+		$Description.text = t
+		description = t
+var is_object : bool = false:
+	set(b):
+		$Combination.button_pressed = b
+		is_object = b
 var note : String = "":
 	get:
-		note = $Note.text
+		note = $Note/Note.text
 		return note
+	set(t):
+		$Note/Note.text = t
+		note = t
 
-func update_text(keyword : String, combin : bool, notaword : String):
+func update_text(keyword : String, combin : bool = false, notaword : String = "", descri : String = ""):
 	key = keyword
+	description = descri
 	is_object = combin
 	note = notaword
-	$Keyword.text = keyword
-	$Combination.button_pressed = combin
-	$Note.text = notaword
 
-func send_properties(notedir : Dictionary = {}):
+func send_properties(notedir : Dictionary = {}): # 向上返回数据
 	var properties : Dictionary = {}
 	notedir[key] = note
+	if !description.is_empty():
+		properties["description"] = description
 	if is_object:
 		var object : Dictionary = {}
 		var box : PackedStringArray = []
@@ -51,11 +67,35 @@ func _on_combination_toggled(toggled_on):
 		is_object = false
 		for child in $Unitbox.get_children():
 			child.queue_free()
-
 func _on_add_pressed():
 	var temp = load("res://Lib/Extra/JsonSchema/schema_unit.tscn")
 	var newunit = temp.instantiate()
 	$Unitbox.add_child(newunit)
-
 func _on_delete_button_up():
 	queue_free()
+func _on_note_pressed():
+	$Note/Note.visible = !$Note/Note.visible
+func _on_keyword_text_changed(new_text):
+	var regex = RegEx.create_from_string("[a-zA-Z0-9_-]+")
+	var result = regex.search($Keyword.text)
+	var temp : String = ""
+	if result:
+		temp = result.get_string()
+	if temp != new_text:
+		$Keyword.clear()
+		$Keyword.insert_text_at_caret(temp)
+		$Keyword/Label.visible = true
+		await get_tree().create_timer(3).timeout
+		$Keyword/Label.visible = false
+func _on_description_text_changed(new_text):
+	var regex = RegEx.create_from_string("[a-zA-Z0-9_-]+")
+	var result = regex.search($Description.text)
+	var temp : String = ""
+	if result:
+		temp = result.get_string()
+	if temp != new_text:
+		$Description.clear()
+		$Description.insert_text_at_caret(temp)
+		$Keyword/Label.visible = true
+		await get_tree().create_timer(3).timeout
+		$Keyword/Label.visible = false
