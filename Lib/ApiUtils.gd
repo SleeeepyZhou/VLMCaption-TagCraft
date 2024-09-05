@@ -163,7 +163,10 @@ func request_retry(head : PackedStringArray, data : String, url : String) -> Str
 
 ## 各家API模块
 
-var formatrespon : bool = false
+var formatrespon : bool = false:
+	get:
+		formatrespon = $"../SchemaBox/Schema".button_pressed
+		return formatrespon
 var format : Dictionary = {}
 
 func openai_api(inputprompt : String, base64image : String):
@@ -202,7 +205,7 @@ func openai_api(inputprompt : String, base64image : String):
 					json_result["choices"][0].has("message") and\
 					json_result["choices"][0]["message"].has("content"):
 				var format_respon = JSON.parse_string(json_result["choices"][0]["message"]["content"])
-				if format.is_empty() and !format_respon:
+				if !format_respon or (api_mod != 0 or api_mod != 1):
 					answer = json_result["choices"][0]["message"]["content"]
 				else:
 					answer = get_openai_format_answer(format_respon)

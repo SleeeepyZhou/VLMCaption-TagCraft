@@ -36,6 +36,7 @@ expand_mode = 5
 stretch_mode = 6
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 2
 offset_right = 1800.0
 offset_bottom = 1080.0
@@ -485,7 +486,9 @@ text = "API Model"
 
 [node name="APIMod" type="OptionButton" parent="Captioner/Main/Demo/ApiInput"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+fit_to_longest_item = false
 
 [node name="Label4" type="Label" parent="Captioner/Main/Demo/ApiInput"]
 layout_mode = 2
