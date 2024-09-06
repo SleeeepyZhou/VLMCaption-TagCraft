@@ -45,6 +45,7 @@ func readjson():
 
 # 图片、提示词
 const IMAGE_TYPE = ["JPG", "PNG", "BMP", "GIF", "TIF", "TIFF", "JPEG", "WEBP"]
+var REG : String = "[,.\\w\\s-]+"
 
 func zip_image(path : String, quality : String, custom : int = 0) -> Image:
 	var image = Image.load_from_file(path)

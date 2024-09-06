@@ -35,11 +35,12 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "Only a-z,A-Z,0-9,-,_"
 
-[node name="Description" type="LineEdit" parent="."]
-custom_minimum_size = Vector2(150, 0)
+[node name="Description" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 placeholder_text = "Description"
-expand_to_text_length = true
+wrap_mode = 1
+scroll_fit_content_height = true
 
 [node name="Note" type="LinkButton" parent="."]
 layout_mode = 2

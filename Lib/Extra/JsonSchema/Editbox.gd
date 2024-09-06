@@ -208,11 +208,12 @@ func _on_add_pressed():
 	$SchemaEdit/Box/Box/Unitbox.add_child(newunit)
 
 func _on_name_text_changed(new_text):
-	var regex = RegEx.create_from_string("[a-zA-Z0-9_-]+")
-	var result = regex.search($SchemaEdit/Box/Namebox/Name.text)
+	var regex = RegEx.create_from_string(Global.REG)
+	var result = regex.search_all($SchemaEdit/Box/Namebox/Name.text)
 	var temp : String = ""
 	if result:
-		temp = result.get_string()
+		for s in result:
+			temp += s.get_string()
 	if temp != new_text:
 		$SchemaEdit/Box/Namebox/Name.clear()
 		$SchemaEdit/Box/Namebox/Name.insert_text_at_caret(temp)

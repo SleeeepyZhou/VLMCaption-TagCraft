@@ -205,7 +205,7 @@ func openai_api(inputprompt : String, base64image : String):
 					json_result["choices"][0].has("message") and\
 					json_result["choices"][0]["message"].has("content"):
 				var format_respon = JSON.parse_string(json_result["choices"][0]["message"]["content"])
-				if !format_respon or (api_mod != 0 or api_mod != 1):
+				if !format_respon or (api_mod != 0 and api_mod != 1):
 					answer = json_result["choices"][0]["message"]["content"]
 				else:
 					answer = get_openai_format_answer(format_respon)
