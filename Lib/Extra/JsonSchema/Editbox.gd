@@ -95,6 +95,8 @@ func on_files_dropped(files):
 	if ("share" in path.get_extension()) and visible:
 		var json_string = FileAccess.open(path, FileAccess.READ).get_as_text()
 		var parse_result = JSON.parse_string(json_string)
+		for child in $SchemaEdit/Box/Box/Unitbox.get_children():
+			child.queue_free()
 		creat_nodeunit(parse_result)
 func share_json():
 	var schema_name = $SchemaEdit/Box/Namebox/Name.text
