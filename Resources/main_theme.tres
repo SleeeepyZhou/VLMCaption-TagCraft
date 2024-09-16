@@ -1,6 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://cichl1ubkv6ux"]
 
 [resource]
+default_font_size = 30
 BoxContainer/constants/separation = 10
 Button/font_sizes/font_size = 20
 HSplitContainer/constants/autohide = 0

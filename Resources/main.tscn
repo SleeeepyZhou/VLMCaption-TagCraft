@@ -25,6 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("2_gsnq3")
 script = ExtResource("1_niuwl")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -45,6 +46,7 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="ImageManager" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -416,7 +418,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Captioner" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 offset_right = 1800.0
 offset_bottom = 1080.0
