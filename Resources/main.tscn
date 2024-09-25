@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvcr6osoyl86q"]
+[gd_scene load_steps=18 format=3 uid="uid://cvcr6osoyl86q"]
 
 [ext_resource type="Script" path="res://Lib/Inapp.gd" id="1_niuwl"]
 [ext_resource type="Theme" uid="uid://cichl1ubkv6ux" path="res://Resources/main_theme.tres" id="2_gsnq3"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://Lib/TagManager/TagManage.gd" id="12_gfwdk"]
 [ext_resource type="PackedScene" uid="uid://xfdbm2x43mva" path="res://Lib/TagManager/WordCloud.tscn" id="13_7lw0r"]
 [ext_resource type="Script" path="res://Lib/Extra/JsonSchema/Editbox.gd" id="14_1v20b"]
+[ext_resource type="Script" path="res://Lib/Version.gd" id="17_pxkdy"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -46,7 +47,6 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0)
 
 [node name="ImageManager" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -418,6 +418,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Captioner" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 offset_right = 1800.0
 offset_bottom = 1080.0
@@ -1168,6 +1169,20 @@ alignment = 2
 [node name="Esc" type="Button" parent="Editbox/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Back to main ->"
+
+[node name="VersionBox" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Version" type="LinkButton" parent="VersionBox"]
+layout_mode = 2
+uri = "https://github.com/SleeeepyZhou/VLMCaption-TagCraft/releases"
+script = ExtResource("17_pxkdy")
+
+[node name="Tip" type="LinkButton" parent="VersionBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 
 [connection signal="pressed" from="ImageManager/Main/Buttun/Go" to="." method="_on_gocaption_pressed"]
 [connection signal="text_submitted" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]

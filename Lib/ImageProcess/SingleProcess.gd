@@ -21,7 +21,8 @@ func _on_caption_button_up():
 
 func _on_line_edit_text_submitted(new_text):
 	var path : String = new_text
-	if !path.get_extension().is_empty() and Global.IMAGE_TYPE.has(path.get_extension().to_upper()) and visible:
+	if !path.get_extension().is_empty() and Global.IMAGE_TYPE.has(\
+			path.get_extension().to_upper()) and visible:
 		var image = Image.load_from_file(path)
 		$SingleImage/UpOut/ImageUp/LineEdit.position.y = 0
 		$SingleImage/UpOut/ImageUp/Label.visible = false
