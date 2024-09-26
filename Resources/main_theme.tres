@@ -3,11 +3,9 @@
 [resource]
 default_font_size = 30
 BoxContainer/constants/separation = 10
-Button/font_sizes/font_size = 20
 HSplitContainer/constants/autohide = 0
 HSplitContainer/constants/minimum_grab_thickness = 20
 HSplitContainer/constants/separation = 15
-Label/font_sizes/font_size = 25
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10

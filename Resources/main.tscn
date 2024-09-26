@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cvcr6osoyl86q"]
+[gd_scene load_steps=19 format=3 uid="uid://cvcr6osoyl86q"]
 
 [ext_resource type="Script" path="res://Lib/Inapp.gd" id="1_niuwl"]
 [ext_resource type="Theme" uid="uid://cichl1ubkv6ux" path="res://Resources/main_theme.tres" id="2_gsnq3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Lib/Main.gd" id="3_pvo4y"]
 [ext_resource type="Script" path="res://Lib/ImageManager/info_box.gd" id="4_7uibc"]
 [ext_resource type="Script" path="res://Lib/ApiUtils.gd" id="4_ovvew"]
+[ext_resource type="Script" path="res://Lib/ImageManager/Filter.gd" id="5_g8oab"]
 [ext_resource type="Script" path="res://Lib/Extra/JsonSchema/SchemaBox.gd" id="5_ktcjw"]
 [ext_resource type="Script" path="res://Lib/ImageProcess/ImageZip.gd" id="6_dxd34"]
 [ext_resource type="Script" path="res://Lib/ImageProcess/SingleProcess.gd" id="7_tfa5s"]
@@ -68,7 +69,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="ImageManager/Main/Buttun"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 50
 text = "Image Manager"
 
 [node name="Go" type="Button" parent="ImageManager/Main/Buttun"]
@@ -162,7 +163,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="InfoBox" type="ScrollContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow"]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(400, 900)
 layout_mode = 2
 horizontal_scroll_mode = 0
 script = ExtResource("4_7uibc")
@@ -181,6 +182,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 15
+
+[node name="GoFliter" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
+layout_mode = 2
+text = "Go to Focused screening mode ->"
 
 [node name="Box" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 custom_minimum_size = Vector2(300, 300)
@@ -213,14 +218,34 @@ theme_override_constants/separation = 10
 alignment = 1
 
 [node name="Edit" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 text = "Edit Caption"
 
 [node name="Captioner" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 text = "Captioner"
+
+[node name="CaptionMod" type="OptionButton" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Text"
+popup/item_0/id = 0
+popup/item_1/text = "List"
+popup/item_1/id = 1
+
+[node name="Trans" type="CheckBox" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox"]
+visible = false
+layout_mode = 2
+text = "Translate"
+
+[node name="Remove" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox"]
+layout_mode = 2
+tooltip_text = "Wil move pic in path \"Remove\"."
+text = "Remove
+"
 
 [node name="TipBox" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 visible = false
@@ -234,7 +259,7 @@ text = "Caption"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 20
 text = "Remember set API in captioner"
 autowrap_mode = 1
 
@@ -245,7 +270,16 @@ layout_mode = 2
 size_flags_vertical = 3
 wrap_mode = 1
 autowrap_mode = 1
-scroll_smooth = true
+
+[node name="CaptionList" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
+visible = false
+layout_mode = 2
+
+[node name="Window" type="Window" parent="ImageManager/Main/Tabbox/Manager/FileShow"]
+initial_position = 4
+size = Vector2i(1000, 1000)
+visible = false
+script = ExtResource("5_g8oab")
 
 [node name="Tag Manage" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
 visible = false
@@ -1186,9 +1220,13 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 
 [connection signal="pressed" from="ImageManager/Main/Buttun/Go" to="." method="_on_gocaption_pressed"]
 [connection signal="text_submitted" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]
+[connection signal="item_selected" from="ImageManager/Main/PathBox/ShowMod" to="ImageManager/Main/Tabbox/Manager" method="_on_show_mod_item_selected"]
 [connection signal="pressed" from="ImageManager/Main/PathBox/Enter" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Edit" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_edit_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Captioner" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_captioner_button_up"]
+[connection signal="item_selected" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/CaptionMod" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_caption_mod_item_selected"]
+[connection signal="toggled" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Trans" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_trans_toggled"]
+[connection signal="pressed" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Remove" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_remove_pressed"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2/Run" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_run_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox/Add" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_add_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Tabbox/Manager" method="_on_set_back_button_up"]

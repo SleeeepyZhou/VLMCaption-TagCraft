@@ -1,7 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5d4jw2s6md4b"]
 
 [ext_resource type="Script" path="res://Lib/ImageManager/user_path_unit.gd" id="1_46al8"]
-[ext_resource type="Texture2D" uid="uid://fugnnccacrl5" path="res://Resources/pathuni.png" id="1_xg031"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lv3ui"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/pathuni.png-db4da74c6ba9978a972cca8aa46a6da7.ctex"
 
 [node name="UserPathUnit" type="HBoxContainer"]
 offset_right = 40.0
@@ -11,7 +14,7 @@ script = ExtResource("1_46al8")
 
 [node name="Texture" type="TextureRect" parent="."]
 layout_mode = 2
-texture = ExtResource("1_xg031")
+texture = SubResource("CompressedTexture2D_lv3ui")
 expand_mode = 3
 
 [node name="Box" type="VBoxContainer" parent="."]

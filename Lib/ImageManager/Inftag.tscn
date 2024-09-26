@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://ductc6d47nd0u"]
+
+[ext_resource type="Script" path="res://Lib/ImageManager/infTag.gd" id="1_wkvwl"]
+
+[node name="Tag" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+script = ExtResource("1_wkvwl")
+
+[node name="Tag" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Example"
+editable = false
+
+[node name="Remove" type="Button" parent="."]
+layout_mode = 2
+text = "Remove"
+
+[node name="Translation" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "Translation"
+editable = false
+
+[node name="Replace" type="Button" parent="."]
+layout_mode = 2
+text = "Replace"
+
+[node name="Newtag" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "New Tag to Replace"
+
+[connection signal="button_up" from="Remove" to="." method="_on_remove_button_up"]
+[connection signal="button_up" from="Replace" to="." method="_on_replace_button_up"]

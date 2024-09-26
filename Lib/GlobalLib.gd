@@ -12,7 +12,6 @@ func reset():
 	access.remove(SAVEPATH)
 
 func zerojson():
-	var prompt1 : String = "As an AI image tagging expert, please provide precise tags for these images to enhance CLIP model's understanding of the content. Employ succinct keywords or phrases, steering clear of elaborate sentences and extraneous conjunctions. Prioritize the tags by relevance. Your tags should capture key elements such as the main subject, setting, artistic style, composition, image quality, color tone, filter, and camera specifications, and any other tags crucial for the image. When tagging photos of people, include specific details like gender, nationality, attire, actions, pose, expressions, accessories, makeup, composition type, age, etc. For other image categories, apply appropriate and common descriptive tags as well. Recognize and tag any celebrities, well-known landmark or IPs if clearly featured in the image. Your tags should be accurate, non-duplicative, and within a 20-75 word count range. These tags will use for image re-creation, so the closer the resemblance to the original image, the better the tag quality. Tags should be comma-separated. Exceptional tagging will be rewarded with $10 per image."
 	var zero_data = {
 				"userpath" : [],
 				"setting" : {},
@@ -21,7 +20,7 @@ func zerojson():
 					"gpt-4o-2024-08-06" : [true, "https://api.openai.com/v1/chat/completions", ""],
 					"local" : [false, "http://127.0.0.1:8000/v1/chat/completions", ""]
 						},
-				"prompt" : [prompt1, "Describe this image in a very detailed manner."],
+				"prompt" : ["Describe this image in a very detailed manner."],
 				"format" : {}
 					}
 	var json_string = JSON.stringify(zero_data)
@@ -98,3 +97,13 @@ func addition_prompt(text : String, image_path : String) -> String: # 提示词�
 		file_content = file.get_as_text()
 		file.close()
 	return text.replace("{" + dir_path + "}", file_content)
+
+func remove_pic(pic_path : String):
+	var remove_path = (pic_path.get_base_dir() + "/Remove").simplify_path()
+	var dir = DirAccess.open(pic_path.get_base_dir())
+	if !dir.dir_exists(remove_path):
+		dir.make_dir(remove_path)
+	dir.rename(pic_path, (remove_path+"/"+pic_path.get_file()).simplify_path())
+	var txt_path = pic_path.get_basename() + ".txt"
+	if FileAccess.file_exists(txt_path):
+		dir.rename(txt_path, (remove_path+"/"+txt_path.get_file()).simplify_path())

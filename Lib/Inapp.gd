@@ -15,7 +15,6 @@ func _ready():
 
 func resize():
 	fontsize = round(20.0 * (get_viewport_rect().size.length() / Vector2(1800,1080).length()))
-	print(fontsize)
 	size = get_viewport_rect().size
 	$Background.set_size(size)
 	$Captioner.set_size(size)

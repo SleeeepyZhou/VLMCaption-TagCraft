@@ -1,5 +1,6 @@
 extends ScrollContainer
 
+var full_path : String
 var path : String = "":
 	set(image_file):
 		path = image_file
@@ -14,15 +15,52 @@ var path : String = "":
 		$Box/Box/ColorBox.visible = true
 		$Box/Box/Filename.visible = true
 		$Box/Box/TipBox.visible = true
-		$Box/Box/Caption.visible = true
 		$Box/Box/ButtonBox.visible = true
+		if $Box/Box/ButtonBox/CaptionMod.selected == 0:
+			$Box/Box/Caption.visible = true
+			$Box/Box/CaptionList.visible = false
+			$Box/Box/ButtonBox/Trans.visible = false
+		else:
+			$Box/Box/Caption.visible = false
+			$Box/Box/CaptionList.visible = true
+			$Box/Box/ButtonBox/Trans.visible = true
 
+const INFTAG = preload("res://Lib/ImageManager/Inftag.tscn")
 var caption : String = "":
 	set(text):
 		$Box/Box/Caption.text = text # 请不要乱动Caption节点的minimum size，会发生不可预知的bug
 		caption = text
+		
+		var temp : PackedStringArray = caption.split(",", false)
+		var newtemp : PackedStringArray = []
+		for temptag in temp:
+			# 标准化分隔
+			newtemp.append(temptag.dedent())
+		for tag in $Box/Box/CaptionList.get_children():
+			tag.queue_free()
+		for tag in newtemp:
+			var newtagbox = INFTAG.instantiate()
+			newtagbox.path = full_path
+			newtagbox.image_file = path
+			newtagbox.tag = tag
+			if $Box/Box/ButtonBox/Trans.button_pressed:
+				newtagbox.translate()
+			$Box/Box/CaptionList.add_child(newtagbox)
 
-var full_path : String
+func _on_caption_mod_item_selected(index):
+	if index == 0:
+		$Box/Box/Caption.visible = true
+		$Box/Box/CaptionList.visible = false
+		$Box/Box/ButtonBox/Trans.visible = false
+	else:
+		$Box/Box/Caption.visible = false
+		$Box/Box/CaptionList.visible = true
+		$Box/Box/ButtonBox/Trans.visible = true
+
+func _on_trans_toggled(toggled_on):
+	if toggled_on:
+		for tag in $Box/Box/CaptionList.get_children():
+			tag.translate()
 
 func _on_edit_button_up():
 	var newcaption : String = $Box/Box/Caption.text
@@ -67,3 +105,15 @@ func _input(event):
 				path = $"../Image/Image#Box/Box".get_child(image_index).path
 			elif $"../Image/ImageVBox".visible:
 				path = $"../Image/ImageVBox/Box".get_child(image_index).path
+
+func _on_remove_pressed():
+	Global.remove_pic(path)
+	var box
+	if $"../Image/ImageVBox".visible:
+		box = $"../Image/ImageVBox/Box"
+	elif $"../Image/Image#Box".visible:
+		box = $"../Image/Image#Box"
+	box.get_child(image_index).queue_free()
+	$"../..".image_count = box.get_child_count()
+	image_index = clampi(image_index + 1, 0, $"../..".image_count - 1)
+	path = box.get_child(image_index).path

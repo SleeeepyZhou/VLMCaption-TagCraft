@@ -4,17 +4,20 @@ func _on_thank_meta_clicked(meta):
 	OS.shell_open(meta)
 
 var path_text : String = "":
+	set(t):
+		path_text = t
+		$"../../PathBox/Path".text = t
 	get:
 		path_text = $"../../PathBox/Path".text
 		return path_text
 
+const USER_PATH_UNIT = preload("res://Lib/ImageManager/user_path_unit.tscn")
 func update_list():
 	for child in $UsePath/UsePath/UsePathBox.get_children():
 		child.queue_free()
 	var fi : Array = Global.readjson()["userpath"]
 	for path in fi:
-		var temp = load("res://Lib/ImageManager/user_path_unit.tscn")
-		var newunit = temp.instantiate()
+		var newunit = USER_PATH_UNIT.instantiate()
 		$UsePath/UsePath/UsePathBox.add_child(newunit)
 		newunit.path = path
 		newunit.connect("send", open_path)
@@ -31,8 +34,7 @@ func _ready():
 func _on_enter_pressed():
 	if path_text.is_empty():
 		return
-	if path_text.get_extension().is_empty() \
-			and !path_text.get_base_dir().is_empty():
+	if path_text.get_extension().is_empty() and !path_text.get_base_dir().is_empty():
 		open_path(path_text)
 	else:
 		open_path(path_text.get_base_dir())
@@ -101,6 +103,7 @@ func open_path(path : String):
 		image_count = imagebox.get_child_count()
 		$"../../PathBox/Path".editable = true
 		$"../../PathBox/Enter".disabled = false
+		path_text = path
 		current_tab = 1
 	else:
 		var fi = Global.readjson()
@@ -115,3 +118,6 @@ func open_path(path : String):
 func read_info(image : String, idx : int):
 	$FileShow/InfoBox.path = image
 	$FileShow/InfoBox.image_index = idx
+
+func _on_show_mod_item_selected(_index):
+	open_path(path_text)
