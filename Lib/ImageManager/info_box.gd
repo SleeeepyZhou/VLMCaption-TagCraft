@@ -115,5 +115,5 @@ func _on_remove_pressed():
 		box = $"../Image/Image#Box"
 	box.get_child(image_index).queue_free()
 	$"../..".image_count = box.get_child_count()
-	image_index = clampi(image_index + 1, 0, $"../..".image_count - 1)
+	image_index = clampi(image_index, 0, $"../..".image_count - 1)
 	path = box.get_child(image_index).path

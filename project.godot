@@ -26,6 +26,7 @@ Global="*res://Lib/GlobalLib.gd"
 
 window/size/viewport_width=1800
 window/size/viewport_height=1080
+window/subwindows/embed_subwindows=false
 
 [network]
 
