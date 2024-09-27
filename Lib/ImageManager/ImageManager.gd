@@ -71,7 +71,15 @@ const UNIT_MOD = ["res://Lib/ImageManager/image_#_unit.tscn",
 @onready var IMAGE_MOD = [$"FileShow/Image/Image#Box",
 						$FileShow/Image/ImageVBox]
 var image_count : int = 0
+
+var imagebox : Node:
+	get:
+		return IMAGE_MOD[showmod].get_node("Box")
+var showmod : int:
+	get:
+		return $"../../PathBox/ShowMod".selected
 func open_path(path : String):
+	print(Time.get_datetime_string_from_system())
 	var dir = DirAccess.open(path)
 	if dir:
 		$"../../PathBox/Path".editable = false
@@ -85,22 +93,17 @@ func open_path(path : String):
 			save_file.close()
 			update_list()
 		var templist = dir.get_files()
-		var showmod : int = $"../../PathBox/ShowMod".selected
-		var unitbox = UNIT_MOD[showmod]
-		var imagebox : Node = IMAGE_MOD[showmod].get_node("Box")
 		for child in imagebox.get_children():
 			child.queue_free()
 		IMAGE_MOD[showmod].visible = true
 		IMAGE_MOD[int(!bool(showmod))].visible = false
+		current_list = []
+		image_count = 0
 		for file in templist:
 			if Global.IMAGE_TYPE.has(file.get_extension().to_upper()):
 				var image_file : String = (path + "/" + file).simplify_path()
-				var temp = load(unitbox)
-				var newunit = temp.instantiate()
-				imagebox.add_child(newunit)
-				newunit.connect("check", read_info)
-				newunit.path = image_file
-		image_count = imagebox.get_child_count()
+				current_list.append(image_file)
+		add_imgunit()
 		$"../../PathBox/Path".editable = true
 		$"../../PathBox/Enter".disabled = false
 		path_text = path
@@ -114,6 +117,32 @@ func open_path(path : String):
 			save_file.close()
 			update_list()
 		show_warning("Error accessing path.")
+	print(Time.get_datetime_string_from_system())
+
+func end():
+	add_imgunit()
+
+var current_list : PackedStringArray = []
+var end_node : Node = null
+@export var PreloadN : int = 10
+func add_imgunit():
+	if end_node and end_node.vis.is_connected("screen_entered", end):
+		end_node.vis.disconnect("screen_entered", end)
+	var unitbox = UNIT_MOD[showmod]
+	var next_picn : int = PreloadN
+	if !current_list.size() - image_count > PreloadN:
+		next_picn = current_list.size() - image_count
+	print(next_picn)
+	for i in range(next_picn):
+		var temp = load(unitbox)
+		var newunit = temp.instantiate()
+		imagebox.add_child(newunit)
+		newunit.connect("check", read_info)
+		if i == next_picn - 1:
+			end_node = newunit
+			newunit.vis.connect("screen_entered", end)
+		newunit.path = current_list[image_count + i]
+	image_count = imagebox.get_child_count()
 
 func read_info(image : String, idx : int):
 	$FileShow/InfoBox.path = image

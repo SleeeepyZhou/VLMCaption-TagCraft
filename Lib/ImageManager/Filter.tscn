@@ -1,7 +1,7 @@
-[gd_scene load_steps=40 format=3 uid="uid://dv3o5vanj3nau"]
+[gd_scene load_steps=41 format=3 uid="uid://dv3o5vanj3nau"]
 
+[ext_resource type="Script" path="res://Lib/ImageManager/Filter.gd" id="1_24ae5"]
 [ext_resource type="Texture2D" uid="uid://b634j2iewunv4" path="res://Resources/Input/icon.png" id="1_euhdx"]
-[ext_resource type="Theme" uid="uid://cichl1ubkv6ux" path="res://Resources/main_theme.tres" id="1_gl8o8"]
 [ext_resource type="Texture2D" uid="uid://bjoo1ysqpudpb" path="res://Resources/Input/icon.tres" id="2_kfym7"]
 [ext_resource type="Texture2D" uid="uid://7q6e2dqxvhjn" path="res://Resources/Input/1.png" id="4_a1vpt"]
 [ext_resource type="Texture2D" uid="uid://bpf375espxnb0" path="res://Resources/Input/2.png" id="5_yfsa3"]
@@ -36,6 +36,13 @@
 [ext_resource type="Texture2D" uid="uid://bho0vop6e7dag" path="res://Resources/Input/R1.png" id="34_eq61i"]
 [ext_resource type="Texture2D" uid="uid://dif0bigkibhbq" path="res://Resources/Input/R2.png" id="35_rnyld"]
 
+[sub_resource type="Theme" id="Theme_a838o"]
+default_font_size = 25
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rnmyx"]
 atlas = ExtResource("1_euhdx")
 region = Rect2(0, 0, 16, 16)
@@ -52,7 +59,7 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("1_euhdx")
 region = Rect2(16, 0, 16, 16)
 
-[node name="Filter" type="VBoxContainer"]
+[node name="Filter" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,17 +67,23 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource("1_gl8o8")
+theme = SubResource("Theme_a838o")
+script = ExtResource("1_24ae5")
 
-[node name="TipBox" type="HBoxContainer" parent="."]
+[node name="Filter" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TipBox" type="HBoxContainer" parent="Filter"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="TipBox"]
+[node name="Label" type="Label" parent="Filter/TipBox"]
 layout_mode = 2
 text = "Operating mode: "
 
-[node name="Mode" type="OptionButton" parent="TipBox"]
+[node name="Mode" type="OptionButton" parent="Filter/TipBox"]
 layout_mode = 2
 item_count = 3
 selected = 0
@@ -84,347 +97,386 @@ popup/item_2/text = "Joy(Onehand)"
 popup/item_2/icon = SubResource("AtlasTexture_1ebep")
 popup/item_2/id = 2
 
-[node name="Label2" type="Label" parent="TipBox"]
+[node name="Label2" type="Label" parent="Filter/TipBox"]
 layout_mode = 2
 text = "Pics per page:"
 
-[node name="Num" type="OptionButton" parent="TipBox"]
+[node name="Num" type="OptionButton" parent="Filter/TipBox"]
 layout_mode = 2
 
-[node name="Help" type="LinkButton" parent="TipBox"]
+[node name="Help" type="LinkButton" parent="Filter/TipBox"]
 layout_mode = 2
 text = "Help"
 
-[node name="Box" type="MarginContainer" parent="."]
+[node name="PathBox" type="HBoxContainer" parent="Filter"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Filter/PathBox"]
+layout_mode = 2
+text = "Path"
+
+[node name="Path" type="LineEdit" parent="Filter/PathBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter path"
+
+[node name="Enter" type="Button" parent="Filter/PathBox"]
+layout_mode = 2
+text = "Enter"
+
+[node name="Close" type="Button" parent="Filter/PathBox"]
+layout_mode = 2
+disabled = true
+text = "Close"
+
+[node name="Box" type="MarginContainer" parent="Filter"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PicBox" type="HBoxContainer" parent="Box"]
+[node name="PicBox" type="GridContainer" parent="Filter/Box"]
 layout_mode = 2
 
-[node name="TipBox" type="ScrollContainer" parent="Box"]
+[node name="TipBox" type="ScrollContainer" parent="Filter/Box"]
+visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="TipBox" type="VBoxContainer" parent="Box/TipBox"]
+[node name="TipBox" type="VBoxContainer" parent="Filter/Box/TipBox"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Keyborad1" type="HBoxContainer" parent="Box/TipBox/TipBox"]
+[node name="Keyborad1" type="HBoxContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad1"]
+[node name="TextureRect" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad1"]
 layout_mode = 2
 texture = ExtResource("2_kfym7")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="Box/TipBox/TipBox/Keyborad1"]
+[node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox/Keyborad1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 1, 1)
 text = "Keyborad"
 
-[node name="Keyborad2" type="Label" parent="Box/TipBox/TipBox"]
+[node name="Keyborad2" type="Label" parent="Filter/Box/TipBox/TipBox"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "You can use the following buttons to move the images to the \"remove\" folder and filter the training set:"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Keyborad3" type="HFlowContainer" parent="Box/TipBox/TipBox"]
+[node name="Keyborad3" type="HFlowContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="TextureRect1" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect1" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("4_a1vpt")
 
-[node name="TextureRect2" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("5_yfsa3")
 
-[node name="TextureRect3" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("6_qwuun")
 
-[node name="TextureRect4" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("7_l5udt")
 
-[node name="TextureRect5" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("8_qp64j")
 
-[node name="TextureRect6" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect6" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("9_2inj7")
 
-[node name="TextureRect7" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect7" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("10_m1ytq")
 
-[node name="TextureRect8" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect8" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("11_pssev")
 
-[node name="TextureRect9" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad3"]
+[node name="TextureRect9" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad3"]
 layout_mode = 2
 texture = ExtResource("12_7fmrb")
 
-[node name="Keyborad4" type="Label" parent="Box/TipBox/TipBox"]
+[node name="Keyborad4" type="Label" parent="Filter/Box/TipBox/TipBox"]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "You can use the following buttons to view the next set of pictures:"
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Keyborad5" type="HFlowContainer" parent="Box/TipBox/TipBox"]
+[node name="Keyborad5" type="HFlowContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Box/TipBox/TipBox/Keyborad5"]
+[node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox/Keyborad5"]
 layout_mode = 2
 text = "Next"
 
-[node name="TextureRect1" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad5"]
+[node name="TextureRect1" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad5"]
 layout_mode = 2
 texture = ExtResource("13_1ai0r")
 
-[node name="TextureRect2" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad5"]
+[node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad5"]
 layout_mode = 2
 texture = ExtResource("14_sdc7w")
 
-[node name="TextureRect3" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad5"]
+[node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad5"]
 layout_mode = 2
 texture = ExtResource("15_jwg17")
 
-[node name="TextureRect4" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad5"]
+[node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad5"]
 layout_mode = 2
 texture = ExtResource("16_b73ke")
 
-[node name="Label2" type="Label" parent="Box/TipBox/TipBox/Keyborad5"]
+[node name="Label2" type="Label" parent="Filter/Box/TipBox/TipBox/Keyborad5"]
 layout_mode = 2
 text = "Previous"
 
-[node name="TextureRect5" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad5"]
+[node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad5"]
 layout_mode = 2
 texture = ExtResource("17_2l31w")
 
-[node name="TextureRect6" type="TextureRect" parent="Box/TipBox/TipBox/Keyborad5"]
+[node name="TextureRect6" type="TextureRect" parent="Filter/Box/TipBox/TipBox/Keyborad5"]
 layout_mode = 2
 texture = ExtResource("18_sjpw7")
 
-[node name="JoyStick1" type="HBoxContainer" parent="Box/TipBox/TipBox"]
+[node name="JoyStick1" type="HBoxContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick1"]
+[node name="TextureRect" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick1"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_jhxfx")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="Box/TipBox/TipBox/JoyStick1"]
+[node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick1"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "JoyStick(default)"
 
-[node name="JoyStick2" type="Label" parent="Box/TipBox/TipBox"]
+[node name="JoyStick2" type="Label" parent="Filter/Box/TipBox/TipBox"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "Move the images to the \"remove\" folder and filter the training set:"
+vertical_alignment = 1
+autowrap_mode = 1
 
-[node name="JoyStick3" type="HFlowContainer" parent="Box/TipBox/TipBox"]
+[node name="JoyStick3" type="HFlowContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="TextureRect1" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect1" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("17_a6e07")
 
-[node name="TextureRect2" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("18_8484k")
 
-[node name="TextureRect3" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("19_pclfy")
 
-[node name="TextureRect4" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("20_rpfo1")
 
-[node name="TextureRect5" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("21_n3tbh")
 
-[node name="TextureRect6" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect6" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("22_8i7p4")
 
-[node name="TextureRect7" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect7" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("23_33df4")
 
-[node name="TextureRect8" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect8" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("24_7p040")
 
-[node name="Label" type="Label" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 text = "OR ("
 
-[node name="TextureRect9" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect9" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("25_5cxc3")
 
-[node name="TextureRect10" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect10" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("26_wmti4")
 
-[node name="TextureRect11" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect11" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("27_sthhl")
 
-[node name="TextureRect12" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="TextureRect12" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 texture = ExtResource("28_cy4ef")
 
-[node name="Label2" type="Label" parent="Box/TipBox/TipBox/JoyStick3"]
+[node name="Label2" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick3"]
 layout_mode = 2
 text = ")"
 
-[node name="JoyStick4" type="Label" parent="Box/TipBox/TipBox"]
+[node name="JoyStick4" type="Label" parent="Filter/Box/TipBox/TipBox"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "View the next and previous set of pictures:"
+vertical_alignment = 1
+autowrap_mode = 1
 
-[node name="JoyStick5" type="HFlowContainer" parent="Box/TipBox/TipBox"]
+[node name="JoyStick5" type="HFlowContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="TextureRect1" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick5"]
+[node name="TextureRect1" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick5"]
 layout_mode = 2
 texture = ExtResource("31_ywq5l")
 
-[node name="Label" type="Label" parent="Box/TipBox/TipBox/JoyStick5"]
+[node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick5"]
 layout_mode = 2
 text = "Next"
 
-[node name="TextureRect4" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick5"]
+[node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick5"]
 layout_mode = 2
 texture = ExtResource("34_eq61i")
 
-[node name="TextureRect5" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick5"]
+[node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick5"]
 layout_mode = 2
 texture = ExtResource("35_rnyld")
 
-[node name="Label2" type="Label" parent="Box/TipBox/TipBox/JoyStick5"]
+[node name="Label2" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick5"]
 layout_mode = 2
 text = "Previous"
 
-[node name="TextureRect2" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick5"]
+[node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick5"]
 layout_mode = 2
 texture = ExtResource("32_acyd8")
 
-[node name="TextureRect3" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick5"]
+[node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick5"]
 layout_mode = 2
 texture = ExtResource("33_thxf1")
 
-[node name="JoyStick6" type="HBoxContainer" parent="Box/TipBox/TipBox"]
+[node name="JoyStick6" type="HBoxContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick6"]
+[node name="TextureRect" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick6"]
 layout_mode = 2
 texture = SubResource("AtlasTexture_jhxfx")
 expand_mode = 3
 
-[node name="Label" type="Label" parent="Box/TipBox/TipBox/JoyStick6"]
+[node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick6"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 text = "JoyStick(one hand)"
 
-[node name="JoyStick7" type="Label" parent="Box/TipBox/TipBox"]
+[node name="JoyStick7" type="Label" parent="Filter/Box/TipBox/TipBox"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "Move the images to the \"remove\" folder and filter the training set:"
+vertical_alignment = 1
+autowrap_mode = 1
 
-[node name="JoyStick8" type="HFlowContainer" parent="Box/TipBox/TipBox"]
+[node name="JoyStick8" type="HFlowContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="TextureRect1" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect1" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("17_a6e07")
 
-[node name="TextureRect2" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("18_8484k")
 
-[node name="TextureRect3" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("19_pclfy")
 
-[node name="TextureRect4" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("20_rpfo1")
 
-[node name="TextureRect5" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("21_n3tbh")
 
-[node name="TextureRect6" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect6" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("22_8i7p4")
 
-[node name="TextureRect7" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect7" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("23_33df4")
 
-[node name="TextureRect8" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect8" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("24_7p040")
 
-[node name="Label" type="Label" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 text = "OR ("
 
-[node name="TextureRect9" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect9" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("25_5cxc3")
 
-[node name="TextureRect10" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect10" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("26_wmti4")
 
-[node name="TextureRect11" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect11" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("27_sthhl")
 
-[node name="TextureRect12" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="TextureRect12" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 texture = ExtResource("28_cy4ef")
 
-[node name="Label2" type="Label" parent="Box/TipBox/TipBox/JoyStick8"]
+[node name="Label2" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick8"]
 layout_mode = 2
 text = ")"
 
-[node name="JoyStick9" type="Label" parent="Box/TipBox/TipBox"]
+[node name="JoyStick9" type="Label" parent="Filter/Box/TipBox/TipBox"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 text = "View the next and previous set of pictures:"
+vertical_alignment = 1
+autowrap_mode = 1
 
-[node name="JoyStick10" type="HFlowContainer" parent="Box/TipBox/TipBox"]
+[node name="JoyStick10" type="HFlowContainer" parent="Filter/Box/TipBox/TipBox"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Box/TipBox/TipBox/JoyStick10"]
+[node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick10"]
 layout_mode = 2
 text = "Next"
 
-[node name="TextureRect2" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick10"]
+[node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick10"]
 layout_mode = 2
 texture = ExtResource("33_thxf1")
 
-[node name="TextureRect3" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick10"]
+[node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick10"]
 layout_mode = 2
 texture = ExtResource("35_rnyld")
 
-[node name="Label2" type="Label" parent="Box/TipBox/TipBox/JoyStick10"]
+[node name="Label2" type="Label" parent="Filter/Box/TipBox/TipBox/JoyStick10"]
 layout_mode = 2
 text = "Previous"
 
-[node name="TextureRect4" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick10"]
+[node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick10"]
 layout_mode = 2
 texture = ExtResource("32_acyd8")
 
-[node name="TextureRect5" type="TextureRect" parent="Box/TipBox/TipBox/JoyStick10"]
+[node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox/JoyStick10"]
 layout_mode = 2
 texture = ExtResource("34_eq61i")
+
+[connection signal="item_selected" from="Filter/TipBox/Mode" to="." method="_on_mode_item_selected"]
+[connection signal="pressed" from="Filter/TipBox/Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="Filter/PathBox/Enter" to="." method="_on_enter_pressed"]
+[connection signal="pressed" from="Filter/PathBox/Close" to="." method="_on_close_pressed"]

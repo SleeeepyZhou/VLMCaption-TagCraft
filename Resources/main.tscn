@@ -146,6 +146,7 @@ theme_override_constants/margin_top = 10
 
 [node name="Image#Box" type="ScrollContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/Image"]
 layout_mode = 2
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="Box" type="HFlowContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/Image/Image#Box"]
@@ -280,6 +281,7 @@ layout_mode = 2
 mode = 2
 initial_position = 4
 size = Vector2i(1000, 1000)
+visible = false
 script = ExtResource("5_g8oab")
 
 [node name="Filter" parent="ImageManager/Main/Tabbox/Manager/FileShow/Window" instance=ExtResource("6_rcoyg")]

@@ -4,6 +4,7 @@
 
 [node name="Image#Unit" type="MarginContainer"]
 offset_right = 1800.0
+focus_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
@@ -28,4 +29,8 @@ clip_text = true
 layout_mode = 2
 editable = false
 
+[node name="Visible" type="VisibleOnScreenEnabler2D" parent="."]
+rect = Rect2(0, -200, 20, 200)
+
+[connection signal="focus_entered" from="." to="." method="_on_read_pressed"]
 [connection signal="pressed" from="Box/ImageName" to="." method="_on_read_pressed"]

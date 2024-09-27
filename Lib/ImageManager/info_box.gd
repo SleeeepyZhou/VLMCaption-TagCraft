@@ -90,29 +90,32 @@ func _on_captioner_button_up():
 	await get_tree().create_timer(1).timeout
 	$Box/Box/TipBox/Tip.text = "Remember set API in captioner"
 
+var currunt_box : Node:
+	get:
+		if $"../Image/ImageVBox".visible:
+			return $"../Image/ImageVBox/Box"
+		elif $"../Image/Image#Box".visible:
+			return $"../Image/Image#Box/Box"
+		else:
+			return null
+
 var image_index : int
-func _input(event):
-	if $"..".visible:
-		if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_right"):
-			image_index = clampi(image_index + 1, 0, $"../..".image_count - 1)
-			if $"../Image/Image#Box".visible:
-				path = $"../Image/Image#Box/Box".get_child(image_index).path
-			elif $"../Image/ImageVBox".visible:
-				path = $"../Image/ImageVBox/Box".get_child(image_index).path
-		elif event.is_action_pressed("ui_up") or event.is_action_pressed("ui_left"):
-			image_index = clampi(image_index - 1, 0, $"../..".image_count - 1)
-			if $"../Image/Image#Box".visible:
-				path = $"../Image/Image#Box/Box".get_child(image_index).path
-			elif $"../Image/ImageVBox".visible:
-				path = $"../Image/ImageVBox/Box".get_child(image_index).path
+#func _input(event):
+	#if $"..".visible:
+		#if event.is_action_pressed("ui_down") or event.is_action_pressed("ui_right"):
+			#image_index = clampi(image_index + 1, 0, $"../..".image_count - 1)
+			#if currunt_box:
+				#path = currunt_box.get_child(image_index).path
+		#elif event.is_action_pressed("ui_up") or event.is_action_pressed("ui_left"):
+			#image_index = clampi(image_index - 1, 0, $"../..".image_count - 1)
+			#if currunt_box:
+				#path = currunt_box.get_child(image_index).path
 
 func _on_remove_pressed():
 	Global.remove_pic(path)
 	var box
-	if $"../Image/ImageVBox".visible:
-		box = $"../Image/ImageVBox/Box"
-	elif $"../Image/Image#Box".visible:
-		box = $"../Image/Image#Box"
+	if currunt_box:
+		box = currunt_box
 	box.get_child(image_index).queue_free()
 	$"../..".image_count = box.get_child_count()
 	image_index = clampi(image_index, 0, $"../..".image_count - 1)
