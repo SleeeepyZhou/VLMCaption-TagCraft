@@ -190,6 +190,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 15
 
 [node name="GoFliter" type="Button" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
+visible = false
 layout_mode = 2
 text = "Go to Focused screening mode ->"
 

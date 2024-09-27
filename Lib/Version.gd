@@ -16,15 +16,22 @@ func _ready():
 		$"../Tip".underline = LinkButton.UNDERLINE_MODE_ALWAYS
 		var win_download : String = ""
 		var lin_download : String = ""
+		var mac_download : String = ""
 		for v in an["assets"]:
 			if "WIN" in v["name"].to_upper():
 				win_download = v["browser_download_url"]
 			elif "LINUX" in v["name"].to_upper():
 				lin_download = v["browser_download_url"]
+			elif "MAC" in v["name"].to_upper():
+				mac_download = v["browser_download_url"]
 		if OS.get_name() == "Windows":
 			$"../Tip".uri = win_download
 		elif OS.get_name() == "Linux":
 			$"../Tip".uri = lin_download
+		elif OS.get_name() == "macOS":
+			$"../Tip".uri = mac_download
+		else:
+			$"../Tip".uri = "https://github.com/SleeeepyZhou/VLMCaption-TagCraft"
 
 # 重试方法
 const RETRY_ATTEMPTS = 5
