@@ -121,6 +121,9 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_ny3sl")
 
+[node name="BackLoad" type="Timer" parent="ImageManager/Main/Tabbox/Manager"]
+wait_time = 0.5
+
 [node name="UsePath" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
 layout_mode = 2
 theme_override_constants/margin_top = 10
@@ -157,6 +160,7 @@ size_flags_vertical = 3
 [node name="ImageVBox" type="ScrollContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/Image"]
 visible = false
 layout_mode = 2
+follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="Box" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/Image/ImageVBox"]
@@ -1227,6 +1231,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 [connection signal="text_submitted" from="ImageManager/Main/PathBox/Path" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]
 [connection signal="item_selected" from="ImageManager/Main/PathBox/ShowMod" to="ImageManager/Main/Tabbox/Manager" method="_on_show_mod_item_selected"]
 [connection signal="pressed" from="ImageManager/Main/PathBox/Enter" to="ImageManager/Main/Tabbox/Manager" method="_on_enter_pressed"]
+[connection signal="timeout" from="ImageManager/Main/Tabbox/Manager/BackLoad" to="ImageManager/Main/Tabbox/Manager" method="background_load"]
 [connection signal="pressed" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/GoFliter" to="ImageManager/Main/Tabbox/Manager/FileShow/Window" method="_on_go_fliter_pressed"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Edit" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_edit_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Captioner" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_captioner_button_up"]

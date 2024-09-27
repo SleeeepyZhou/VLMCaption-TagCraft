@@ -79,7 +79,6 @@ var showmod : int:
 	get:
 		return $"../../PathBox/ShowMod".selected
 func open_path(path : String):
-	print(Time.get_datetime_string_from_system())
 	var dir = DirAccess.open(path)
 	if dir:
 		$"../../PathBox/Path".editable = false
@@ -104,6 +103,7 @@ func open_path(path : String):
 				var image_file : String = (path + "/" + file).simplify_path()
 				current_list.append(image_file)
 		add_imgunit()
+		$BackLoad.start()
 		$"../../PathBox/Path".editable = true
 		$"../../PathBox/Enter".disabled = false
 		path_text = path
@@ -117,22 +117,21 @@ func open_path(path : String):
 			save_file.close()
 			update_list()
 		show_warning("Error accessing path.")
-	print(Time.get_datetime_string_from_system())
 
 func end():
 	add_imgunit()
 
 var current_list : PackedStringArray = []
 var end_node : Node = null
-@export var PreloadN : int = 10
-func add_imgunit():
+var endload := false
+func add_imgunit(loadN : int = 10):
+	endload = true
 	if end_node and end_node.vis.is_connected("screen_entered", end):
 		end_node.vis.disconnect("screen_entered", end)
 	var unitbox = UNIT_MOD[showmod]
-	var next_picn : int = PreloadN
-	if !current_list.size() - image_count > PreloadN:
+	var next_picn : int = loadN
+	if !current_list.size() - image_count > loadN:
 		next_picn = current_list.size() - image_count
-	print(next_picn)
 	for i in range(next_picn):
 		var temp = load(unitbox)
 		var newunit = temp.instantiate()
@@ -143,6 +142,15 @@ func add_imgunit():
 			newunit.vis.connect("screen_entered", end)
 		newunit.path = current_list[image_count + i]
 	image_count = imagebox.get_child_count()
+	endload = false
+
+func background_load():
+	if endload:
+		return
+	if image_count == current_list.size():
+		$BackLoad.stop()
+		return
+	add_imgunit(1)
 
 func read_info(image : String, idx : int):
 	$FileShow/InfoBox.path = image
