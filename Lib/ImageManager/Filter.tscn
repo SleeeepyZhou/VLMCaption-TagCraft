@@ -137,7 +137,6 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="TipBox" type="ScrollContainer" parent="Filter/Box"]
-visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 
