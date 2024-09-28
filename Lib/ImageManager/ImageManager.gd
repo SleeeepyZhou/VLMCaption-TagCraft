@@ -96,6 +96,7 @@ func open_path(path : String):
 			child.queue_free()
 		IMAGE_MOD[showmod].visible = true
 		IMAGE_MOD[int(!bool(showmod))].visible = false
+		end_node = null
 		current_list = []
 		image_count = 0
 		for file in templist:

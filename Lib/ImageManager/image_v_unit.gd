@@ -12,12 +12,14 @@ signal check(path : String , idx : int)
 func _on_read_pressed():
 	emit_signal("check", path, get_index())
 	if $"..".get_child_count() - 1 > get_index():
-		focus_neighbor_bottom = $"..".get_child(get_index() + 1).get_path()
-		focus_neighbor_right = $"..".get_child(get_index() + 1).get_path()
-		focus_next = $"..".get_child(get_index() + 1).get_path()
+		var next = $"..".get_child(get_index() + 1).get_path()
+		focus_neighbor_bottom = next
+		focus_neighbor_right = next
+		focus_next = next
 	if get_index() != 0:
-		focus_neighbor_left = $"..".get_child(get_index() - 1).get_path()
-		focus_neighbor_top = $"..".get_child(get_index() - 1).get_path()
-		focus_previous = $"..".get_child(get_index() - 1).get_path()
+		var pre = $"..".get_child(get_index() - 1).get_path()
+		focus_neighbor_left = pre
+		focus_neighbor_top = pre
+		focus_previous = pre
 
 @onready var vis = $Visible

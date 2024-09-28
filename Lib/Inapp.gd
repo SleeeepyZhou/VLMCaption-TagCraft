@@ -10,8 +10,8 @@ func _ready():
 	if setting.has("background"):
 		var image = Image.load_from_file(setting["background"])
 		$Background.texture = ImageTexture.create_from_image(image)
-	if setting.has("backcolor"):
-		$ColorRect.color = setting["backcolor"]
+	#if setting.has("backcolor"):
+		#$ColorRect.color = setting["backcolor"]
 
 func resize():
 	fontsize = round(20.0 * (get_viewport_rect().size.length() / Vector2(1800,1080).length()))
