@@ -101,7 +101,7 @@ func addition_prompt(text : String, image_path : String) -> String: # 提示词�
 func remove_pic(pic_path : String):
 	var remove_path = (pic_path.get_base_dir() + "/Remove").simplify_path()
 	var dir = DirAccess.open(pic_path.get_base_dir())
-	if !dir.dir_exists(remove_path):
+	if dir and !dir.dir_exists(remove_path):
 		dir.make_dir(remove_path)
 	dir.rename(pic_path, (remove_path+"/"+pic_path.get_file()).simplify_path())
 	var txt_path = pic_path.get_basename() + ".txt"

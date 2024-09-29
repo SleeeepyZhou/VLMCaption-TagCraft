@@ -7,7 +7,8 @@ func _ready():
 func re_size():
 	position = Vector2.ZERO
 	size = get_window().size
-	read_pic()
+	if !current_list.is_empty():
+		update_size()
 
 func _on_help_pressed():
 	$Filter/Box/TipBox.visible = !$Filter/Box/TipBox.visible
@@ -17,14 +18,13 @@ func _on_mode_item_selected(_index):
 
 func update_num():
 	$Filter/TipBox/Num.clear()
-	var l : int = 1
-	#var l : int = 9
-	#if mod == 0:
-		#l = 9
-	#elif mod == 1:
-		#l = 8
-	#elif mod == 2:
-		#l = 4
+	var l : int = 9
+	if mod == 0:
+		l = 9
+	elif mod == 1:
+		l = 8
+	elif mod == 2:
+		l = 4
 	for i in range(l):
 		$Filter/TipBox/Num.add_item(str(i+1))
 
@@ -38,6 +38,9 @@ func _on_enter_pressed():
 		$Filter/PathBox/Path.text = "Error accessing path."
 		return
 	$Filter/PathBox/Close.disabled = false
+
+func _on_num_item_selected(_index):
+	read_pic()
 
 var file_path : String:
 	set(t):
@@ -70,28 +73,71 @@ func open_path(path : String) -> bool:
 	else:
 		return false
 
+func _input(event):
+	if event:
+		if (event.is_action_pressed("filter_next") or 
+				(mod != 2 and event.is_action_pressed("filter_R1")) or 
+				(mod == 2 and event.is_action_pressed("filter_L2"))):
+			remove()
+			current_idx += clampi(current_list.size() - 1 - current_idx, 0, visNum)
+			current_idx = clampi(current_idx, -1, current_list.size() - 2)
+			read_pic()
+		elif (event.is_action_pressed("filter_pre") or 
+				(mod != 2 and event.is_action_pressed("filter_L2")) or 
+				(mod == 2 and event.is_action_pressed("filter_R1"))):
+			remove()
+			current_idx -= clampi(current_idx + 1, 0, visNum)
+			current_idx = clampi(current_idx, -1, current_list.size() - 2)
+			read_pic()
+
+func remove():
+	for child in $Filter/Box/PicBox.get_children():
+		if child.visible and child.remove and !child.path.is_empty():
+			current_list[child.list_index] = ""
+			Global.remove_pic(child.path)
+
 func read_pic():
 	for child in $Filter/Box/PicBox.get_children():
-		child.custom_minimum_size = Vector2.ZERO
-		child.queue_redraw()
 		child.visible = false
-	var next_pic : int = clampi(current_list.size() - 1 - current_idx, 0, visNum)
-	var unit_size : Vector2 = get_window().size - Vector2i(80, 200)
-	if next_pic > 6:
-		unit_size /= 3
-	elif next_pic > 3:
-		unit_size /= 2
-	unit_size.x /= next_pic
+	var next_pic : int = clampi(current_list.size() - 1 - current_idx, 1, visNum)
 	for i in range(next_pic):
 		var unit = $Filter/Box/PicBox.get_child(i)
 		unit.visible = true
-		unit.custom_minimum_size = unit_size
-		#while !unit.vis.is_on_screen():
-			#for child in $Filter/Box/PicBox.get_children():
-				#child.custom_minimum_size -= Vector2(10, 10)
 		unit.path = current_list[current_idx + 1 + i]
+		unit.list_index = current_idx + 1 + i
 		unit.onehand = (mod == 2)
+	update_size()
 
-func _input(event):
-	if event and event.is_action_pressed("filter_next"):
-		pass
+func update_size():
+	var box_size : Vector2 = Vector2(get_window().size - Vector2i(80, 80))
+	box_size.y -= ($Filter/TipBox.size.y + $Filter/PathBox.size.y)
+	
+	var ratio : Array[float] = []
+	for child in $Filter/Box/PicBox.get_children():
+		child.custom_minimum_size = Vector2.ZERO
+		if child.visible:
+			ratio.append(child.pic_rota)
+	
+	var ok = false
+	var v : int = 0
+	var x_pos : Array = []
+	while !ok:
+		v += 1
+		x_pos = ratio.map(func(i): return i*(box_size.y/float(v)-90.0))
+		var pos : float = 0
+		var current_v : int = 1
+		for i in range(x_pos.size()):
+			var f : float = x_pos[i]
+			pos += f
+			if pos > box_size.x:
+				current_v += 1
+				pos = f
+				if current_v > v:
+					break
+			elif i + 1 == x_pos.size() and pos <= box_size.x:
+				ok = true
+	
+	for child in $Filter/Box/PicBox.get_children():
+		if child.is_visible():
+			child.set_custom_minimum_size(Vector2(0, box_size.y/float(v)))
+

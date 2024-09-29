@@ -1,41 +1,41 @@
 [gd_scene load_steps=42 format=3 uid="uid://dv3o5vanj3nau"]
 
 [ext_resource type="Script" path="res://Lib/ImageManager/Filter.gd" id="1_24ae5"]
-[ext_resource type="Texture2D" uid="uid://b634j2iewunv4" path="res://Resources/Input/icon.png" id="1_euhdx"]
+[ext_resource type="Texture2D" uid="uid://cnlrnov6d5unj" path="res://Resources/Input/icon.png" id="1_euhdx"]
 [ext_resource type="Texture2D" uid="uid://bjoo1ysqpudpb" path="res://Resources/Input/icon.tres" id="2_kfym7"]
 [ext_resource type="PackedScene" uid="uid://botsv8m86f408" path="res://Lib/ImageManager/filter_img.tscn" id="3_hksme"]
-[ext_resource type="Texture2D" uid="uid://7q6e2dqxvhjn" path="res://Resources/Input/1.png" id="4_a1vpt"]
-[ext_resource type="Texture2D" uid="uid://bpf375espxnb0" path="res://Resources/Input/2.png" id="5_yfsa3"]
-[ext_resource type="Texture2D" uid="uid://cc7d75qkgypt8" path="res://Resources/Input/3.png" id="6_qwuun"]
-[ext_resource type="Texture2D" uid="uid://btn0ahab4q2o0" path="res://Resources/Input/4.png" id="7_l5udt"]
-[ext_resource type="Texture2D" uid="uid://b0mwd1erbk5fq" path="res://Resources/Input/5.png" id="8_qp64j"]
-[ext_resource type="Texture2D" uid="uid://de5ihnhufhy3t" path="res://Resources/Input/6.png" id="9_2inj7"]
-[ext_resource type="Texture2D" uid="uid://82o72t8kckaq" path="res://Resources/Input/7.png" id="10_m1ytq"]
-[ext_resource type="Texture2D" uid="uid://b1pg8s5bq3xup" path="res://Resources/Input/8.png" id="11_pssev"]
-[ext_resource type="Texture2D" uid="uid://b84aw1ol5jfn8" path="res://Resources/Input/9.png" id="12_7fmrb"]
-[ext_resource type="Texture2D" uid="uid://chfvmfnqk62nl" path="res://Resources/Input/Right.png" id="13_1ai0r"]
-[ext_resource type="Texture2D" uid="uid://djm1h3gqhu45f" path="res://Resources/Input/Down.png" id="14_sdc7w"]
-[ext_resource type="Texture2D" uid="uid://cod2bx5tkgk0g" path="res://Resources/Input/Enter.png" id="15_jwg17"]
-[ext_resource type="Texture2D" uid="uid://cfkklekoljo82" path="res://Resources/Input/0.png" id="16_b73ke"]
-[ext_resource type="Texture2D" uid="uid://hn038xlh6ave" path="res://Resources/Input/Left.png" id="17_2l31w"]
-[ext_resource type="Texture2D" uid="uid://dph0g6h33aflw" path="res://Resources/Input/Dpad_Left.png" id="17_a6e07"]
-[ext_resource type="Texture2D" uid="uid://d3lm7vq70iyad" path="res://Resources/Input/Dpad_Down.png" id="18_8484k"]
-[ext_resource type="Texture2D" uid="uid://dlcchnsaa1td7" path="res://Resources/Input/Up.png" id="18_sjpw7"]
-[ext_resource type="Texture2D" uid="uid://cjrqnjlky7ko1" path="res://Resources/Input/Dpad_Right.png" id="19_pclfy"]
-[ext_resource type="Texture2D" uid="uid://byrxggn46khxs" path="res://Resources/Input/Dpad_UP.png" id="20_rpfo1"]
-[ext_resource type="Texture2D" uid="uid://dwucstqolpnhp" path="res://Resources/Input/X.png" id="21_n3tbh"]
-[ext_resource type="Texture2D" uid="uid://bioclu7atb5ow" path="res://Resources/Input/Y.png" id="22_8i7p4"]
-[ext_resource type="Texture2D" uid="uid://dp2au31yfirsu" path="res://Resources/Input/A.png" id="23_33df4"]
-[ext_resource type="Texture2D" uid="uid://lxi31sbsrn3x" path="res://Resources/Input/B.png" id="24_7p040"]
-[ext_resource type="Texture2D" uid="uid://cembwf1ew7ulp" path="res://Resources/Input/PA.png" id="25_5cxc3"]
-[ext_resource type="Texture2D" uid="uid://yq64incrm3vf" path="res://Resources/Input/PO.png" id="26_wmti4"]
-[ext_resource type="Texture2D" uid="uid://dwmlxcftwgjtu" path="res://Resources/Input/PS.png" id="27_sthhl"]
-[ext_resource type="Texture2D" uid="uid://dsc8cfo0urom1" path="res://Resources/Input/PX.png" id="28_cy4ef"]
-[ext_resource type="Texture2D" uid="uid://i3ne1k1hn5ba" path="res://Resources/Input/L3.png" id="31_ywq5l"]
-[ext_resource type="Texture2D" uid="uid://84wk0t2eg30l" path="res://Resources/Input/L1.png" id="32_acyd8"]
-[ext_resource type="Texture2D" uid="uid://c84plp3ysteky" path="res://Resources/Input/L2.png" id="33_thxf1"]
-[ext_resource type="Texture2D" uid="uid://bho0vop6e7dag" path="res://Resources/Input/R1.png" id="34_eq61i"]
-[ext_resource type="Texture2D" uid="uid://dif0bigkibhbq" path="res://Resources/Input/R2.png" id="35_rnyld"]
+[ext_resource type="Texture2D" uid="uid://bex4e7u31k3bl" path="res://Resources/Input/1.png" id="4_a1vpt"]
+[ext_resource type="Texture2D" uid="uid://d36rvp7b2221x" path="res://Resources/Input/2.png" id="5_yfsa3"]
+[ext_resource type="Texture2D" uid="uid://blppgkr3l13cp" path="res://Resources/Input/3.png" id="6_qwuun"]
+[ext_resource type="Texture2D" uid="uid://csp348vwgxlly" path="res://Resources/Input/4.png" id="7_l5udt"]
+[ext_resource type="Texture2D" uid="uid://psdoxr6goimc" path="res://Resources/Input/5.png" id="8_qp64j"]
+[ext_resource type="Texture2D" uid="uid://ds5tky3rs6wum" path="res://Resources/Input/6.png" id="9_2inj7"]
+[ext_resource type="Texture2D" uid="uid://uuotc4jrb8nd" path="res://Resources/Input/7.png" id="10_m1ytq"]
+[ext_resource type="Texture2D" uid="uid://b2sab03byxg08" path="res://Resources/Input/8.png" id="11_pssev"]
+[ext_resource type="Texture2D" uid="uid://bn0vo7ybqi2vb" path="res://Resources/Input/9.png" id="12_7fmrb"]
+[ext_resource type="Texture2D" uid="uid://c6y1glw81e0ho" path="res://Resources/Input/Right.png" id="13_1ai0r"]
+[ext_resource type="Texture2D" uid="uid://bfy3waqe4tjw6" path="res://Resources/Input/Down.png" id="14_sdc7w"]
+[ext_resource type="Texture2D" uid="uid://cnufq26jshghn" path="res://Resources/Input/Enter.png" id="15_jwg17"]
+[ext_resource type="Texture2D" uid="uid://c6kr7v4kxsw0j" path="res://Resources/Input/0.png" id="16_b73ke"]
+[ext_resource type="Texture2D" uid="uid://7yg77jfjtohm" path="res://Resources/Input/Left.png" id="17_2l31w"]
+[ext_resource type="Texture2D" uid="uid://cs8a6f8pwvlgp" path="res://Resources/Input/Dpad_Left.png" id="17_a6e07"]
+[ext_resource type="Texture2D" uid="uid://cm0oiv3xcaee7" path="res://Resources/Input/Dpad_Down.png" id="18_8484k"]
+[ext_resource type="Texture2D" uid="uid://c4p2odj8as8t4" path="res://Resources/Input/Up.png" id="18_sjpw7"]
+[ext_resource type="Texture2D" uid="uid://02fht0bf41" path="res://Resources/Input/Dpad_Right.png" id="19_pclfy"]
+[ext_resource type="Texture2D" uid="uid://bxh6f1brk3giq" path="res://Resources/Input/Dpad_UP.png" id="20_rpfo1"]
+[ext_resource type="Texture2D" uid="uid://ca7ti5vcysl2m" path="res://Resources/Input/X.png" id="21_n3tbh"]
+[ext_resource type="Texture2D" uid="uid://djlm1sqcvskra" path="res://Resources/Input/Y.png" id="22_8i7p4"]
+[ext_resource type="Texture2D" uid="uid://bsi706mu2eyef" path="res://Resources/Input/A.png" id="23_33df4"]
+[ext_resource type="Texture2D" uid="uid://bcffjngsvk2j" path="res://Resources/Input/B.png" id="24_7p040"]
+[ext_resource type="Texture2D" uid="uid://c82ql6t4wjq0x" path="res://Resources/Input/PA.png" id="25_5cxc3"]
+[ext_resource type="Texture2D" uid="uid://b5n2dq2o5up88" path="res://Resources/Input/PO.png" id="26_wmti4"]
+[ext_resource type="Texture2D" uid="uid://wgquae4q37mc" path="res://Resources/Input/PS.png" id="27_sthhl"]
+[ext_resource type="Texture2D" uid="uid://chqvquaf6ao5q" path="res://Resources/Input/PX.png" id="28_cy4ef"]
+[ext_resource type="Texture2D" uid="uid://eggnv3p7cycb" path="res://Resources/Input/L3.png" id="31_ywq5l"]
+[ext_resource type="Texture2D" uid="uid://c865jeetoageh" path="res://Resources/Input/L1.png" id="32_acyd8"]
+[ext_resource type="Texture2D" uid="uid://ccgbsb1bltwfi" path="res://Resources/Input/L2.png" id="33_thxf1"]
+[ext_resource type="Texture2D" uid="uid://bxjovxvwhtw75" path="res://Resources/Input/R1.png" id="34_eq61i"]
+[ext_resource type="Texture2D" uid="uid://bscvqhdbkkkp0" path="res://Resources/Input/R2.png" id="35_rnyld"]
 
 [sub_resource type="Theme" id="Theme_a838o"]
 default_font_size = 25
@@ -82,6 +82,7 @@ text = "Operating mode: "
 
 [node name="Mode" type="OptionButton" parent="Filter/TipBox"]
 layout_mode = 2
+focus_mode = 1
 expand_icon = true
 item_count = 3
 selected = 0
@@ -101,6 +102,7 @@ text = "Pics per page:"
 
 [node name="Num" type="OptionButton" parent="Filter/TipBox"]
 layout_mode = 2
+focus_mode = 1
 
 [node name="Help" type="LinkButton" parent="Filter/TipBox"]
 layout_mode = 2
@@ -117,14 +119,17 @@ text = "Path"
 [node name="Path" type="LineEdit" parent="Filter/PathBox"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 placeholder_text = "Enter path"
 
 [node name="Enter" type="Button" parent="Filter/PathBox"]
 layout_mode = 2
+focus_mode = 1
 text = "Enter"
 
 [node name="Close" type="Button" parent="Filter/PathBox"]
 layout_mode = 2
+focus_mode = 1
 disabled = true
 text = "Close"
 
@@ -137,30 +142,39 @@ layout_mode = 2
 alignment = 1
 
 [node name="FilterIMG1" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="FilterIMG2" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="FilterIMG3" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="FilterIMG4" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="FilterIMG5" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="FilterIMG6" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="FilterIMG7" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="FilterIMG8" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="FilterIMG9" parent="Filter/Box/PicBox" instance=ExtResource("3_hksme")]
+visible = false
 layout_mode = 2
 
 [node name="TipBox" type="ScrollContainer" parent="Filter/Box"]
@@ -504,6 +518,7 @@ layout_mode = 2
 texture = ExtResource("34_eq61i")
 
 [connection signal="item_selected" from="Filter/TipBox/Mode" to="." method="_on_mode_item_selected"]
+[connection signal="item_selected" from="Filter/TipBox/Num" to="." method="_on_num_item_selected"]
 [connection signal="pressed" from="Filter/TipBox/Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="Filter/PathBox/Enter" to="." method="_on_enter_pressed"]
 [connection signal="pressed" from="Filter/PathBox/Close" to="." method="_on_close_pressed"]

@@ -23,11 +23,18 @@ var path : String = "":
 		path = image_file
 		if image_file.is_empty():
 			$Box/Pic.texture = EINSTEIN
+			remove = true
 			$Tip.visible = true
 		else:
+			remove = false
 			var image = Image.load_from_file(path)
 			$Box/Pic.texture = ImageTexture.create_from_image(image)
 			$Tip.visible = false
+		pic_rota = $Box/Pic.texture.get_size().x / $Box/Pic.texture.get_size().y
+
+var list_index : int
+
+var pic_rota : float
 
 var onehand : bool:
 	set(b):
@@ -44,6 +51,8 @@ var onehand : bool:
 		$Box/ButtonBox/Texture/PS.texture = PS[get_index()]
 
 var remove : bool:
+	set(b):
+		$Recover.visible = b
 	get:
 		return $Recover.visible
 
@@ -57,8 +66,3 @@ func _input(event):
 
 func _on_button_pressed():
 	$Recover.visible = !$Recover.visible
-
-@onready var vis = $Visible
-func _on_resized():
-	if is_node_ready():
-		vis.position = size
