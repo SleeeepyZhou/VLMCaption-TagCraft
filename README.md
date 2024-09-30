@@ -1,10 +1,8 @@
 # ImageManager&GPTCaption
 
-**Developed by [Godot](https://godotengine.org/).**  
-
 更新支持GPT4o的json_schema功能  
 
-A tool for image GPTcaption and manage.  ~~(Rehabilitation training)~~  
+A tool for image GPTcaption 和 manage.  ~~(Rehabilitation training)~~  
 
 ![01](https://github.com/user-attachments/assets/2426167d-9b22-47ea-b2e4-2b3756ad61d7)
 ![02](https://github.com/user-attachments/assets/a39ff706-e6d7-49c2-8fb2-fecc6b0d2ab6)
