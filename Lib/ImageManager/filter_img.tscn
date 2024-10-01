@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://botsv8m86f408"]
 
 [ext_resource type="Script" path="res://Lib/ImageManager/filter_img.gd" id="1_0urr3"]
-[ext_resource type="Texture2D" uid="uid://crnllxsox7ai4" path="res://Resources/Einstein01.jpg" id="2_52vqj"]
+[ext_resource type="Texture2D" uid="uid://w574i1800xuh" path="res://Resources/Einstein01.jpg" id="2_52vqj"]
 
 [node name="FilterIMG" type="MarginContainer"]
 offset_right = 963.0

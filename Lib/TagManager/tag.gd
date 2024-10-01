@@ -89,4 +89,3 @@ func _on_replace_button_up():
 	
 	tag = new_tag
 	$Newtag.text = ""
-

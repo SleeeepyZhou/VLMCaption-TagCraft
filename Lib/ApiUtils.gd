@@ -374,4 +374,3 @@ func claude_api(inputprompt : String, base64image : String):
 		return answer
 	elif !result[0]:
 		return result[1]
-

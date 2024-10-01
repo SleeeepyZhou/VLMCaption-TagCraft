@@ -140,4 +140,3 @@ func update_size():
 	for child in $Filter/Box/PicBox.get_children():
 		if child.is_visible():
 			child.set_custom_minimum_size(Vector2(0, box_size.y/float(v)))
-

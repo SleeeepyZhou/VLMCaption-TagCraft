@@ -28,4 +28,3 @@ func _on_gocaption_pressed():
 func _on_gomanager_pressed():
 	$Captioner.visible = false
 	$ImageManager.visible = true
-

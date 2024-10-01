@@ -23,4 +23,3 @@ func _on_read_pressed():
 		focus_previous = pre
 
 @onready var vis = $Visible
-
