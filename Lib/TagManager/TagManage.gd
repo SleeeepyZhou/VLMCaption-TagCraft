@@ -9,11 +9,13 @@ func sort_by_times(a, b):
 	return false
 
 var processed := false
-var txt_path : String
+var txt_path : String:
+	get:
+		return $"Tag Manage/Input/Path".text
 var file_list : PackedStringArray
 
 func _on_run_button_up():
-	txt_path = $"Tag Manage/Input/Path".text
+	$"Tag Manage/Input/Path".editable = false
 	var dir = DirAccess.open(txt_path)
 	if dir:
 		output.text = "Processing..."
@@ -48,47 +50,49 @@ func _on_run_button_up():
 						else:
 							var filepack : PackedStringArray = [file]
 							_tags[newtemptag] = [1, filepack]
-						newtemp.append(temptag)
-					var new_caption = ",".join(newtemp)
+						newtemp.append(newtemptag)
+					var new_caption = ", ".join(newtemp)
 					var save_file = FileAccess.open(full_path, FileAccess.WRITE)
 					save_file.store_string(new_caption)
 					save_file.close()
 		
-		# 重置排序，挑出top
-		var top : int = int($"Tag Manage/Input/TopN".value)
-		var tags : Array = []
-		for key in _tags:
-			tags.append([key, _tags[key][0], _tags[key][1]]) # tag,times,file
-		tags.sort_custom(sort_by_times)
-		var top_tags : Dictionary = {}
-		for i in range(top):
-			var temp = tags.pop_back()
-			if most_times == 0:
-				most_times = temp[1]
-			if temp:
+		if !_tags.is_empty():
+			# 重置排序，挑出top
+			var top : int = clampi(_tags.size(), 1, int($"Tag Manage/Input/TopN".value))
+			var tags : Array = []
+			for key in _tags.keys():
+				tags.append([key, _tags[key][0], _tags[key][1]]) # tag,times,file
+			tags.sort_custom(sort_by_times)
+			var top_tags : Dictionary = {}
+			for i in range(top):
+				var temp = tags.pop_back()
+				if most_times == 0:
+					most_times = temp[1]
 				top_tags[temp[0]] = [temp[1], temp[2]]
 				cloud_table[temp[0]] = temp[1]
-			else:
-				break
-		
-		# 生成词云
-		word_cloud()
-		
-		# 生成列表，放入box
-		var translater : int = $"Tag Manage/Input2/Translate".selected
-		for key in top_tags:
-			var loadtemp = load("res://Lib/TagManager/tag.tscn")
-			var onetag = loadtemp.instantiate()
-			tagbox.add_child(onetag)
-			onetag.tag = key
-			onetag.times = str(top_tags[key][0])
-			onetag.image_file = top_tags[key][1]
-			onetag.path = txt_path
-			if translater != 2:
-				onetag.translate(translater)
-		output.text = "Reading complete. " + str(error_count) + " error captions."
+			
+			# 生成词云
+			word_cloud()
+			
+			# 生成列表，放入box
+			var translater : int = $"Tag Manage/Input2/Translate".selected
+			for key in top_tags.keys():
+				var loadtemp = load("res://Lib/TagManager/tag.tscn")
+				var onetag = loadtemp.instantiate()
+				tagbox.add_child(onetag)
+				onetag.tag = key
+				onetag.times = str(top_tags[key][0])
+				onetag.image_file = top_tags[key][1]
+				onetag.path = txt_path
+				if translater != 2:
+					onetag.translate(translater)
+			output.text = "Reading complete. " + str(error_count) + " error captions."
+		else:
+			output.text = "No captions."
 	else:
 		output.text = "Error accessing path."
+	
+	$"Tag Manage/Input/Path".editable = true
 
 func _on_add_button_up():
 	if processed:
