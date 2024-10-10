@@ -91,7 +91,7 @@ func _on_replace_button_up():
 	$Newtag.text = ""
 
 func _on_move_pressed():
-	var t_index = int($Index.value)
+	var t_index = int($Index.value) - 1
 	for file in image_file:
 		var full_path : String = (path+"/"+file).simplify_path().get_basename() + ".txt"
 		var caption : String = FileAccess.get_file_as_string(full_path)
