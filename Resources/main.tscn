@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cvcr6osoyl86q"]
+[gd_scene load_steps=21 format=3 uid="uid://cvcr6osoyl86q"]
 
 [ext_resource type="Script" path="res://Lib/Inapp.gd" id="1_niuwl"]
 [ext_resource type="Theme" uid="uid://cichl1ubkv6ux" path="res://Resources/main_theme.tres" id="2_gsnq3"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dv3o5vanj3nau" path="res://Lib/ImageManager/Filter.tscn" id="6_rcoyg"]
 [ext_resource type="Script" path="res://Lib/ImageProcess/SingleProcess.gd" id="7_tfa5s"]
 [ext_resource type="Script" path="res://Lib/ImageProcess/BatchImage.gd" id="8_juek7"]
+[ext_resource type="PackedScene" uid="uid://dpjuvj5sq8cjp" path="res://Lib/TagManager/header.tscn" id="9_h1h5o"]
 [ext_resource type="Script" path="res://Lib/ImageProcess/FailedScreening.gd" id="9_pcsf8"]
 [ext_resource type="Script" path="res://Lib/Extra/Watermark.gd" id="10_4288l"]
 [ext_resource type="Script" path="res://Lib/Extra/Filtering.gd" id="11_3ejic"]
@@ -118,13 +119,14 @@ color = Color(0.658824, 0.972549, 1, 0.192157)
 [node name="Manager" type="TabContainer" parent="ImageManager/Main/Tabbox"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 2
 script = ExtResource("3_ny3sl")
 
 [node name="BackLoad" type="Timer" parent="ImageManager/Main/Tabbox/Manager"]
 wait_time = 0.5
 
 [node name="UsePath" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 10
 metadata/_tab_index = 0
@@ -293,7 +295,6 @@ script = ExtResource("5_g8oab")
 [node name="Filter" parent="ImageManager/Main/Tabbox/Manager/FileShow/Window" instance=ExtResource("6_rcoyg")]
 
 [node name="Tag Manage" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
-visible = false
 layout_mode = 2
 script = ExtResource("12_gfwdk")
 metadata/_tab_index = 2
@@ -408,6 +409,9 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Tags" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/TagsBox/Box"]
+layout_mode = 2
+
+[node name="Tag" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/TagsBox/Box/Tags" instance=ExtResource("9_h1h5o")]
 layout_mode = 2
 
 [node name="Setting" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]

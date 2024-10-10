@@ -89,3 +89,18 @@ func _on_replace_button_up():
 	
 	tag = new_tag
 	$Newtag.text = ""
+
+func _on_move_pressed():
+	var t_index = int($Index.value)
+	for file in image_file:
+		var full_path : String = (path+"/"+file).simplify_path().get_basename() + ".txt"
+		var caption : String = FileAccess.get_file_as_string(full_path)
+		var temp : PackedStringArray = caption.split(",", false)
+		temp.remove_at(temp.find(tag))
+		temp.insert(clampi(t_index, 0, temp.size()), tag)
+		var new_caption = ", ".join(temp)
+		var save_file = FileAccess.open(full_path, FileAccess.WRITE)
+		save_file.store_string(new_caption)
+		save_file.close()
+	var outbox = $"../../../../../..".output
+	outbox.text = "Tag " + tag + " is move to position " + str(t_index + 1)

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dpjuvj5sq8cjp"]
+
+[node name="Tag" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="Tag" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Tag"
+horizontal_alignment = 1
+
+[node name="Remove" type="Label" parent="."]
+custom_minimum_size = Vector2(71, 0)
+layout_mode = 2
+
+[node name="Translation" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Translation"
+horizontal_alignment = 1
+
+[node name="Replace" type="Label" parent="."]
+custom_minimum_size = Vector2(69, 0)
+layout_mode = 2
+
+[node name="Newtag" type="Label" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "New Tag"
+horizontal_alignment = 1
+
+[node name="Times" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Times"
+horizontal_alignment = 1
+
+[node name="Index" type="Label" parent="."]
+custom_minimum_size = Vector2(85, 0)
+layout_mode = 2
+text = "Index"
+horizontal_alignment = 1

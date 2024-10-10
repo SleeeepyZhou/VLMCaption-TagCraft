@@ -14,6 +14,7 @@ var txt_path : String:
 		return $"Tag Manage/Input/Path".text
 var file_list : PackedStringArray
 
+const HEADER = preload("res://Lib/TagManager/header.tscn")
 func _on_run_button_up():
 	$"Tag Manage/Input/Path".editable = false
 	var dir = DirAccess.open(txt_path)
@@ -56,6 +57,8 @@ func _on_run_button_up():
 					save_file.store_string(new_caption)
 					save_file.close()
 		
+		var head = HEADER.instantiate()
+		tagbox.add_child(head)
 		if !_tags.is_empty():
 			# 重置排序，挑出top
 			var top : int = clampi(_tags.size(), 1, int($"Tag Manage/Input/TopN".value))
