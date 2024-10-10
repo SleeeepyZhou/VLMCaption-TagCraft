@@ -97,7 +97,7 @@ func _on_move_pressed():
 		var caption : String = FileAccess.get_file_as_string(full_path)
 		var temp : PackedStringArray = caption.split(",", false)
 		temp.remove_at(temp.find(tag))
-		temp.insert(clampi(t_index, 0, temp.size()), tag)
+		temp.insert(clampi(t_index, 0, temp.size()), tag.dedent())
 		var new_caption = ", ".join(temp)
 		var save_file = FileAccess.open(full_path, FileAccess.WRITE)
 		save_file.store_string(new_caption)
