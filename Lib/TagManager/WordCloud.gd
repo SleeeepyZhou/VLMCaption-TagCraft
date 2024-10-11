@@ -23,3 +23,7 @@ func create_cloud(cloud_table : Dictionary, most_times : int):
 		var newcloud = temp.instantiate()
 		$TagBoxs.add_child(newcloud)
 		newcloud.take_texture(fontsize, key)
+
+func free_child():
+	for child in $TagBoxs.get_children():
+		child.queue_free()

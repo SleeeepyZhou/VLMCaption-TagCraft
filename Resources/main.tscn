@@ -393,9 +393,10 @@ theme_override_constants/autohide = 0
 [node name="Word Cloud" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud"]
+[node name="Show" type="CheckButton" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud"]
 layout_mode = 2
-text = "Word Cloud"
+size_flags_horizontal = 0
+text = "Word Cloud Show"
 
 [node name="WordCloud" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud" instance=ExtResource("13_7lw0r")]
 layout_mode = 2
@@ -1258,6 +1259,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 [connection signal="pressed" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Remove" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_remove_pressed"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2/Run" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_run_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox/Add" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_add_button_up"]
+[connection signal="toggled" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud/Show" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_show_toggled"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Tabbox/Manager" method="_on_set_back_button_up"]
 [connection signal="meta_clicked" from="ImageManager/Main/Thank" to="ImageManager/Main/Tabbox/Manager" method="_on_thank_meta_clicked"]
 [connection signal="pressed" from="Captioner/Main/Demo/Buttun/Go" to="." method="_on_gomanager_pressed"]

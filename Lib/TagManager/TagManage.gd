@@ -142,6 +142,15 @@ func _on_add_button_up():
 
 var cloud_table : Dictionary = {}
 var most_times : int = 0
+@onready var cloud = $"Tag Manage/Taginformation/Word Cloud/WordCloud"
 func word_cloud():
-	var cloud = $"Tag Manage/Taginformation/Word Cloud/WordCloud"
-	cloud.create_cloud(cloud_table, most_times)
+	if $"Tag Manage/Taginformation/Word Cloud/Show".button_pressed:
+		cloud.create_cloud(cloud_table, most_times)
+
+func _on_show_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		word_cloud()
+		cloud.visible = true
+	else:
+		cloud.visible = false
+		cloud.free_child()
