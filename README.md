@@ -13,5 +13,5 @@ A tool for image GPTcaption 和 manage.  ~~(Rehabilitation training)~~
 ~~（康复训练）~~  
 
 ## Thanks  
-[GPT4V-Image-Captioner](https://github.com/jiayev/GPT4V-Image-Captioner)
-[danbooru-diffusion-prompt-builder](https://github.com/wfjsw/danbooru-diffusion-prompt-builder)
+[GPT4V-Image-Captioner](https://github.com/jiayev/GPT4V-Image-Captioner)  
+[danbooru-diffusion-prompt-builder](https://github.com/wfjsw/danbooru-diffusion-prompt-builder)  
