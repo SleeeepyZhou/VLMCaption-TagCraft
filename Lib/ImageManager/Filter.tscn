@@ -1,41 +1,25 @@
-[gd_scene load_steps=42 format=3 uid="uid://dv3o5vanj3nau"]
+[gd_scene load_steps=57 format=3 uid="uid://dv3o5vanj3nau"]
 
 [ext_resource type="Script" path="res://Lib/ImageManager/Filter.gd" id="1_24ae5"]
-[ext_resource type="Texture2D" uid="uid://dhgdnjxgqsvps" path="res://Resources/Input/icon.png" id="1_euhdx"]
-[ext_resource type="Texture2D" uid="uid://bjoo1ysqpudpb" path="res://Resources/Input/icon.tres" id="2_kfym7"]
+[ext_resource type="Texture2D" uid="uid://b607tidwmlfcx" path="res://Resources/Input/icon.png" id="1_euhdx"]
 [ext_resource type="PackedScene" uid="uid://botsv8m86f408" path="res://Lib/ImageManager/filter_img.tscn" id="3_hksme"]
-[ext_resource type="Texture2D" uid="uid://bsck5q02v80al" path="res://Resources/Input/1.png" id="4_a1vpt"]
-[ext_resource type="Texture2D" uid="uid://xebjuc8sf1mb" path="res://Resources/Input/2.png" id="5_yfsa3"]
-[ext_resource type="Texture2D" uid="uid://3gvawbe6vss" path="res://Resources/Input/3.png" id="6_qwuun"]
-[ext_resource type="Texture2D" uid="uid://33vkrh5i3t5b" path="res://Resources/Input/4.png" id="7_l5udt"]
-[ext_resource type="Texture2D" uid="uid://51k4pwnsdlvp" path="res://Resources/Input/5.png" id="8_qp64j"]
-[ext_resource type="Texture2D" uid="uid://dvwm47ubxr51r" path="res://Resources/Input/6.png" id="9_2inj7"]
-[ext_resource type="Texture2D" uid="uid://dk267n4r8fiq6" path="res://Resources/Input/7.png" id="10_m1ytq"]
-[ext_resource type="Texture2D" uid="uid://c6nhgx74gwcbs" path="res://Resources/Input/8.png" id="11_pssev"]
-[ext_resource type="Texture2D" uid="uid://cowcbanlqmaoc" path="res://Resources/Input/9.png" id="12_7fmrb"]
-[ext_resource type="Texture2D" uid="uid://c6xauxxirrrps" path="res://Resources/Input/Right.png" id="13_1ai0r"]
-[ext_resource type="Texture2D" uid="uid://rg8ko57l24gv" path="res://Resources/Input/Down.png" id="14_sdc7w"]
-[ext_resource type="Texture2D" uid="uid://b1nbotml5ep12" path="res://Resources/Input/Enter.png" id="15_jwg17"]
-[ext_resource type="Texture2D" uid="uid://cy5uv1iwhbj8v" path="res://Resources/Input/0.png" id="16_b73ke"]
-[ext_resource type="Texture2D" uid="uid://bh21eti4lbrct" path="res://Resources/Input/Left.png" id="17_2l31w"]
-[ext_resource type="Texture2D" uid="uid://bn5vl6v8qxg37" path="res://Resources/Input/Dpad_Left.png" id="17_a6e07"]
-[ext_resource type="Texture2D" uid="uid://ggoutnq0hp1b" path="res://Resources/Input/Dpad_Down.png" id="18_8484k"]
-[ext_resource type="Texture2D" uid="uid://cjvpeoc3o8y4n" path="res://Resources/Input/Up.png" id="18_sjpw7"]
-[ext_resource type="Texture2D" uid="uid://c0fsxecwhb3e6" path="res://Resources/Input/Dpad_Right.png" id="19_pclfy"]
-[ext_resource type="Texture2D" uid="uid://b05f1gtvp0d6v" path="res://Resources/Input/Dpad_UP.png" id="20_rpfo1"]
-[ext_resource type="Texture2D" uid="uid://dargsdqe1itiq" path="res://Resources/Input/X.png" id="21_n3tbh"]
-[ext_resource type="Texture2D" uid="uid://dutsrvn72fgys" path="res://Resources/Input/Y.png" id="22_8i7p4"]
-[ext_resource type="Texture2D" uid="uid://ovx0wufs1fd1" path="res://Resources/Input/A.png" id="23_33df4"]
-[ext_resource type="Texture2D" uid="uid://dm4fk5f3q88ac" path="res://Resources/Input/B.png" id="24_7p040"]
-[ext_resource type="Texture2D" uid="uid://6mlhos3s4ctj" path="res://Resources/Input/PA.png" id="25_5cxc3"]
-[ext_resource type="Texture2D" uid="uid://pxdguwcrbuq8" path="res://Resources/Input/PO.png" id="26_wmti4"]
-[ext_resource type="Texture2D" uid="uid://bmay6ywbe6t6h" path="res://Resources/Input/PS.png" id="27_sthhl"]
-[ext_resource type="Texture2D" uid="uid://dqmuhee6s3fk7" path="res://Resources/Input/PX.png" id="28_cy4ef"]
-[ext_resource type="Texture2D" uid="uid://bctlrds6rj20p" path="res://Resources/Input/L3.png" id="31_ywq5l"]
-[ext_resource type="Texture2D" uid="uid://c6733yjs3kslr" path="res://Resources/Input/L1.png" id="32_acyd8"]
-[ext_resource type="Texture2D" uid="uid://b1l6pnbr1us2s" path="res://Resources/Input/L2.png" id="33_thxf1"]
-[ext_resource type="Texture2D" uid="uid://cx52ddohi2cuk" path="res://Resources/Input/R1.png" id="34_eq61i"]
-[ext_resource type="Texture2D" uid="uid://y5e75yplxdo0" path="res://Resources/Input/R2.png" id="35_rnyld"]
+[ext_resource type="Texture2D" uid="uid://dph0g6h33aflw" path="res://Resources/Input/Dpad_Left.png" id="17_a6e07"]
+[ext_resource type="Texture2D" uid="uid://d3lm7vq70iyad" path="res://Resources/Input/Dpad_Down.png" id="18_8484k"]
+[ext_resource type="Texture2D" uid="uid://cjrqnjlky7ko1" path="res://Resources/Input/Dpad_Right.png" id="19_pclfy"]
+[ext_resource type="Texture2D" uid="uid://byrxggn46khxs" path="res://Resources/Input/Dpad_UP.png" id="20_rpfo1"]
+[ext_resource type="Texture2D" uid="uid://dkj8p2nqjas0p" path="res://Resources/Input/X.png" id="21_n3tbh"]
+[ext_resource type="Texture2D" uid="uid://b54m6wo88w7fq" path="res://Resources/Input/Y.png" id="22_8i7p4"]
+[ext_resource type="Texture2D" uid="uid://cr85p6fieid6y" path="res://Resources/Input/A.png" id="23_33df4"]
+[ext_resource type="Texture2D" uid="uid://b51dlsw5ylltj" path="res://Resources/Input/B.png" id="24_7p040"]
+[ext_resource type="Texture2D" uid="uid://d3cdvkmee7whv" path="res://Resources/Input/PA.png" id="25_5cxc3"]
+[ext_resource type="Texture2D" uid="uid://dvi862jcrw3wx" path="res://Resources/Input/PO.png" id="26_wmti4"]
+[ext_resource type="Texture2D" uid="uid://bifqu1qq8psvh" path="res://Resources/Input/PS.png" id="27_sthhl"]
+[ext_resource type="Texture2D" uid="uid://bjw6d8afighf7" path="res://Resources/Input/PX.png" id="28_cy4ef"]
+[ext_resource type="Texture2D" uid="uid://4us8mkqgm4hi" path="res://Resources/Input/L3.png" id="31_ywq5l"]
+[ext_resource type="Texture2D" uid="uid://davc80rva3okk" path="res://Resources/Input/L1.png" id="32_acyd8"]
+[ext_resource type="Texture2D" uid="uid://cjcjxayohffgb" path="res://Resources/Input/L2.png" id="33_thxf1"]
+[ext_resource type="Texture2D" uid="uid://crwlcfeardma1" path="res://Resources/Input/R1.png" id="34_eq61i"]
+[ext_resource type="Texture2D" uid="uid://b3y3b33wpdp7h" path="res://Resources/Input/R2.png" id="35_rnyld"]
 
 [sub_resource type="Theme" id="Theme_a838o"]
 default_font_size = 25
@@ -55,6 +39,102 @@ region = Rect2(16, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ebep"]
 atlas = ExtResource("1_euhdx")
 region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_e12u3"]
+resource_local_to_scene = true
+load_path = "res://.godot/imported/icon.png-36709dbea74779344cd4e7496e1f8522.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb355"]
+atlas = SubResource("CompressedTexture2D_e12u3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yehot"]
+load_path = "res://.godot/imported/1.png-90ec0e733e70e8b5eb7f351a336d8fe2.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ts5ji"]
+load_path = "res://.godot/imported/2.png-b95f9fcdf1dadf1a902c868c0f74b6ce.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jvh6r"]
+load_path = "res://.godot/imported/3.png-791493291b9cd19b31cafc59e9c3724a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o1qw1"]
+load_path = "res://.godot/imported/4.png-27914f6a3f85b91c9e238c1920741868.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5e1up"]
+load_path = "res://.godot/imported/5.png-18c91b527e61e4121a961902f07d9494.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gd65u"]
+load_path = "res://.godot/imported/6.png-2cb08ed450e00afdac0272b05f651124.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4vqrk"]
+load_path = "res://.godot/imported/7.png-e9d6488855c12233e4f575e69d2bb73d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s1dgg"]
+load_path = "res://.godot/imported/8.png-01f1f577d61aaa8f9ac3a8a0bc056f21.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qlyx1"]
+load_path = "res://.godot/imported/9.png-8c8fd3ad2692e72ed2ae8f69c9bbae0d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3kuyo"]
+load_path = "res://.godot/imported/Right.png-90c047048d5b4d8b8edee9709b9ae689.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0q7mh"]
+load_path = "res://.godot/imported/Down.png-1f7cfb40b7bc50e6a95a2ede8d6552be.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r42os"]
+load_path = "res://.godot/imported/Enter.png-dafb463b98745f4dff9449ea9adc505e.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_axlm7"]
+load_path = "res://.godot/imported/0.png-cc60c69613a0aae28e6911186ccf57b1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u1ypi"]
+load_path = "res://.godot/imported/Left.png-cebfee2e2b07f89e81ce48c10e346eb0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c002f"]
+load_path = "res://.godot/imported/Up.png-c56002d0ca71e4c35e4c890e648f6708.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4entx"]
+load_path = "res://.godot/imported/icon.png-36709dbea74779344cd4e7496e1f8522.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lame"]
+atlas = SubResource("CompressedTexture2D_4entx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cy4nk"]
+load_path = "res://.godot/imported/Dpad_Left.png-80f3f6f4866134b54132c0bc3ec9b688.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_joo4d"]
+load_path = "res://.godot/imported/Dpad_UP.png-bba21d664db0fea9d821353eb40503dd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c5y6y"]
+load_path = "res://.godot/imported/Dpad_Down.png-c61d6c98cdc08e57a412222b65b0dcff.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_spc3e"]
+load_path = "res://.godot/imported/Dpad_Right.png-3d769b55aaa2f58b1f22d4f69a6b488d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7qh6u"]
+load_path = "res://.godot/imported/X.png-502edf130fe3d3333b942d6b478ac108.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ni6mq"]
+load_path = "res://.godot/imported/Y.png-f2a8c36df1497ee46ee00e42b21738ee.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x34w4"]
+load_path = "res://.godot/imported/A.png-8c0b22b215c0065815a60f8a580bef62.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5v347"]
+load_path = "res://.godot/imported/B.png-ef65faefb3f584f6daf61cd04a12a95f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h1ybd"]
+load_path = "res://.godot/imported/PS.png-dfe04f6f9d7e4877e1aad32671d05652.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jbs6g"]
+load_path = "res://.godot/imported/PA.png-bf5bbc41625ed2114f1f804a7a397634.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_21pn5"]
+load_path = "res://.godot/imported/PX.png-edeeb1a94c57219dddf011709a82c6ca.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qahmo"]
+load_path = "res://.godot/imported/PO.png-8e93f332d6a13104bb6adea9a955774d.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jhxfx"]
 atlas = ExtResource("1_euhdx")
@@ -177,7 +257,6 @@ visible = false
 layout_mode = 2
 
 [node name="TipBox" type="ScrollContainer" parent="Filter/Box"]
-visible = false
 layout_mode = 2
 horizontal_scroll_mode = 0
 
@@ -190,7 +269,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad1"]
 layout_mode = 2
-texture = ExtResource("2_kfym7")
+texture = SubResource("AtlasTexture_wb355")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox2/Keyborad1"]
@@ -210,39 +289,39 @@ layout_mode = 2
 
 [node name="TextureRect1" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("4_a1vpt")
+texture = SubResource("CompressedTexture2D_yehot")
 
 [node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("5_yfsa3")
+texture = SubResource("CompressedTexture2D_ts5ji")
 
 [node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("6_qwuun")
+texture = SubResource("CompressedTexture2D_jvh6r")
 
 [node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("7_l5udt")
+texture = SubResource("CompressedTexture2D_o1qw1")
 
 [node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("8_qp64j")
+texture = SubResource("CompressedTexture2D_5e1up")
 
 [node name="TextureRect6" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("9_2inj7")
+texture = SubResource("CompressedTexture2D_gd65u")
 
 [node name="TextureRect7" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("10_m1ytq")
+texture = SubResource("CompressedTexture2D_4vqrk")
 
 [node name="TextureRect8" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("11_pssev")
+texture = SubResource("CompressedTexture2D_s1dgg")
 
 [node name="TextureRect9" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad3"]
 layout_mode = 2
-texture = ExtResource("12_7fmrb")
+texture = SubResource("CompressedTexture2D_qlyx1")
 
 [node name="Keyborad4" type="Label" parent="Filter/Box/TipBox/TipBox2"]
 custom_minimum_size = Vector2(500, 0)
@@ -260,19 +339,19 @@ text = "Next"
 
 [node name="TextureRect1" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad5"]
 layout_mode = 2
-texture = ExtResource("13_1ai0r")
+texture = SubResource("CompressedTexture2D_3kuyo")
 
 [node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad5"]
 layout_mode = 2
-texture = ExtResource("14_sdc7w")
+texture = SubResource("CompressedTexture2D_0q7mh")
 
 [node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad5"]
 layout_mode = 2
-texture = ExtResource("15_jwg17")
+texture = SubResource("CompressedTexture2D_r42os")
 
 [node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad5"]
 layout_mode = 2
-texture = ExtResource("16_b73ke")
+texture = SubResource("CompressedTexture2D_axlm7")
 
 [node name="Label2" type="Label" parent="Filter/Box/TipBox/TipBox2/Keyborad5"]
 layout_mode = 2
@@ -280,18 +359,18 @@ text = "Previous"
 
 [node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad5"]
 layout_mode = 2
-texture = ExtResource("17_2l31w")
+texture = SubResource("CompressedTexture2D_u1ypi")
 
 [node name="TextureRect6" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/Keyborad5"]
 layout_mode = 2
-texture = ExtResource("18_sjpw7")
+texture = SubResource("CompressedTexture2D_c002f")
 
 [node name="JoyStick1" type="HBoxContainer" parent="Filter/Box/TipBox/TipBox2"]
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick1"]
 layout_mode = 2
-texture = SubResource("AtlasTexture_jhxfx")
+texture = SubResource("AtlasTexture_0lame")
 expand_mode = 3
 
 [node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox2/JoyStick1"]
@@ -311,35 +390,35 @@ layout_mode = 2
 
 [node name="TextureRect1" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("17_a6e07")
+texture = SubResource("CompressedTexture2D_cy4nk")
 
 [node name="TextureRect4" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("20_rpfo1")
+texture = SubResource("CompressedTexture2D_joo4d")
 
 [node name="TextureRect2" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("18_8484k")
+texture = SubResource("CompressedTexture2D_c5y6y")
 
 [node name="TextureRect3" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("19_pclfy")
+texture = SubResource("CompressedTexture2D_spc3e")
 
 [node name="TextureRect5" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("21_n3tbh")
+texture = SubResource("CompressedTexture2D_7qh6u")
 
 [node name="TextureRect6" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("22_8i7p4")
+texture = SubResource("CompressedTexture2D_ni6mq")
 
 [node name="TextureRect7" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("23_33df4")
+texture = SubResource("CompressedTexture2D_x34w4")
 
 [node name="TextureRect8" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("24_7p040")
+texture = SubResource("CompressedTexture2D_5v347")
 
 [node name="Label" type="Label" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
@@ -347,19 +426,19 @@ text = "OR ("
 
 [node name="TextureRect11" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("27_sthhl")
+texture = SubResource("CompressedTexture2D_h1ybd")
 
 [node name="TextureRect9" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("25_5cxc3")
+texture = SubResource("CompressedTexture2D_jbs6g")
 
 [node name="TextureRect12" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("28_cy4ef")
+texture = SubResource("CompressedTexture2D_21pn5")
 
 [node name="TextureRect10" type="TextureRect" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2
-texture = ExtResource("26_wmti4")
+texture = SubResource("CompressedTexture2D_qahmo")
 
 [node name="Label2" type="Label" parent="Filter/Box/TipBox/TipBox2/JoyStick3"]
 layout_mode = 2

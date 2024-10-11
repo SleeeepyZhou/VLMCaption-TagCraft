@@ -52,7 +52,7 @@ func _on_run_button_up():
 							var filepack : PackedStringArray = [file]
 							_tags[newtemptag] = [1, filepack]
 						newtemp.append(newtemptag)
-					var new_caption = ", ".join(newtemp)
+					var new_caption = ",".join(newtemp)
 					var save_file = FileAccess.open(full_path, FileAccess.WRITE)
 					save_file.store_string(new_caption)
 					save_file.close()
@@ -117,7 +117,7 @@ func _on_add_button_up():
 			else:
 				pos = temp.size()
 			temp.insert(pos, new_tag)
-			var new_caption = ", ".join(temp)
+			var new_caption = ",".join(temp)
 			var save_file = FileAccess.open(full_path, FileAccess.WRITE)
 			save_file.store_string(new_caption)
 			save_file.close()

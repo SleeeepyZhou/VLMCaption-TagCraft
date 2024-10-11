@@ -48,7 +48,7 @@ func _on_remove_button_up():
 				pos = i
 				break
 		temp.remove_at(pos)
-		var new_caption = ", ".join(temp)
+		var new_caption = ",".join(temp)
 		var save_file = FileAccess.open(full_path, FileAccess.WRITE)
 		save_file.store_string(new_caption)
 		save_file.close()
@@ -75,7 +75,7 @@ func _on_replace_button_up():
 				pos = i
 				break
 		temp.set(pos, new_tag)
-		var new_caption = ", ".join(temp)
+		var new_caption = ",".join(temp)
 		var save_file = FileAccess.open(full_path, FileAccess.WRITE)
 		save_file.store_string(new_caption)
 		save_file.close()
@@ -98,7 +98,7 @@ func _on_move_pressed():
 		var temp : PackedStringArray = caption.split(",", false)
 		temp.remove_at(temp.find(tag))
 		temp.insert(clampi(t_index, 0, temp.size()), tag.dedent())
-		var new_caption = ", ".join(temp)
+		var new_caption = ",".join(temp)
 		var save_file = FileAccess.open(full_path, FileAccess.WRITE)
 		save_file.store_string(new_caption)
 		save_file.close()
