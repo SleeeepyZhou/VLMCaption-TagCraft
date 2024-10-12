@@ -11,12 +11,20 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yaf6o")
 
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 69.0
+offset_right = 703.0
+offset_bottom = 183.0
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 479.0
 offset_top = 272.0
 offset_right = 552.0
 offset_bottom = 338.0
+text = "1"
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 0
@@ -25,5 +33,22 @@ offset_top = 281.0
 offset_right = 1028.0
 offset_bottom = 347.0
 
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 644.0
+offset_right = 177.0
+offset_bottom = 755.0
+
+[node name="box" type="HFlowContainer" parent="Button3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.853
+offset_left = 581.0
+offset_top = -65.0
+offset_right = 1570.17
+offset_bottom = 410.0
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
