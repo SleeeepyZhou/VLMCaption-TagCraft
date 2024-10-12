@@ -14,4 +14,5 @@ A tool for image GPTcaption 和 manage.  ~~(Rehabilitation training)~~
 
 ## Thanks  
 [GPT4V-Image-Captioner](https://github.com/jiayev/GPT4V-Image-Captioner)  
+[KBlueLeaf/danbooru2023-metadata-database](https://huggingface.co/datasets/KBlueLeaf/danbooru2023-metadata-database)  
 [danbooru-diffusion-prompt-builder](https://github.com/wfjsw/danbooru-diffusion-prompt-builder)  
