@@ -13,6 +13,7 @@ var txt_path : String:
 	get:
 		return $"Tag Manage/Input/Path".text
 var file_list : PackedStringArray
+var alltag_list : Dictionary = {}
 
 const HEADER = preload("res://Lib/TagManager/header.tscn")
 func _on_run_button_up():
@@ -64,8 +65,10 @@ func _on_run_button_up():
 			var top : int = clampi(_tags.size(), 1, int($"Tag Manage/Input/TopN".value))
 			var tags : Array = []
 			for key in _tags.keys():
-				tags.append([key, _tags[key][0], _tags[key][1]]) # tag,times,file
+				tags.append([key, _tags[key][0], _tags[key][1]]) # tag(string),times(int),file(PackedStringArray)
 			tags.sort_custom(sort_by_times)
+			for taginfo in tags:
+				alltag_list[taginfo[0]] = taginfo[2]
 			var top_tags : Dictionary = {}
 			for i in range(top):
 				var temp = tags.pop_back()
@@ -149,8 +152,50 @@ func word_cloud():
 
 func _on_show_toggled(toggled_on: bool) -> void:
 	if toggled_on:
+		$"Tag Manage/Taginformation/Word Cloud/Show".text = "Word Cloud Show"
 		word_cloud()
 		cloud.visible = true
 	else:
+		$"Tag Manage/Taginformation/Word Cloud/Show".text = "Show"
 		cloud.visible = false
 		cloud.free_child()
+
+const Danbooru2023 = ["res://Data/Danbooru2023/artist.csv",
+						"res://Data/Danbooru2023/character.csv",
+						"res://Data/Danbooru2023/copyright.csv",
+						"res://Data/Danbooru2023/general.csv",
+						"res://Data/Danbooru2023/meta.csv"]
+func _on_sort_tag_pressed() -> void:
+	if file_list.is_empty():
+		return
+	var database : Array = []
+	for csv in Danbooru2023:
+		var data := []
+		var csvdata = FileAccess.open(csv, FileAccess.READ)
+		while true:
+			var ch : String = csvdata.get_csv_line()[0]
+			if ch.is_empty():
+				break
+			data.append(ch)
+		database.append(data)
+		csvdata.close()
+	for file in file_list:
+		var full_path : String = file.get_basename() + ".txt"
+		var caption : String = FileAccess.get_file_as_string(full_path)
+		var temp : PackedStringArray = caption.split(",", false)
+		var findtag : Array[PackedStringArray] = [[],[],[],[],[]]
+		for tag in temp:
+			for i in database.size():
+				if database[i].has(tag):
+					findtag[i].append(tag)
+					temp.remove_at(temp.find(tag))
+					break
+		var packedtemp : PackedStringArray = []
+		for arr in findtag:
+			packedtemp.append_array(arr)
+		packedtemp.append_array(temp)
+		var new_caption = ",".join(packedtemp)
+		var save_file = FileAccess.open(full_path, FileAccess.WRITE)
+		save_file.store_string(new_caption)
+		save_file.close()
+	$"Tag Manage/Input2/Output".text = "Tag sort completed."

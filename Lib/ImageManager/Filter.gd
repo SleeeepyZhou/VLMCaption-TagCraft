@@ -5,10 +5,11 @@ func _ready():
 	get_viewport().size_changed.connect(re_size)
 
 func re_size():
-	position = Vector2.ZERO
-	size = get_window().size
-	if !current_list.is_empty():
-		update_size()
+	if get_window():
+		position = Vector2.ZERO
+		size = get_window().size
+		if !current_list.is_empty():
+			update_size()
 
 func _on_help_pressed():
 	$Filter/Box/TipBox.visible = !$Filter/Box/TipBox.visible

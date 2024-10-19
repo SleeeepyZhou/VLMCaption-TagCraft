@@ -119,13 +119,14 @@ color = Color(0.658824, 0.972549, 1, 0.192157)
 [node name="Manager" type="TabContainer" parent="ImageManager/Main/Tabbox"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 2
 script = ExtResource("3_ny3sl")
 
 [node name="BackLoad" type="Timer" parent="ImageManager/Main/Tabbox/Manager"]
 wait_time = 0.5
 
 [node name="UsePath" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_top = 10
 metadata/_tab_index = 0
@@ -289,12 +290,12 @@ mode = 2
 initial_position = 4
 size = Vector2i(1000, 1000)
 visible = false
+transient = true
 script = ExtResource("5_g8oab")
 
 [node name="Filter" parent="ImageManager/Main/Tabbox/Manager/FileShow/Window" instance=ExtResource("6_rcoyg")]
 
 [node name="Tag Manage" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
-visible = false
 layout_mode = 2
 script = ExtResource("12_gfwdk")
 metadata/_tab_index = 2
@@ -382,8 +383,31 @@ layout_mode = 2
 text = "Add New Tag"
 
 [node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox"]
+visible = false
 layout_mode = 2
-text = "Number of occurrences"
+text = "Sort method:"
+
+[node name="Sort" type="OptionButton" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+selected = 1
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "Manage "
+popup/item_1/text = "Danbooru2023"
+popup/item_1/id = 1
+
+[node name="RunSort" type="Button" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Sort"
+
+[node name="SortManage" type="Window" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox"]
+title = "Sort Method Manage"
+initial_position = 4
+size = Vector2i(600, 400)
+visible = false
 
 [node name="Taginformation" type="HSplitContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage"]
 layout_mode = 2
@@ -396,9 +420,10 @@ layout_mode = 2
 [node name="Show" type="CheckButton" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Word Cloud Show"
+text = "Show"
 
 [node name="WordCloud" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud" instance=ExtResource("13_7lw0r")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -1259,6 +1284,7 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 [connection signal="pressed" from="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box/ButtonBox/Remove" to="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox" method="_on_remove_pressed"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Input2/Run" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_run_button_up"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox/Add" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_add_button_up"]
+[connection signal="pressed" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Newbox/RunSort" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_sort_tag_pressed"]
 [connection signal="toggled" from="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/Word Cloud/Show" to="ImageManager/Main/Tabbox/Manager/Tag Manage" method="_on_show_toggled"]
 [connection signal="button_up" from="ImageManager/Main/Tabbox/Manager/Setting/Settingbox/Buttunbox/SetBack" to="ImageManager/Main/Tabbox/Manager" method="_on_set_back_button_up"]
 [connection signal="meta_clicked" from="ImageManager/Main/Thank" to="ImageManager/Main/Tabbox/Manager" method="_on_thank_meta_clicked"]

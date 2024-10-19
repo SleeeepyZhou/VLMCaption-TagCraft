@@ -17,7 +17,6 @@ func _on_button_pressed() -> void:
 	#if characters:
 		#print("Character name: ", characters.name)
 		#print("Wiki URL: ", characters.wikiURL)
-		## 如果有别名，也可以这样获取
 		#if config.has_section_key("content:2k-tan", "alias"):
 			#var aliases = config.get_value("content:2k-tan", "alias")
 			#print("Aliases: ", aliases)
@@ -49,7 +48,10 @@ func _on_button_pressed() -> void:
 	print("ok")
 
 func _on_button_2_pressed() -> void:
-	print(path)
+	var p : PackedStringArray = ["111","323"]
+	var s : PackedStringArray = ["222","sda"]
+	p.append_array(s)
+	print(p)
 	#var dir = DirAccess.open("res://Data/PromptBuilder/human").get_files()
 	#for i in range(type.size()):
 		#var file = FileAccess.open("res://Data/" + type_name[i] + ".csv", FileAccess.WRITE)
