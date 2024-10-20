@@ -23,6 +23,7 @@ func update_list():
 		newunit.connect("send", open_path)
 
 func _ready():
+	current_tab = 0
 	update_list()
 	var setting = Global.readjson()["setting"]
 	if setting.has("managerbackground"):

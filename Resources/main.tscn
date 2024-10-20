@@ -119,7 +119,7 @@ color = Color(0.658824, 0.972549, 1, 0.192157)
 [node name="Manager" type="TabContainer" parent="ImageManager/Main/Tabbox"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 2
+current_tab = 1
 script = ExtResource("3_ny3sl")
 
 [node name="BackLoad" type="Timer" parent="ImageManager/Main/Tabbox/Manager"]
@@ -141,7 +141,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="FileShow" type="HSplitContainer" parent="ImageManager/Main/Tabbox/Manager"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 metadata/_tab_index = 1
@@ -284,6 +283,7 @@ autowrap_mode = 1
 [node name="CaptionList" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/FileShow/InfoBox/Box/Box"]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Window" type="Window" parent="ImageManager/Main/Tabbox/Manager/FileShow"]
 mode = 2
@@ -296,6 +296,7 @@ script = ExtResource("5_g8oab")
 [node name="Filter" parent="ImageManager/Main/Tabbox/Manager/FileShow/Window" instance=ExtResource("6_rcoyg")]
 
 [node name="Tag Manage" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
+visible = false
 layout_mode = 2
 script = ExtResource("12_gfwdk")
 metadata/_tab_index = 2
