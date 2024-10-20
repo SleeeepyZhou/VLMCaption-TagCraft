@@ -1,7 +1,7 @@
 extends LinkButton
 
 var releases_url = "https://api.github.com/repos/SleeeepyZhou/VLMCaption-TagCraft/releases/latest"
-@export var version = "V0.3.2-Beta"
+const version = "V0.3.3-Beta"
 
 func _ready():
 	text = "Version " + version
