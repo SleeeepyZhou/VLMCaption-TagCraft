@@ -8,6 +8,10 @@
 
 A tool for image GPTcaption and manage.  ~~(Rehabilitation training)~~  
 
+Support Windows(x86_64)、Linux(x86_64)、MacOS(10.12+)  
+
+Support Keyboard and joystick.
+
 ### Current Work
 
 - [ ] Support small model to quickly filter the training set
