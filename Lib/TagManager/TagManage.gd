@@ -52,6 +52,11 @@ func _on_run_button_up():
 						else:
 							var filepack : PackedStringArray = [file]
 							_tags[newtemptag] = [1, filepack]
+						
+						# 清理停用词
+						if $"Tag Manage/Input2/Stopword".pressed:
+							newtemptag = Global.remove_stopword(newtemptag)
+
 						newtemp.append(newtemptag)
 					var new_caption = ",".join(newtemp)
 					var save_file = FileAccess.open(full_path, FileAccess.WRITE)

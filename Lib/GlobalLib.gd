@@ -1,27 +1,5 @@
 extends Node
 
-const stopwords = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", 
-			"your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", 
-			"she", "her", "hers", "herself", "it", "its", "itself", "they", "them", 
-			"their", "theirs", "themselves", "what", "which", "who", "whom", "this", 
-			"that", "these", "those", "am", "is", "are", "was", "were", "be", "been", 
-			"being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", 
-			"an", "the", "and", "but", "if", "or", "because", "as", "until", "while", 
-			"of", "at", "by", "for", "with", "about", "against", "between", "into", 
-			"through", "during", "before", "after", "above", "below", "to", "from", 
-			"up", "down", "in", "out", "on", "off", "over", "under", "again", "further", 
-			"then", "once", "here", "there", "when", "where", "why", "how", "all", 
-			"any", "both", "each", "few", "more", "most", "other", "some", "such", 
-			"no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", 
-			"s", "t", "can", "will", "just", "don", "should", "now"]
-const regex_word = "\b(i|me|my|myself|we|our|ours|ourselves|you|your|yours|yourself|yourselves|
-			he|him|his|himself|she|her|hers|herself|it|its|itself|they|them|their|theirs|themselves|
-			what|which|who|whom|this|that|these|those|am|is|are|was|were|be|been|being|have|has|had|
-			having|do|does|did|doing|a|an|the|and|but|if|or|because|as|until|while|of|at|by|for|with|
-			about|against|between|into|through|during|before|after|above|below|to|from|up|down|
-			in|out|on|off|over|under|again|further|then|once|here|there|when|where|why|how|all|
-			any|both|each|few|more|most|other|some|such|no|nor|not|only|own|same|so|than|too|very|
-			s|t|can|will|just|don|should|now)\b"
 # 线程池
 var maxhttp : int = 10
 var is_run : bool = false
@@ -129,3 +107,48 @@ func remove_pic(pic_path : String):
 	var txt_path = pic_path.get_basename() + ".txt"
 	if FileAccess.file_exists(txt_path):
 		dir.rename(txt_path, (remove_path+"/"+txt_path.get_file()).simplify_path())
+
+# 停用词
+
+const stopwords = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", 
+			"your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", 
+			"she", "her", "hers", "herself", "it", "its", "itself", "they", "them", 
+			"their", "theirs", "themselves", "what", "which", "who", "whom", "this", 
+			"that", "these", "those", "am", "is", "are", "was", "were", "be", "been", 
+			"being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", 
+			"an", "the", "and", "but", "if", "or", "because", "as", "until", "while", 
+			"of", "at", "by", "for", "with", "about", "against", "between", "into", 
+			"through", "during", "before", "after", "above", "below", "to", "from", 
+			"up", "down", "in", "out", "on", "off", "over", "under", "again", "further", 
+			"then", "once", "here", "there", "when", "where", "why", "how", "all", 
+			"any", "both", "each", "few", "more", "most", "other", "some", "such", 
+			"no", "nor", "not", "only", "own", "same", "so", "than", "too", "very", 
+			"s", "t", "can", "will", "just", "don", "should", "now"]
+const regex_word = "\b(i|me|my|myself|we|our|ours|ourselves|you|your|yours|yourself|yourselves|
+			he|him|his|himself|she|her|hers|herself|it|its|itself|they|them|their|theirs|themselves|
+			what|which|who|whom|this|that|these|those|am|is|are|was|were|be|been|being|have|has|had|
+			having|do|does|did|doing|a|an|the|and|but|if|or|because|as|until|while|of|at|by|for|with|
+			about|against|between|into|through|during|before|after|above|below|to|from|up|down|
+			in|out|on|off|over|under|again|further|then|once|here|there|when|where|why|how|all|
+			any|both|each|few|more|most|other|some|such|no|nor|not|only|own|same|so|than|too|very|
+			s|t|can|will|just|don|should|now)\b"
+const stopword_use = ["i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", 
+			"your", "yours", "yourself", "yourselves", "he", "him", "his", "himself", 
+			"she", "her", "hers", "herself", "it", "its", "itself", "they", "them", 
+			"their", "theirs", "themselves", "what", "which", "who", "whom", "this", 
+			"that", "these", "those", "am", "is", "are", "was", "were", "be", "been", 
+			"being", "have", "has", "had", "having", "do", "does", "did", "doing", "a", 
+			"an", "the", "and", "but", "if", "or", "because", "as", "until", "while", 
+			"of", "for", "with", "about", "into", "through", "during", "before", "after", 
+			"to", "from", "off", "over", "under", "again", "further", "then", "once", "here", 
+			"there", "when", "where", "why", "how", "all", "any", "both", "each", "few", 
+			"more", "most", "other", "some", "such", "no", "nor", "not", "only", "own", 
+			"same", "so", "than", "too", "very", "s", "t", "can", "will", "just", "don", 
+			"should", "now"]
+
+func remove_stopword(caption : String) -> String:
+	var temp = caption.split(" ", false)
+	for i in range(temp.size()):
+		if stopword_use.has(temp[i]):
+			temp.remove_at(i)
+	return " ".join(temp)
