@@ -7,12 +7,12 @@
 </p>
 
 #### TagManage
-Tag sort
-Stopwords remove
+Tag sort  
+Stopwords remove  
 <img src=".ex\03.png" width="500">
 
 #### Focus Mode
-You can use joystick filter image.
+You can use joystick filter image.  
 <img src=".ex\02.png" width="500">
 
 更新支持GPT4o的json_schema功能  
