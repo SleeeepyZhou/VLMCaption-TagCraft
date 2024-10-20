@@ -1,4 +1,4 @@
-# ImageManager&GPTCaption
+# TagCraft&VLMCaptioner
 
 <p align="center">
   <a href="https://github.com/SleeeepyZhou/VLMCaption-TagCraft">
