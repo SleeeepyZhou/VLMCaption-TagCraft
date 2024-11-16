@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cvcr6osoyl86q"]
+[gd_scene load_steps=22 format=3 uid="uid://cvcr6osoyl86q"]
 
 [ext_resource type="Script" path="res://Lib/Inapp.gd" id="1_niuwl"]
 [ext_resource type="Theme" uid="uid://cichl1ubkv6ux" path="res://Resources/main_theme.tres" id="2_gsnq3"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Lib/ImageProcess/BatchImage.gd" id="8_juek7"]
 [ext_resource type="PackedScene" uid="uid://dpjuvj5sq8cjp" path="res://Lib/TagManager/header.tscn" id="9_h1h5o"]
 [ext_resource type="Script" path="res://Lib/ImageProcess/FailedScreening.gd" id="9_pcsf8"]
+[ext_resource type="Script" path="res://Lib/TagManager/TagAnalysis.gd" id="10_8ma8t"]
 [ext_resource type="Script" path="res://Lib/Extra/Watermark.gd" id="10_4288l"]
 [ext_resource type="Script" path="res://Lib/Extra/Filtering.gd" id="11_3ejic"]
 [ext_resource type="Script" path="res://Lib/TagManager/TagManage.gd" id="12_gfwdk"]
@@ -119,7 +120,7 @@ color = Color(0.658824, 0.972549, 1, 0.192157)
 [node name="Manager" type="TabContainer" parent="ImageManager/Main/Tabbox"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 3
 script = ExtResource("3_ny3sl")
 
 [node name="BackLoad" type="Timer" parent="ImageManager/Main/Tabbox/Manager"]
@@ -141,6 +142,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="FileShow" type="HSplitContainer" parent="ImageManager/Main/Tabbox/Manager"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 metadata/_tab_index = 1
@@ -445,10 +447,91 @@ layout_mode = 2
 [node name="Tag" parent="ImageManager/Main/Tabbox/Manager/Tag Manage/Tag Manage/Taginformation/TagsBox/Box/Tags" instance=ExtResource("9_h1h5o")]
 layout_mode = 2
 
+[node name="Tag Analysis" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Tag Analysis" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis"]
+layout_mode = 2
+script = ExtResource("10_8ma8t")
+
+[node name="Input1" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/Input1"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Folder Path 1"
+horizontal_alignment = 1
+
+[node name="Path" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/Input1"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter folder path"
+
+[node name="Input2" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/Input2"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Folder Path 2"
+horizontal_alignment = 1
+
+[node name="Path" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/Input2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter folder path"
+
+[node name="Input3" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/Input3"]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+text = "Output Path"
+horizontal_alignment = 1
+
+[node name="Path" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/Input3"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter folder path, Default is the folder named 'Analysis' under Path1"
+
+[node name="ButtonBox" type="HBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis"]
+layout_mode = 2
+alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/ButtonBox"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Union"
+popup/item_1/text = "Intersection"
+popup/item_1/id = 1
+
+[node name="Run" type="Button" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/ButtonBox"]
+layout_mode = 2
+text = "Run"
+
+[node name="Label" type="Label" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/ButtonBox"]
+layout_mode = 2
+text = "Output: "
+
+[node name="LineEdit" type="LineEdit" parent="ImageManager/Main/Tabbox/Manager/Tag Analysis/Tag Analysis/ButtonBox"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+editable = false
+
 [node name="Setting" type="MarginContainer" parent="ImageManager/Main/Tabbox/Manager"]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 3
+metadata/_tab_index = 4
 
 [node name="Settingbox" type="VBoxContainer" parent="ImageManager/Main/Tabbox/Manager/Setting"]
 layout_mode = 2
