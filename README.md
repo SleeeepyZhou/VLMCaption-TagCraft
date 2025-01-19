@@ -47,6 +47,8 @@ You can use joystick filter image.
 
 ~~（康复训练）~~  
 
+[<img src="https://api.gitsponsors.com/api/badge/img?id=841748276" height="20">](https://api.gitsponsors.com/api/badge/link?p=qKY7m386O8jlsxUtez9MbMoiV7MkuRCZE4j8D1tw/SnbCMl6euwnHK1Ug12z5YyH)
+
 ## Thanks  
 [GPT4V-Image-Captioner](https://github.com/jiayev/GPT4V-Image-Captioner)  
 [KBlueLeaf/danbooru2023-metadata-database](https://huggingface.co/datasets/KBlueLeaf/danbooru2023-metadata-database)  
