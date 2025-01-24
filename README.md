@@ -47,7 +47,7 @@ You can use joystick filter image.
 
 ~~（康复训练）~~  
 
-[<img src="https://api.gitsponsors.com/api/badge/img?id=841748276" height="20">](https://api.gitsponsors.com/api/badge/link?p=qKY7m386O8jlsxUtez9MbMoiV7MkuRCZE4j8D1tw/SnbCMl6euwnHK1Ug12z5YyH)
+[<img src="https://api.gitsponsors.com/api/badge/img?id=841748276" height="20">](https://api.gitsponsors.com/api/badge/link?p=qKY7m386O8jlsxUtez9MbB7wEI/XLE3aL9r1oNc3K2jwSQDy06vZQG97u75s9IC/QUPvA8oZGYYhAmPrSy+XFTiv2r1VmyrZ4pV1R0CiFH7LoLO4lZs/Y2iHJ+V9lRvB7QSIujQyYLNkDoFaIBFBCw==)
 
 ## Thanks  
 [GPT4V-Image-Captioner](https://github.com/jiayev/GPT4V-Image-Captioner)  
